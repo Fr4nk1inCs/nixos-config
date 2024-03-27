@@ -11,14 +11,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        # importing configuration.nix to make previous configuration to be valid
-        ./configuration.nix
-        nixos-wsl.nixosModules.wsl
-      ];
+  outputs = { self, nixpkgs, nixos-wsl, ... }@inputs: {
+    nixosConfigurations = {
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/wsl
+          nixos-wsl.nixosModules.wsl
+        ];
+      };
     };
   };
 }
