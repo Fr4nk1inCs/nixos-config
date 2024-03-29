@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./commandline.nix
+    ./cli
   ];
+
   home.username = "fushen";
   home.homeDirectory = "/home/fushen";
 
