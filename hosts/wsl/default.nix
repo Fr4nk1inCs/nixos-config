@@ -3,12 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ../../modules/system
   ];
@@ -24,6 +19,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = "fushen";
+  wsl.interop.includePath = false;
 
   networking.hostName = "wsl"; # Define your hostname
 
