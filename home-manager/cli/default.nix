@@ -5,5 +5,6 @@
     ./shell.nix
     ./tools.nix
     ./git.nix
+    ./neovim
   ];
 }

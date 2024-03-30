@@ -2,22 +2,11 @@
 
 {
   home.packages = with pkgs; [
-    bat
-    btop
-    eza
-    fzf
-    ripgrep
+    fd
     tldr
-    zoxide
+    wakatime
     zsh
   ];
-
-  programs.zsh.shellAliases = {
-    # neovim
-    "vim" = "nvim";
-    "nv" = "nvim";
-    "v" = "nvim";
-  };
 
   programs.bat = {
     enable = true;

@@ -1,15 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    zsh
-    starship
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     history = {
@@ -26,11 +21,11 @@
       enable = true;
       searchDownKey = [
         "^[[B"
-	"^[OB"
+        "^[OB"
       ];
       searchUpKey = [
         "^[[A"
-	"^[OA"
+        "^[OA"
       ];
     };
 

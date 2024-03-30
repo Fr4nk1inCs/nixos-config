@@ -36,9 +36,6 @@
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
-  # Allow using non-free software
-  nixpkgs.config.allowUnfree = true;
-
   # Basic packages to maintain a minimal usable shell
   environment.systemPackages = with pkgs; [
     git
