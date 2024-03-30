@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     delta # better diff
     gh # github-cli
@@ -16,8 +14,8 @@
       enable = true;
       options = {
         navigate = true;
-	light = false;
-	side-by-side = false;
+        light = false;
+        side-by-side = false;
       };
     };
     userEmail = "fushen@mail.ustc.edu.cn";
@@ -25,5 +23,4 @@
   };
 
   programs.lazygit.enable = true;
-
 }

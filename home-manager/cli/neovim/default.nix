@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -20,6 +22,10 @@
       gcc
       unzip
       fswatch
+
+      # Make mason.nvim happy :(
+      (python3.withPackages (ps: [ps.pynvim]))
+      cargo
 
       # LSPs
       jdt-language-server
@@ -92,29 +98,3 @@
 
   xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/cli/neovim/nvim";
 }
-
-
-  #   ◍ rust-analyzer
-  #
-  #   ◍ stylua
-  #
-  #   ◍ taplo
-  #
-  #   ◍ texlab
-  #
-  #
-  # Queued
-  #   ◍ clangd
-  #   ◍ eslint-lsp
-  #   ◍ ruff-lsp
-  #   ◍ typst-lsp
-  #
-  # Installed
-  #   ◍ jdtls
-  #   ◍ json-lsp jsonls
-  #   ◍ lua-language-server lua_ls
-  #   ◍ pyright
-  #   ◍ shellcheck
-  #   ◍ shfmt
-  #   ◍ typescript-language-server tsserver
-  #   ◍ yaml-language-server yamlls

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     fd
     tldr
@@ -19,7 +17,7 @@
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "Nord";
+      color_theme = "nord";
       theme_background = false;
     };
   };

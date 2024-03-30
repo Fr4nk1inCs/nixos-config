@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # Password is needed when using sudo
   security.sudo.wheelNeedsPassword = true;
 
