@@ -45,9 +45,6 @@
     neovim
     wget
     curl
-
-    zsh
-    starship
   ];
 
   # Setting default editor to vim
@@ -59,8 +56,6 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
-
-  users.defaultUserShell = pkgs.zsh;
 
   programs.starship = {
     enable = true;

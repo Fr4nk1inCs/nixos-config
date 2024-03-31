@@ -6,6 +6,7 @@
 {...}: {
   imports = [
     ../../modules/system
+    ../../modules/system/wsl.nix
   ];
 
   users.users = {
