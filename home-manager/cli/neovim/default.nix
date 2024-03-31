@@ -54,6 +54,11 @@
 
       # Tree-sitter
       tree-sitter
+
+      # Typst
+      typst
+      typst-preview
+      websocat
     ];
 
     plugins = [
