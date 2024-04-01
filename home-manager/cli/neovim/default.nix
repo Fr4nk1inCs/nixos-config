@@ -28,6 +28,7 @@
       cargo
 
       # LSPs
+      clang-tools
       jdt-language-server
       lua-language-server
       nil
@@ -39,8 +40,6 @@
       tinymist
       vscode-langservers-extracted
       yaml-language-server
-
-      llvmPackages_latest.clang-unwrapped
 
       nodePackages.vscode-json-languageserver
       nodePackages.pyright
