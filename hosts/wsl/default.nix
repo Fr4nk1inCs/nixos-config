@@ -9,15 +9,6 @@
     ../../modules/system/wsl.nix
   ];
 
-  users.users = {
-    fushen = {
-      isNormalUser = true;
-      description = "Shen Fu";
-      extraGroups = ["wheel"];
-    };
-  };
-  nix.settings.trusted-users = ["fushen"];
-
   wsl.enable = true;
   wsl.defaultUser = "fushen";
   wsl.interop.includePath = false;
