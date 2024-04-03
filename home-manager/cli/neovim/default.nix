@@ -21,6 +21,7 @@
       # Dependent binaries
       gcc
       unzip
+      gnumake
       fswatch
 
       # Make mason.nvim happy :(
