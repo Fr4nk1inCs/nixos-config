@@ -1,3 +1,4 @@
+# TODO: Take this file apart, some of it is dev-related
 {pkgs, ...}: {
   home.packages = with pkgs; [
     fd
@@ -20,6 +21,11 @@
       color_theme = "nord";
       theme_background = false;
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   programs.eza = {

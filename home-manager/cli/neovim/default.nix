@@ -47,10 +47,11 @@
       nodePackages.typescript-language-server
 
       # Formatters
-      black
-      stylua
-      shfmt
       alejandra
+      black
+      isort
+      shfmt
+      stylua
 
       # Tree-sitter
       tree-sitter
@@ -71,6 +72,7 @@
         p.jsdoc
         p.json
         p.jsonc
+        p.latex
         p.lua
         p.luadoc
         p.luap
@@ -93,6 +95,7 @@
         p.rust
         p.ninja
         p.rst
+        p.verilog
       ]))
     ];
   };
