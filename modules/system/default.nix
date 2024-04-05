@@ -78,4 +78,38 @@
   programs.starship = {
     enable = true;
   };
+
+  # Fonts
+  fonts = {
+    packages = with pkgs; [
+      inter # sans-serif
+      source-han-sans # sans-serif for CJK
+      source-han-serif # serif
+      maple-mono-SC-NF # monospace
+      noto-fonts-color-emoji # emoji
+    ];
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = ["Inter Display" "Source Han Sans SC"];
+        serif = ["Source Han Serif SC"];
+        monospace = ["Maple Mono SC NF"];
+      };
+      localConf = ''
+        <match target="font">
+          <test name="family" compare="eq" ignore-blanks="true">
+            <string>Maple Mono SC NF</string>
+          </test>
+          <edit name="fontfeatures" mode="assign_replace">
+            <string>cv01</string>
+            <string>cv02</string>
+            <string>ss01</string>
+            <string>ss02</string>
+            <string>ss03</string>
+            <string>ss04</string>
+            <string>ss05</string>
+          </edit>
+        </match>
+      '';
+    };
+  };
 }
