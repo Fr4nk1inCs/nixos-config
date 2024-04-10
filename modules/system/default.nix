@@ -26,10 +26,10 @@
 
     # Cache mirror located in China
     substituters = [
-      # status: https://mirror.sjtu.edu.cn/
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
       # status: https://mirrors.ustc.edu.cn/status
       "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # status: https://mirror.sjtu.edu.cn/
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
 
       # nix community's cache server
       "https://nix-community.cachix.org"
