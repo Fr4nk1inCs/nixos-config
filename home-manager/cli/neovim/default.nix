@@ -27,10 +27,13 @@
       # Make mason.nvim happy :(
       (python3.withPackages (ps: [ps.pynvim]))
       cargo
+      go
 
       # LSPs
       clang-tools
+      gopls
       jdt-language-server
+      ltex-ls
       lua-language-server
       nil
       ruff-lsp
@@ -46,9 +49,17 @@
       nodePackages.pyright
       nodePackages.typescript-language-server
 
+      # Debuggers
+      delve
+      gdb
+      lldb
+      (python3.withPackages (ps: [ps.debugpy]))
+
       # Formatters
       alejandra
       black
+      gofumpt
+      gotools
       isort
       shfmt
       stylua
@@ -67,6 +78,10 @@
         p.bash
         p.c
         p.diff
+        p.go
+        p.gomod
+        p.gowork
+        p.gosum
         p.html
         p.javascript
         p.jsdoc
