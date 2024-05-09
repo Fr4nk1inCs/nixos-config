@@ -20,6 +20,7 @@
     };
     userEmail = "fushen@mail.ustc.edu.cn";
     userName = "Fr4nk1in";
+    extraConfig.credential.helper = "store";
   };
 
   programs.lazygit.enable = true;
