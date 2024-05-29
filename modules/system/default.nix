@@ -112,4 +112,27 @@
       '';
     };
   };
+
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+      daemon.settings = {
+        registry-mirrors = [
+          "https://docker.mirrors.ustc.edu.cn"
+          "http://hub-mirror.c.163.com"
+          "https://registry.docker-cn.com"
+        ];
+      };
+    };
+    daemon.settings = {
+      registry-mirrors = [
+        "https://docker.mirrors.ustc.edu.cn"
+        "http://hub-mirror.c.163.com"
+        "https://registry.docker-cn.com"
+      ];
+    };
+  };
 }
