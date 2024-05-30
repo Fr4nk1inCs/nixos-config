@@ -12,8 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -36,9 +34,6 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {allowUnfree = true;};
-      overlays = [
-        inputs.neovim-nightly-overlay.overlay
-      ];
     };
   in {
     nixosConfigurations = {
