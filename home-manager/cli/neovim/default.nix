@@ -29,6 +29,7 @@
       go
 
       # LSPs
+      basedpyright
       clang-tools
       gopls
       jdt-language-server
@@ -45,7 +46,6 @@
       yaml-language-server
 
       nodePackages.vscode-json-languageserver
-      nodePackages.pyright
       nodePackages.typescript-language-server
 
       # Debuggers
