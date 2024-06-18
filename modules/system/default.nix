@@ -2,7 +2,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  maple-mono-NF-CN = pkgs.callPackage ../fonts {};
+in {
   # Default user
   users.users = {
     fushen = {
@@ -85,28 +87,23 @@
       inter # sans-serif
       source-han-sans # sans-serif for CJK
       source-han-serif # serif
-      maple-mono-SC-NF # monospace
+      maple-mono-NF-CN # monospace
       noto-fonts-color-emoji # emoji
     ];
     fontconfig = {
       defaultFonts = {
         sansSerif = ["Inter Display" "Source Han Sans SC"];
         serif = ["Source Han Serif SC"];
-        monospace = ["Maple Mono SC NF"];
+        monospace = ["Maple Mono NF CN"];
       };
       localConf = ''
         <match target="font">
           <test name="family" compare="eq" ignore-blanks="true">
-            <string>Maple Mono SC NF</string>
+            <string>Maple Mono NF CN</string>
           </test>
           <edit name="fontfeatures" mode="assign_replace">
             <string>cv01</string>
-            <string>cv02</string>
-            <string>ss01</string>
-            <string>ss02</string>
-            <string>ss03</string>
-            <string>ss04</string>
-            <string>ss05</string>
+            <string>cv03</string>
           </edit>
         </match>
       '';
