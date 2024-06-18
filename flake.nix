@@ -5,7 +5,7 @@
     # NixOS official source, using branch nixos-23.11
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
