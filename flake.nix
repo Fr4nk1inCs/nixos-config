@@ -49,7 +49,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.${username} = import ./home-manager;
+            home-manager.users.${username} = import ./home-manager/tty.nix;
             home-manager.extraSpecialArgs = inputs;
           }
         ];
