@@ -14,4 +14,9 @@
     '';
   in
     lib.mkForce "${wrapper}/bin/shell-wrapper";
+
+  # CUDA support
+  environment.variables = {
+    LD_LIBRARY_PATH = "/usr/lib/wsl/lib/";
+  };
 }
