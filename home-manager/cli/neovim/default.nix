@@ -35,10 +35,12 @@
       jdt-language-server
       ltex-ls
       lua-language-server
+      neocmakelsp
       nil
       ruff-lsp
       rust-analyzer-unwrapped
       shellcheck
+      tailwindcss-language-server
       taplo
       texlab
       tinymist
@@ -47,6 +49,7 @@
 
       nodePackages.vscode-json-languageserver
       nodePackages.typescript-language-server
+      nodePackages."@astrojs/language-server"
 
       # Debuggers
       delve
@@ -57,14 +60,20 @@
       # Formatters
       alejandra
       black
+      cmake-format
       gofumpt
       gotools
       isort
       shfmt
       stylua
 
+      nodePackages.prettier
+
       # Tree-sitter
       tree-sitter
+
+      # Linter
+      cmake-lint
 
       # Typst
       typst
@@ -73,44 +82,51 @@
     ];
 
     plugins = [
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-        p.bash
-        p.c
-        p.diff
-        p.go
-        p.gomod
-        p.gowork
-        p.gosum
-        p.html
-        p.javascript
-        p.jsdoc
-        p.json
-        p.jsonc
-        p.latex
-        p.lua
-        p.luadoc
-        p.luap
-        p.markdown
-        p.markdown_inline
-        p.python
-        p.query
-        p.regex
-        p.toml
-        p.tsx
-        p.typescript
-        p.vim
-        p.vimdoc
-        p.xml
-        p.yaml
-        p.json5
-        p.cpp
-        p.java
-        p.ron
-        p.rust
-        p.ninja
-        p.rst
-        p.verilog
-      ]))
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p:
+        with p; [
+          astro
+          bash
+          c
+          cmake
+          cpp
+          css
+          diff
+          go
+          gomod
+          gosum
+          gowork
+          html
+          java
+          javascript
+          jsdoc
+          json
+          json5
+          jsonc
+          latex
+          llvm
+          lua
+          luadoc
+          luap
+          markdown
+          markdown_inline
+          mlir
+          ninja
+          python
+          query
+          regex
+          ron
+          rst
+          rust
+          tablegen
+          toml
+          tsx
+          typescript
+          verilog
+          vim
+          vimdoc
+          xml
+          yaml
+        ]))
     ];
   };
 
