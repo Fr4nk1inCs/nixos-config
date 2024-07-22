@@ -1,0 +1,6 @@
+{...}: {
+  imports = [
+    ./desktop-environment
+    ./softwares
+  ];
+}
