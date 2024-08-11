@@ -39,6 +39,15 @@
       };
     };
   in {
+    homeConfigurations = {
+      # lab server
+      sf = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home-manager/lab-server.nix
+        ];
+      };
+    };
     nixosConfigurations = {
       wsl = nixpkgs.lib.nixosSystem {
         inherit pkgs system;
