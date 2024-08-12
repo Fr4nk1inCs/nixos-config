@@ -20,6 +20,11 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -27,6 +32,7 @@
     nixpkgs,
     nixos-wsl,
     home-manager,
+    nixvim,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -44,7 +50,14 @@
       sf = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./home-manager/lab-server.nix
+          ./hosts/home-manager/sf.nix
+        ];
+      };
+      test = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          nixvim.homeManagerModules.nixvim
+          ./hosts/home-manager/test.nix
         ];
       };
     };
@@ -61,7 +74,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.${username} = import ./home-manager/tty.nix;
+            home-manager.users.${username} = import ./home-manager;
             home-manager.extraSpecialArgs = inputs;
           }
         ];
@@ -77,7 +90,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.${username} = import ./home-manager/desktop.nix;
+            home-manager.users.${username} = import ./home-manager;
             home-manager.extraSpecialArgs = inputs;
           }
         ];

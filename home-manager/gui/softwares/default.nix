@@ -1,52 +1,61 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # browser
-    google-chrome
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.homeManagerConfig.gui;
+  enable = cfg.enable && cfg.software.enable;
+in
+  with pkgs; {
+    config.home.packages = lib.optionals enable [
+      # browser
+      google-chrome
 
-    # note taking
-    obsidian
+      # note taking
+      obsidian
 
-    # file syncing
-    onedrive
+      # file syncing
+      onedrive
 
-    # document viewer
-    gnome.evince
-    zathura
+      # document viewer
+      gnome.evince
+      zathura
 
-    # screen capture
-    obs-studio
+      # screen capture
+      obs-studio
 
-    # video player
-    mpv
-    vlc
+      # video player
+      mpv
+      vlc
 
-    # online meeting
-    zoom-us
+      # online meeting
+      zoom-us
 
-    # remote desktop
-    parsec-bin
+      # remote desktop
+      parsec-bin
 
-    # image editing
-    inkscape
+      # image editing
+      inkscape
 
-    # code editor
-    neovide
+      # code editor
+      neovide
 
-    # academic research
-    zotero-beta
+      # academic research
+      zotero-beta
 
-    # instant messaging
-    qq
-    telegram-desktop
+      # instant messaging
+      qq
+      telegram-desktop
 
-    # file explorer
-    gnome.nautilus
+      # file explorer
+      gnome.nautilus
 
-    # streaming music
-    spotify
+      # streaming music
+      spotify
 
-    # system management
-    gnome.baobab # disk usage analyzer
-    # clash-verge-rev # proxy
-  ];
-}
+      # system management
+      gnome.baobab # disk usage analyzer
+      # clash-verge-rev # proxy
+    ];
+  }

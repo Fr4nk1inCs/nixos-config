@@ -1,8 +1,14 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   mod = "super";
   terminal = "kitty";
+  enable = config.homeManagerConfig.gui.enable;
 in {
-  wayland.windowManager.hyprland = {
+  config.wayland.windowManager.hyprland = lib.optionalAttrs enable {
     enable = true;
     xwayland.enable = true;
     settings = {

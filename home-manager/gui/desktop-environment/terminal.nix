@@ -1,5 +1,11 @@
-{...}: {
-  programs.kitty = {
+{
+  config,
+  lib,
+  ...
+}: let
+  enable = config.homeManagerConfig.gui.enable;
+in {
+  config.programs.kitty = lib.optionalAttrs enable {
     enable = true;
     shellIntegration.enableZshIntegration = true;
     theme = "Nord";

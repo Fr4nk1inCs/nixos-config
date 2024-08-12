@@ -1,4 +1,3 @@
-# TODO: Take this file apart, some of it is dev-related
 {pkgs, ...}: {
   home.packages = with pkgs; [
     fd
