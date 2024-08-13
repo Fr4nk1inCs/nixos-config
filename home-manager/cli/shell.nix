@@ -5,6 +5,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    completionInit = "autoload -U compinit && compinit -i";
+
     history = {
       size = 50000;
       save = 10000;
