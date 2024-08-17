@@ -140,32 +140,6 @@
       builtins.map
       (key: {
         key = key;
-        action = "<cmd>bprevious<cr>";
-        mode = "n";
-        options = {
-          desc = "Previous buffer";
-          silent = true;
-        };
-      })
-      ["<s-h>" "[b"]
-    )
-    ++ (
-      builtins.map
-      (key: {
-        key = key;
-        action = "<cmd>bnext<cr>";
-        mode = "n";
-        options = {
-          desc = "Next buffer";
-          silent = true;
-        };
-      })
-      ["<s-l>" "]b"]
-    )
-    ++ (
-      builtins.map
-      (key: {
-        key = key;
         action = "<cmd>e #<cr>";
         mode = "n";
         options = {
@@ -322,7 +296,7 @@
       key = "<leader>${item.key}";
       action = "<c-w>${item.action}";
       mode = "n";
-      option = {
+      options = {
         desc = item.desc;
         silent = true;
         remap = true;
@@ -403,7 +377,7 @@
     (key: {
       action.__raw = ''
         function()
-          return vim.notify(
+          return utils.notify(
             "Arrow keys are disabled, use hjkl instead",
             vim.log.levels.WARN,
             { title = "Disabled" }

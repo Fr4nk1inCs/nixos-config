@@ -12,7 +12,7 @@
               and vim.fn.getfsize(path) > vim.g.bigfile_size
               and "bigfile"
             or nil
-        end,
+        end
       '';
     };
   };
