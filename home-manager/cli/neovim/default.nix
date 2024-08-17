@@ -1,11 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
-    ./core
     ./utils
+    ./core
     ./extra
   ];
 

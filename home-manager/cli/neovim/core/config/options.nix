@@ -43,7 +43,7 @@
     list = true; # Show some invisible characters
     mouse = "a"; # Enable mouse mode
     number = true; # Line number
-    pumblend = 10; # Popup blend
+    pumblend = 0; # Popup blend
     pumheight = 10; # Maximum number of entries in a popup
     relativenumber = true; # Relative line numbers
     scrolloff = 4; # Lines of context
@@ -87,29 +87,29 @@
     };
   };
 
-  programs.nixvim.extraConfigLua = "
-    vim.opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus' -- Sync with system clipboard
+  programs.nixvim.extraConfigLua = ''
+    vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
     vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
-    vim.opt.spelloptions:append('noplainbuffer')
+    vim.opt.spelloptions:append("noplainbuffer")
 
     vim.o.exrc = true;
 
-    if vim.fn.has('wsl') == 1 then
+    if vim.fn.has("wsl") == 1 then
         vim.g.clipboard = {
-            name = 'WslClipboard',
+            name = "WslClipboard",
             -- Install Neovim on host (Windows) to use faster global clipboard
             copy = {
-                ['+'] = { '/mnt/c/Program Files/Neovim/bin/win32yank.exe', '-i', '--crlf' },
-                ['*'] = { '/mnt/c/Program Files/Neovim/bin/win32yank.exe', '-i', '--crlf' },
+                ["+"] = { "/mnt/c/Program Files/Neovim/bin/win32yank.exe", "-i", "--crlf" },
+                ["*"] = { "/mnt/c/Program Files/Neovim/bin/win32yank.exe", "-i", "--crlf" },
             },
             paste = {
-                ['+'] = { '/mnt/c/Program Files/Neovim/bin/win32yank.exe', '-o', '--lf' },
-                ['*'] = { '/mnt/c/Program Files/Neovim/bin/win32yank.exe', '-o', '--lf' },
+                ["+"] = { "/mnt/c/Program Files/Neovim/bin/win32yank.exe", "-o", "--lf" },
+                ["*"] = { "/mnt/c/Program Files/Neovim/bin/win32yank.exe", "-o", "--lf" },
             },
             cache_enabled = 0,
         }
     end
-  ";
+  '';
 
   programs.nixvim.clipboard.providers.wl-copy.enable = true;
 }
