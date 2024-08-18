@@ -6,5 +6,6 @@
   imports = [
     ./desktop-environment
     ./softwares
+    ./fonts
   ];
 }

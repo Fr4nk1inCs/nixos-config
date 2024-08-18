@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  maple-mono-NF-CN = pkgs.callPackage ../fonts {};
+  maple-mono-NF-CN = pkgs.callPackage ../fonts/maple-mono-NF-CN.nix {};
 in {
   # Default user
   users.users = {
