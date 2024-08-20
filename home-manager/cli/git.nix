@@ -16,5 +16,30 @@
     extraConfig.credential.helper = "store";
   };
 
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+
+    settings = {
+      os.editPreset = "nvim-remote";
+
+      gui = {
+        nerdFontsVersion = "3";
+        theme = {
+          unstagedChangesColor = ["#bf616a"];
+          selectedLineBgColor = ["#3e4a5b"];
+          searchingActiveBorderColor = ["#ebcb8b" "bold"];
+          optionsTextColor = ["#8cafd2"];
+          inactiveBorderColor = ["#7e8188"];
+          defaultFgColor = ["#cdcecf"];
+          cherryPickedCommitFgColor = ["#8cafd2"];
+          cherryPickedCommitBgColor = ["#88c0d0"];
+          activeBorderColor = ["#ebcb8b" "bold"];
+        };
+      };
+
+      git.paging.pager = "delta --dark --paging=never";
+
+      parseEmoji = true;
+    };
+  };
 }
