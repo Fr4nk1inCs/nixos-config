@@ -1,11 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    delta # better diff
-    gh # github-cli
-    git
-    lazygit
-  ];
-
+{...}: {
   programs.gh.enable = true;
 
   programs.git = {
