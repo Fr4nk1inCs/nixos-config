@@ -50,6 +50,7 @@
       sf = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          nixvim.homeManagerModules.nixvim
           ./hosts/home-manager/sf.nix
         ];
       };
@@ -74,7 +75,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.${username} = import ./home-manager;
+            home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
+
+            home-manager.users.${username} = import ./hosts/home-manager/wsl.nix;
             home-manager.extraSpecialArgs = inputs;
           }
         ];
@@ -89,6 +92,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
+            home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
 
             home-manager.users.${username} = import ./home-manager;
             home-manager.extraSpecialArgs = inputs;
