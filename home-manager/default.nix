@@ -14,6 +14,12 @@ in {
         description = "The username";
       };
 
+      system = lib.mkOption {
+        type = lib.types.enum ["linux" "darwin" "wsl"];
+        default = "linux";
+        description = "The system type";
+      };
+
       gui.enable = lib.mkEnableOption "Enable GUI programs";
       gui.software.enable = lib.mkOption {
         type = lib.types.bool;
