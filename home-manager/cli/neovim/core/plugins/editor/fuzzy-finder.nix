@@ -71,7 +71,6 @@
 in {
   programs.nixvim.plugins.fzf-lua = {
     enable = true;
-    iconsEnabled = true;
 
     profile.__raw = ''"default-title"'';
 
