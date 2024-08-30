@@ -7,7 +7,7 @@
     username = "sf";
     nixvimConfig.type = "minimal";
     extraPackages = with pkgs; [mihomo];
-    extraProgramConfig = ''
+    extraProgramConfig.zsh.initExtra = ''
       # added by Nix installer
       if [ -e /home/sf/.nix-profile/etc/profile.d/nix.sh ]; then
         . /home/sf/.nix-profile/etc/profile.d/nix.sh;
