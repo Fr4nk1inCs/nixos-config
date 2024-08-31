@@ -36,7 +36,7 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    username = "fushen";
+    user = "fushen";
     pkgs = import nixpkgs {
       inherit system;
       config = {
@@ -77,7 +77,7 @@
 
             home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
 
-            home-manager.users.${username} = import ./hosts/home-manager/wsl.nix;
+            home-manager.users.${user} = import ./hosts/home-manager/wsl.nix;
             home-manager.extraSpecialArgs = inputs;
           }
         ];
@@ -95,7 +95,7 @@
 
             home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
 
-            home-manager.users.${username} = import ./home-manager;
+            home-manager.users.${user} = import ./home-manager;
             home-manager.extraSpecialArgs = inputs;
           }
         ];
