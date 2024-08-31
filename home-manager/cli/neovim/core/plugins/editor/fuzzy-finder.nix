@@ -60,11 +60,11 @@
   };
   lspOperation = cmd: "<cmd>FzfLua lsp_${cmd} jump_to_single_result=true ignore_current_line=true<cr>";
   map = keymap: {
-    key = keymap.key;
+    inherit (keymap) key;
     mode = keymap.mode or "n";
-    action = keymap.action;
+    inherit (keymap) action;
     options = {
-      desc = keymap.desc;
+      inherit (keymap) desc;
       silent = true;
     };
   };

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.extraConfigLuaPre = ''
     utils.notify = function(message, level, opts)
       local level = level or vim.lsp.log_levels.INFO

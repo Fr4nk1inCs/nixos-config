@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.extraConfigLuaPre = ''
     utils.icons = {
       dots = "…",

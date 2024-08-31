@@ -4,7 +4,7 @@
   ...
 }: let
   enable = config.homeManagerConfig.nixvimConfig.type == "full";
-  system = config.homeManagerConfig.system;
+  inherit (config.homeManagerConfig) system;
   forwardSearchAfter = system != "wsl"; # Avoid focus being taken by the PDF viewer
   forwardSearch = {
     wsl = {
@@ -50,9 +50,9 @@ in {
           "%f"
         ];
         onSave = true;
-        forwardSearchAfter = forwardSearchAfter;
+        inherit forwardSearchAfter;
       };
-      forwardSearch = forwardSearch;
+      inherit forwardSearch;
       chktex = {
         onOpenAndSave = true;
         onEdit = true;

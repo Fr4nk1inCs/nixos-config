@@ -1,4 +1,4 @@
-{...}: let
+_: let
   augroup = name: "nixvim_${name}";
   createAutoGroups = groups:
     builtins.listToAttrs (

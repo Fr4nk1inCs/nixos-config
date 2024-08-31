@@ -1,4 +1,4 @@
-{...}: let
+_: let
   severity = s: "vim.diagnostic.severity.${s}";
 in {
   programs.nixvim.plugins.lsp = {

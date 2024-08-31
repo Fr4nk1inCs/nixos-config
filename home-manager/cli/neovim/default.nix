@@ -18,17 +18,17 @@
     withNodeJs = true;
     withRuby = true;
 
-    # performance = {
-    #   byteCompileLua = {
-    #     enable = true;
-    #     nvimRuntime = true;
-    #     plugins = true;
-    #   };
-    #   combinePlugins = {
-    #     enable = true;
-    #     standalonePlugins = ["nvim-treesitter"];
-    #   };
-    # };
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        nvimRuntime = true;
+        plugins = true;
+      };
+      combinePlugins = {
+        enable = true;
+        standalonePlugins = ["nvim-treesitter"];
+      };
+    };
   };
 
   programs.zsh.shellAliases = {

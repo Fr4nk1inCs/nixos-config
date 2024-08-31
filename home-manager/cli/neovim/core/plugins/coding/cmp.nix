@@ -1,4 +1,4 @@
-{...}: let
+_: let
   roundedBorder = {__raw = "cmp.config.window.bordered()";};
 in {
   programs.nixvim.extraConfigLuaPre = ''

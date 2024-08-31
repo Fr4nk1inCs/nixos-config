@@ -6,7 +6,7 @@
 }: let
   mod = "super";
   terminal = "kitty";
-  enable = config.homeManagerConfig.gui.enable;
+  inherit (config.homeManagerConfig.gui) enable;
 in {
   config.wayland.windowManager.hyprland = lib.optionalAttrs enable {
     enable = true;

@@ -1,11 +1,11 @@
-{...}: let
+_: let
   map = keymap: {
-    key = keymap.key;
+    inherit (keymap) key;
     mode = "n";
-    action = keymap.action;
+    inherit (keymap) action;
     options = {
       silent = true;
-      desc = keymap.desc;
+      inherit (keymap) desc;
     };
   };
   jump = direction: {

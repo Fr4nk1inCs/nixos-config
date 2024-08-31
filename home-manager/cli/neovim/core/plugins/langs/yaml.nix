@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.plugins = {
     treesitter.settings.ensure_installed = ["json5"];
     lsp.servers.yamlls = {

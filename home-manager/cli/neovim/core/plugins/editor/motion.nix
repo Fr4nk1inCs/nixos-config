@@ -1,4 +1,4 @@
-{...}: let
+_: let
   flash = func: {__raw = ''function() require("flash").${func}() end'';};
 in {
   programs.nixvim.plugins.flash.enable = true;

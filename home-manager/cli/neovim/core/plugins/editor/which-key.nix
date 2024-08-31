@@ -1,4 +1,4 @@
-{...}: let
+_: let
   expand = func: {
     __raw = ''
       function()

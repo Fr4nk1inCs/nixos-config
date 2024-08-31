@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.extraConfigLuaPre = ''
     do
       local M = setmetatable({}, { __call = function(m) return m.get() end })

@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable;
+  inherit (config.homeManagerConfig.gui) enable;
 in {
   config.programs.kitty = lib.optionalAttrs enable {
     enable = true;

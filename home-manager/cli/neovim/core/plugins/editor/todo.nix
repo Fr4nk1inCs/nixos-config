@@ -1,10 +1,10 @@
-{...}: let
+_: let
   map = keymap: {
-    key = keymap.key;
+    inherit (keymap) key;
     mode = "n";
-    action = keymap.action;
+    inherit (keymap) action;
     options = {
-      desc = keymap.desc;
+      inherit (keymap) desc;
       silent = true;
     };
   };

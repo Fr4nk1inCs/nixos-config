@@ -1,4 +1,4 @@
-{...}: let
+_: let
   views = builtins.listToAttrs (
     builtins.map (
       item: {
@@ -14,7 +14,7 @@
     key = "<leader>sn${item.key}";
     action.__raw = ''function() require("noice").cmd("${item.arg}") end'';
     options = {
-      desc = item.desc;
+      inherit (item) desc;
       silent = true;
     };
   });
@@ -34,7 +34,7 @@ in {
       };
     };
 
-    views = views;
+    inherit views;
 
     routes = [
       {

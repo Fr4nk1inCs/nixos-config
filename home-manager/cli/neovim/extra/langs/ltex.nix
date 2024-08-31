@@ -16,7 +16,7 @@ in {
     };
 
     programs.nixvim.plugins.lsp.servers.ltex = {
-      filetypes = filetypes;
+      inherit filetypes;
       settings.ltex.enabled = filetypes;
     };
   };

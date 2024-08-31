@@ -1,4 +1,4 @@
-{...}: let
+_: let
   highlights = [
     "TSRainbowRed"
     "TSRainbowYellow"

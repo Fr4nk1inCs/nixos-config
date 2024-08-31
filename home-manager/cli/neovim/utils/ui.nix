@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.extraConfigLuaPre = ''
     utils.ui = {}
     function utils.ui.bufremove(buf)

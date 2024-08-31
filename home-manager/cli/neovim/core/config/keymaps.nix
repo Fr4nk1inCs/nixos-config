@@ -3,10 +3,10 @@
     builtins.map
     (item: {
       action = "v:count == 0 ? 'g${item.key}' : '${item.key}'";
-      key = item.key;
+      inherit (item) key;
       mode = ["n" "x"];
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         expr = true;
         silent = true;
       };
@@ -58,7 +58,7 @@
       key = "<c-${item.key}>";
       mode = ["n"];
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         silent = true;
       };
     })
@@ -88,10 +88,10 @@
     builtins.map
     (item: {
       action = item.cmd;
-      key = item.key;
-      mode = item.mode;
+      inherit (item) key;
+      inherit (item) mode;
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         silent = true;
       };
     })
@@ -104,19 +104,19 @@
             key = "<a-${item.key}>";
             mode = "n";
             cmd = "<cmd>m .${item.cmd}<cr>==";
-            desc = item.desc;
+            inherit (item) desc;
           }
           {
             key = "<a-${item.key}>";
             mode = "i";
             cmd = "<esc><cmd>m .${item.cmd}<cr>==gi";
-            desc = item.desc;
+            inherit (item) desc;
           }
           {
             key = "<a-${item.key}>";
             mode = "x";
             cmd = ":m '${item.vcmd}<cr>gv=gv";
-            desc = item.desc;
+            inherit (item) desc;
           }
         ])
         [
@@ -139,7 +139,7 @@
     (
       builtins.map
       (key: {
-        key = key;
+        inherit key;
         action = "<cmd>e #<cr>";
         mode = "n";
         options = {
@@ -173,7 +173,7 @@
     builtins.map
     (key: {
       action = "${key}gv";
-      key = key;
+      inherit key;
       mode = "v";
     })
     ["<" ">"];
@@ -255,7 +255,7 @@
       action = "<cmd>${item.action}<cr>";
       mode = "t";
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         silent = true;
       };
     }) [
@@ -297,7 +297,7 @@
       action = "<c-w>${item.action}";
       mode = "n";
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         silent = true;
         remap = true;
       };
@@ -331,7 +331,7 @@
       action = "<cmd>${item.action}<cr>";
       mode = "n";
       options = {
-        desc = item.desc;
+        inherit (item) desc;
         silent = true;
       };
     })
@@ -383,7 +383,7 @@
             { title = "Disabled" }
           );
         end'';
-      key = key;
+      inherit key;
       mode = ["n" "i" "v"];
       options = {
         silent = true;

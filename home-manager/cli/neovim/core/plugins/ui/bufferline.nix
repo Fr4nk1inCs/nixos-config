@@ -1,9 +1,9 @@
-{...}: let
+_: let
   bufferLineKeymap = builtins.map (item: {
-    key = item.key;
+    inherit (item) key;
     action = "<cmd>BufferLine${item.action}<cr>";
     options = {
-      desc = item.desc;
+      inherit (item) desc;
       silent = true;
     };
   });

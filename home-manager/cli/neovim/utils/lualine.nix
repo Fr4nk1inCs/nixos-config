@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.nixvim.extraConfigLuaPre = ''
     do
       local M = {}

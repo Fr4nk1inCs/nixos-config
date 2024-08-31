@@ -5,7 +5,7 @@
   ...
 }: let
   enable = config.homeManagerConfig.nixvimConfig.type == "full";
-  system = config.homeManagerConfig.system;
+  inherit (config.homeManagerConfig) system;
   openCmd =
     {
       wsl = "${pkgs.wsl-open}/bin/wsl-open %s";

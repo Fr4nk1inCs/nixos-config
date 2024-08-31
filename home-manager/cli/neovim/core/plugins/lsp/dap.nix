@@ -1,10 +1,10 @@
-{...}: let
+_: let
   dapKeymap = builtins.map (item: {
     key = "<leader>d${item.key}";
     action.__raw = ''function() require("dap").${item.func}() end'';
     options = {
       silent = true;
-      desc = item.desc;
+      inherit (item) desc;
     };
   });
 in {

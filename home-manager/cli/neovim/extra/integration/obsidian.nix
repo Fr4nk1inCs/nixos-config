@@ -5,7 +5,7 @@
   ...
 }: let
   enable = config.homeManagerConfig.nixvimConfig.type == "full";
-  system = config.homeManagerConfig.system;
+  inherit (config.homeManagerConfig) system;
   workspaces = [
     {
       name = "Master Knowledge Base";
@@ -38,7 +38,7 @@ in {
       enable = true;
 
       settings = {
-        workspaces = workspaces;
+        inherit workspaces;
 
         picker.name = "fzf-lua";
 
