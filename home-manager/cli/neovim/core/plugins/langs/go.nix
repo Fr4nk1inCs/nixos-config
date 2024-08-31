@@ -52,7 +52,10 @@
       '';
     };
     dap.extensions.dap-go.enable = true;
-    conform-nvim.settings.formatters_by_ft.go = ["goimports" "gofumpt"];
+    none-ls.sources.code_actions.gomodifytags.enable = true;
+    none-ls.sources.code_actions.impl.enable = true;
+    none-ls.sources.formatting.gofumpt.enable = true;
+    none-ls.sources.formatting.goimports.enable = true;
   };
 
   programs.nixvim.extraPackages = with pkgs; [gotools gofumpt delve];

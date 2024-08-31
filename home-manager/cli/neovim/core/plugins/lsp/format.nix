@@ -1,10 +1,4 @@
 _: {
-  programs.nixvim.plugins.conform-nvim = {
-    enable = true;
-
-    settings.notify_on_error = true;
-  };
-
   programs.nixvim.autoGroups = {
     nixvim_format = {clear = true;};
   };
@@ -19,7 +13,7 @@ _: {
             vim.b[event.buf].autoformat = vim.g.autoformat
           end
           if vim.b[event.buf].autoformat then
-            require("conform").format({ bufnr = event.buf })
+            vim.lsp.buf.format({ bufnr = event.buf })
           end
         end
       '';
@@ -31,9 +25,7 @@ _: {
     {
       action.__raw = ''
         function()
-          require("conform").format({
-            bufnr = vim.api.nvim_get_current_buf()
-          })
+          vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
         end
       '';
       key = "<leader>cf";

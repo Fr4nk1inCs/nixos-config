@@ -2,8 +2,9 @@
   programs.nixvim.plugins = {
     treesitter.settings.ensure_installed = ["nix"];
     lsp.servers.nil-ls.enable = true;
-    conform-nvim.settings.formatters_by_ft = {nix = ["alejandra"];};
+    none-ls.sources.formatting.alejandra.enable = true;
+    none-ls.sources.diagnostics.deadnix.enable = true;
+    none-ls.sources.diagnostics.statix.enable = true;
+    none-ls.sources.code_actions.statix.enable = true;
   };
-
-  programs.nixvim.extraPackages = with pkgs; [alejandra];
 }

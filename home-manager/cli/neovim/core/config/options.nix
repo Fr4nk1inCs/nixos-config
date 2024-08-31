@@ -30,7 +30,7 @@ _: {
       eob = " ";
     };
     foldlevel = 99;
-    formatexpr = "v:lua.require('conform').formatexpr()";
+    formatexpr = "v:lua.vim.lsp.formatexpr({ timeout_ms = 3000 })";
     formatoptions = "jcroqlnt"; # tcqj
     grepformat = "%f:%l:%c:%m";
     hlsearch = true;

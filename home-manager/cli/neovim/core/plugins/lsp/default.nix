@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./format.nix
-    ./lint.nix
+    ./none-ls.nix
     ./lsp.nix
     ./dap.nix
     ./treesitter.nix

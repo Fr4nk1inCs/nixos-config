@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   programs.nixvim.plugins = {
     lsp.servers.lua-ls = {
       enable = true;
@@ -26,8 +26,6 @@
       };
     };
 
-    conform-nvim.settings.formatters_by_ft = {lua = ["stylua"];};
+    none-ls.sources.formatting.stylua.enable = true;
   };
-
-  programs.nixvim.extraPackages = with pkgs; [stylua];
 }
