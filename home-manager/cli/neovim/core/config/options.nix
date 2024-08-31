@@ -111,5 +111,7 @@
     end
   '';
 
+  programs.nixvim.luaLoader.enable = true;
+
   programs.nixvim.clipboard.providers.wl-copy.enable = true;
 }

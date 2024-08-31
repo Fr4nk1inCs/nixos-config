@@ -28,5 +28,7 @@ in {
         end
       end
     '';
+
+    programs.nixvim.performance.combinePlugins.standalonePlugins = ["codesnap.nvim"];
   };
 }
