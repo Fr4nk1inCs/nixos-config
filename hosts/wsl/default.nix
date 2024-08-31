@@ -9,9 +9,11 @@
     ../../modules/system/wsl.nix
   ];
 
-  wsl.enable = true;
-  wsl.defaultUser = "fushen";
-  wsl.interop.includePath = false;
+  wsl = {
+    enable = true;
+    defaultUser = "fushen";
+    interop.includePath = false;
+  };
 
   networking.hostName = "wsl"; # Define your hostname
 

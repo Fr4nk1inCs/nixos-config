@@ -13,16 +13,10 @@ in {
       extraGroups = ["wheel"];
     };
   };
-  nix.settings.trusted-users = ["fushen"];
-
-  # Password is needed when using sudo
-  security.sudo.wheelNeedsPassword = true;
-
-  # Locale setting
-  i18n.defaultLocale = "zh_CN.UTF-8";
-  time.timeZone = "Asia/Shanghai";
 
   nix.settings = {
+    trusted-users = ["fushen"];
+
     # Enable flakes globally
     experimental-features = ["nix-command" "flakes"];
 
@@ -42,6 +36,13 @@ in {
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
+
+  # Password is needed when using sudo
+  security.sudo.wheelNeedsPassword = true;
+
+  # Locale setting
+  i18n.defaultLocale = "zh_CN.UTF-8";
+  time.timeZone = "Asia/Shanghai";
 
   # Garbage collection
   nix.gc = {

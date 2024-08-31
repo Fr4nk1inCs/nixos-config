@@ -80,58 +80,60 @@ in {
       "require('cmp.config.compare').order"
     ];
 
-    dap.adapters.servers.codelldb = {
-      host = "localhost";
-      port = "\${port}";
-      executable = {
-        command = codelldb;
-        args = [
-          "--port"
-          "\${port}"
-        ];
+    dap = {
+      adapters.servers.codelldb = {
+        host = "localhost";
+        port = "\${port}";
+        executable = {
+          command = codelldb;
+          args = [
+            "--port"
+            "\${port}"
+          ];
+        };
       };
+
+      configurations.c = [
+        {
+          name = "Launch File";
+          type = "codelldb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+        }
+        {
+          name = "Attach to Process";
+          type = "codelldb";
+          request = "attach";
+          pid.__raw = ''require("dap.utils").pick_process'';
+          cwd = "\${workspaceFolder}";
+        }
+      ];
+
+      configurations.cpp = [
+        {
+          name = "Launch File";
+          type = "codelldb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+        }
+        {
+          name = "Attach to Process";
+          type = "codelldb";
+          request = "attach";
+          pid.__raw = ''require("dap.utils").pick_process'';
+          cwd = "\${workspaceFolder}";
+        }
+      ];
     };
-
-    dap.configurations.c = [
-      {
-        name = "Launch File";
-        type = "codelldb";
-        request = "launch";
-        program.__raw = ''
-          function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end
-        '';
-        cwd = "\${workspaceFolder}";
-      }
-      {
-        name = "Attach to Process";
-        type = "codelldb";
-        request = "attach";
-        pid.__raw = ''require("dap.utils").pick_process'';
-        cwd = "\${workspaceFolder}";
-      }
-    ];
-
-    dap.configurations.cpp = [
-      {
-        name = "Launch File";
-        type = "codelldb";
-        request = "launch";
-        program.__raw = ''
-          function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end
-        '';
-        cwd = "\${workspaceFolder}";
-      }
-      {
-        name = "Attach to Process";
-        type = "codelldb";
-        request = "attach";
-        pid.__raw = ''require("dap.utils").pick_process'';
-        cwd = "\${workspaceFolder}";
-      }
-    ];
   };
 }

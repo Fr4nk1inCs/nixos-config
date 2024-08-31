@@ -52,10 +52,12 @@
       '';
     };
     dap.extensions.dap-go.enable = true;
-    none-ls.sources.code_actions.gomodifytags.enable = true;
-    none-ls.sources.code_actions.impl.enable = true;
-    none-ls.sources.formatting.gofumpt.enable = true;
-    none-ls.sources.formatting.goimports.enable = true;
+    none-ls.sources = {
+      code_actions.gomodifytags.enable = true;
+      code_actions.impl.enable = true;
+      formatting.gofumpt.enable = true;
+      formatting.goimports.enable = true;
+    };
   };
 
   programs.nixvim.extraPackages = with pkgs; [gotools gofumpt delve];

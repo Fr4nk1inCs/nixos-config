@@ -1,11 +1,10 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }: let
-  mod = "super";
-  terminal = "kitty";
+  # mod = "super";
+  # terminal = "kitty";
   inherit (config.homeManagerConfig.gui) enable;
 in {
   config.wayland.windowManager.hyprland = lib.optionalAttrs enable {

@@ -34,41 +34,41 @@
     .${system};
 in {
   config = lib.mkIf enable {
-    programs.nixvim.plugins.obsidian = {
-      enable = true;
+    programs.nixvim = {
+      plugins.obsidian = {
+        enable = true;
 
-      settings = {
-        inherit workspaces;
+        settings = {
+          inherit workspaces;
 
-        picker.name = "fzf-lua";
+          picker.name = "fzf-lua";
 
-        ui.enable = false;
+          ui.enable = false;
 
-        new_notes_location = "current_dir";
+          new_notes_location = "current_dir";
 
-        follow_url_func.__raw = ''
-          function(url)
-            vim.fn.jobstart({ "${openUrlCmd}", url }, { detach = true })
-          end
-        '';
-        note_id_func.__raw = ''
-          function(title)
-            return title
-          end
-        '';
+          follow_url_func.__raw = ''
+            function(url)
+              vim.fn.jobstart({ "${openUrlCmd}", url }, { detach = true })
+            end
+          '';
+          note_id_func.__raw = ''
+            function(title)
+              return title
+            end
+          '';
 
-        attachments.img_folder = "999 - Meta/Assets";
-        image_name_func.__raw = ''
-          function()
-            return string.format("Pasted Image %s", os.date("%Y%m%d%H%M%S"))
-          end
-        '';
+          attachments.img_folder = "999 - Meta/Assets";
+          image_name_func.__raw = ''
+            function()
+              return string.format("Pasted Image %s", os.date("%Y%m%d%H%M%S"))
+            end
+          '';
+        };
       };
-    };
 
-    programs.nixvim.userCommands = {
-      Obsidian = {
-        command.__raw = ''
+      userCommands = {
+        Obsidian.command.__raw = ''
           function(opts)
             local client = require("obsidian")._client
             local picker = client:picker()
@@ -96,8 +96,8 @@ in {
           end
         '';
       };
-    };
 
-    programs.nixvim.extraPackages = openPackages;
+      extraPackages = openPackages;
+    };
   };
 }

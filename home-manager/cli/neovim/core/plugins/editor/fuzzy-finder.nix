@@ -1,4 +1,4 @@
-{lib, ...}: let
+_: let
   actions = func: {__raw = ''require("fzf-lua.actions").${func}'';};
   UISelect = ''
     function(fzf_opts, items)
@@ -69,352 +69,356 @@
     };
   };
 in {
-  programs.nixvim.plugins.fzf-lua = {
-    enable = true;
+  programs.nixvim = {
+    plugins = {
+      fzf-lua = {
+        enable = true;
 
-    profile.__raw = ''"default-title"'';
+        profile.__raw = ''"default-title"'';
 
-    settings = {
-      fzf_color = true;
-      winopts = {
-        width = 0.8;
-        height = 0.8;
-        row = 0.5;
-        col = 0.5;
-        preview = {
-          scrollchars = ["┃" ""];
-        };
-      };
-      files = {
-        actions = {
-          "alt-i" = [(actions "toggle_ignore")];
-          "alt-h" = [(actions "toggle_hidden")];
-        };
-      };
-      grep = {
-        actions = {
-          "alt-i" = [(actions "toggle_ignore")];
-          "alt-h" = [(actions "toggle_hidden")];
-        };
-      };
-      lsp = {
-        symbol_fmt.__raw = ''function(s) return s:lower() .. ":" end'';
-        code_actions.previewer = "codeaction_native";
-      };
-      actions.files = {
-        __unkeyed-1 = true;
-        "ctrl-t".__raw = ''require("trouble.sources.fzf").actions.open'';
-        "ctrl-r" = toggleRootDir;
-        "alt-c" = toggleRootDir;
-      };
-      keymap = {
-        fzf = {
-          "ctrl-q" = "select-all+select";
-          "ctrl-u" = "half-page-up";
-          "ctrl-d" = "half-page-down";
-          "ctrl-x" = "jump";
-          "ctrl-f" = "preview-page-down";
-          "ctrl-b" = "preview-page-up";
+        settings = {
+          fzf_color = true;
+          winopts = {
+            width = 0.8;
+            height = 0.8;
+            row = 0.5;
+            col = 0.5;
+            preview = {
+              scrollchars = ["┃" ""];
+            };
+          };
+          files = {
+            actions = {
+              "alt-i" = [(actions "toggle_ignore")];
+              "alt-h" = [(actions "toggle_hidden")];
+            };
+          };
+          grep = {
+            actions = {
+              "alt-i" = [(actions "toggle_ignore")];
+              "alt-h" = [(actions "toggle_hidden")];
+            };
+          };
+          lsp = {
+            symbol_fmt.__raw = ''function(s) return s:lower() .. ":" end'';
+            code_actions.previewer = "codeaction_native";
+          };
+          actions.files = {
+            __unkeyed-1 = true;
+            "ctrl-t".__raw = ''require("trouble.sources.fzf").actions.open'';
+            "ctrl-r" = toggleRootDir;
+            "alt-c" = toggleRootDir;
+          };
+          keymap = {
+            fzf = {
+              "ctrl-q" = "select-all+select";
+              "ctrl-u" = "half-page-up";
+              "ctrl-d" = "half-page-down";
+              "ctrl-x" = "jump";
+              "ctrl-f" = "preview-page-down";
+              "ctrl-b" = "preview-page-up";
+            };
+
+            builtin = {
+              "<c-f>" = "preview-page-down";
+              "<c-b>" = "preview-page-up";
+            };
+          };
         };
 
-        builtin = {
-          "<c-f>" = "preview-page-down";
-          "<c-b>" = "preview-page-up";
+        keymaps = {
+          "<leader>," = {
+            action = "buffers";
+            options = {
+              desc = "Switch buffer";
+              silent = true;
+            };
+            settings = {
+              sort_mru = true;
+              sort_lastused = true;
+            };
+          };
+          "<leader>:" = {
+            action = "command_history";
+            options = {
+              desc = "Command history";
+              silent = true;
+            };
+          };
+          "<leader>fb" = {
+            action = "buffers";
+            options = {
+              desc = "Switch buffer";
+              silent = true;
+            };
+            settings = {
+              sort_mru = true;
+              sort_lastused = true;
+            };
+          };
+          "<leader>fg" = {
+            action = "git_files";
+            options = {
+              desc = "Find files (git-files)";
+              silent = true;
+            };
+          };
+          "<leader>fr" = {
+            action = "oldfiles";
+            options = {
+              desc = "Recent files";
+              silent = true;
+            };
+          };
+          "<leader>gc" = {
+            action = "git_commits";
+            options = {
+              desc = "Git commits";
+              silent = true;
+            };
+          };
+          "<leader>gs" = {
+            action = "git_status";
+            options = {
+              desc = "Git status";
+              silent = true;
+            };
+          };
+          "<leader>s\"" = {
+            action = "registers";
+            options = {
+              desc = "Registers";
+              silent = true;
+            };
+          };
+          "<leader>sa" = {
+            action = "autocmds";
+            options = {
+              desc = "Autocommands";
+              silent = true;
+            };
+          };
+          "<leader>sb" = {
+            action = "grep_curbuf";
+            options = {
+              desc = "Grep buffer";
+              silent = true;
+            };
+          };
+          "<leader>sc" = {
+            action = "command_history";
+            options = {
+              desc = "Command history";
+              silent = true;
+            };
+          };
+          "<leader>sC" = {
+            action = "commands";
+            options = {
+              desc = "Commands";
+              silent = true;
+            };
+          };
+          "<leader>sd" = {
+            action = "diagnostics_document";
+            options = {
+              desc = "Document diagnostics";
+              silent = true;
+            };
+          };
+          "<leader>sD" = {
+            action = "diagnostics_workspace";
+            options = {
+              desc = "Workspace diagnostics";
+              silent = true;
+            };
+          };
+          "<leader>sh" = {
+            action = "help_tags";
+            options = {
+              desc = "Help pages";
+              silent = true;
+            };
+          };
+          "<leader>sH" = {
+            action = "highlights";
+            options = {
+              desc = "Search highlights";
+              silent = true;
+            };
+          };
+          "<leader>sj" = {
+            action = "jumps";
+            options = {
+              desc = "Jumplist";
+              silent = true;
+            };
+          };
+          "<leader>sk" = {
+            action = "keymaps";
+            options = {
+              desc = "Keymaps";
+              silent = true;
+            };
+          };
+          "<leader>sl" = {
+            action = "loclist";
+            options = {
+              desc = "Loclist";
+              silent = true;
+            };
+          };
+          "<leader>sm" = {
+            action = "marks";
+            options = {
+              desc = "Jump to marks";
+              silent = true;
+            };
+          };
+          "<leader>sM" = {
+            action = "man_pages";
+            options = {
+              desc = "Man pages";
+              silent = true;
+            };
+          };
+          "<leader>sR" = {
+            action = "resume";
+            options = {
+              desc = "Resume FZF";
+              silent = true;
+            };
+          };
+          "<leader>sq" = {
+            action = "quickfix";
+            options = {
+              desc = "Quickfix list";
+              silent = true;
+            };
+          };
+          "<leader>ss" = {
+            action = "lsp_document_symbols";
+            options = {
+              desc = "Document symbols";
+              silent = true;
+            };
+          };
+          "<leader>sS" = {
+            action = "lsp_workspace_symbols";
+            options = {
+              desc = "Workspace symbols";
+              silent = true;
+            };
+          };
+          "<leader>uC" = {
+            action = "colorschemes";
+            options = {
+              desc = "Colorschemes";
+              silent = true;
+            };
+          };
         };
       };
+
+      lsp.keymaps.extra = [
+        (map {
+          key = "gd";
+          action = lspOperation "definitions";
+          desc = "Goto definition";
+        })
+        (map {
+          key = "gr";
+          action = lspOperation "references";
+          desc = "References";
+        })
+        (map {
+          key = "gI";
+          action = lspOperation "implementations";
+          desc = "Goto implementation";
+        })
+        (map {
+          key = "gy";
+          action = lspOperation "typedefs";
+          desc = "Goto t[y]pe definition";
+        })
+      ];
+
+      which-key.settings.spec = [
+        {
+          __unkeyed-1 = "<leader>f";
+          group = "File / Find";
+        }
+        {
+          __unkeyed-1 = "<leader>s";
+          group = "Search";
+        }
+      ];
     };
 
-    keymaps = {
-      "<leader>," = {
-        action = "buffers";
-        options = {
-          desc = "Switch buffer";
-          silent = true;
-        };
-        settings = {
-          sort_mru = true;
-          sort_lastused = true;
-        };
-      };
-      "<leader>:" = {
-        action = "command_history";
-        options = {
-          desc = "Command history";
-          silent = true;
-        };
-      };
-      "<leader>fb" = {
-        action = "buffers";
-        options = {
-          desc = "Switch buffer";
-          silent = true;
-        };
-        settings = {
-          sort_mru = true;
-          sort_lastused = true;
-        };
-      };
-      "<leader>fg" = {
-        action = "git_files";
-        options = {
-          desc = "Find files (git-files)";
-          silent = true;
-        };
-      };
-      "<leader>fr" = {
-        action = "oldfiles";
-        options = {
-          desc = "Recent files";
-          silent = true;
-        };
-      };
-      "<leader>gc" = {
-        action = "git_commits";
-        options = {
-          desc = "Git commits";
-          silent = true;
-        };
-      };
-      "<leader>gs" = {
-        action = "git_status";
-        options = {
-          desc = "Git status";
-          silent = true;
-        };
-      };
-      "<leader>s\"" = {
-        action = "registers";
-        options = {
-          desc = "Registers";
-          silent = true;
-        };
-      };
-      "<leader>sa" = {
-        action = "autocmds";
-        options = {
-          desc = "Autocommands";
-          silent = true;
-        };
-      };
-      "<leader>sb" = {
-        action = "grep_curbuf";
-        options = {
-          desc = "Grep buffer";
-          silent = true;
-        };
-      };
-      "<leader>sc" = {
-        action = "command_history";
-        options = {
-          desc = "Command history";
-          silent = true;
-        };
-      };
-      "<leader>sC" = {
-        action = "commands";
-        options = {
-          desc = "Commands";
-          silent = true;
-        };
-      };
-      "<leader>sd" = {
-        action = "diagnostics_document";
-        options = {
-          desc = "Document diagnostics";
-          silent = true;
-        };
-      };
-      "<leader>sD" = {
-        action = "diagnostics_workspace";
-        options = {
-          desc = "Workspace diagnostics";
-          silent = true;
-        };
-      };
-      "<leader>sh" = {
-        action = "help_tags";
-        options = {
-          desc = "Help pages";
-          silent = true;
-        };
-      };
-      "<leader>sH" = {
-        action = "highlights";
-        options = {
-          desc = "Search highlights";
-          silent = true;
-        };
-      };
-      "<leader>sj" = {
-        action = "jumps";
-        options = {
-          desc = "Jumplist";
-          silent = true;
-        };
-      };
-      "<leader>sk" = {
-        action = "keymaps";
-        options = {
-          desc = "Keymaps";
-          silent = true;
-        };
-      };
-      "<leader>sl" = {
-        action = "loclist";
-        options = {
-          desc = "Loclist";
-          silent = true;
-        };
-      };
-      "<leader>sm" = {
-        action = "marks";
-        options = {
-          desc = "Jump to marks";
-          silent = true;
-        };
-      };
-      "<leader>sM" = {
-        action = "man_pages";
-        options = {
-          desc = "Man pages";
-          silent = true;
-        };
-      };
-      "<leader>sR" = {
-        action = "resume";
-        options = {
-          desc = "Resume FZF";
-          silent = true;
-        };
-      };
-      "<leader>sq" = {
-        action = "quickfix";
-        options = {
-          desc = "Quickfix list";
-          silent = true;
-        };
-      };
-      "<leader>ss" = {
-        action = "lsp_document_symbols";
-        options = {
-          desc = "Document symbols";
-          silent = true;
-        };
-      };
-      "<leader>sS" = {
-        action = "lsp_workspace_symbols";
-        options = {
-          desc = "Workspace symbols";
-          silent = true;
-        };
-      };
-      "<leader>uC" = {
-        action = "colorschemes";
-        options = {
-          desc = "Colorschemes";
-          silent = true;
-        };
-      };
-    };
+    keymaps = [
+      (map {
+        key = "<leader>/";
+        action = openInRoot "live_grep";
+        desc = "Live grep (root)";
+      })
+      (map {
+        key = "<leader><space>";
+        action = openInRoot "files";
+        desc = "Find files (root)";
+      })
+      (map {
+        key = "<leader>ff";
+        action = openInRoot "files";
+        desc = "Find files (root)";
+      })
+      (map {
+        key = "<leader>fF";
+        action = openInCwd "files";
+        desc = "Find files (cwd)";
+      })
+      (map {
+        key = "<leader>fR";
+        action.__raw = ''function() require("fzf-lua").oldfiles({ cwd = vim.uv.cwd() }) end'';
+        desc = "Recent files (cwd)";
+      })
+      (map {
+        key = "<leader>sg";
+        action = openInRoot "live_grep";
+        desc = "Live grep (root)";
+      })
+      (map {
+        key = "<leader>sG";
+        action = openInCwd "live_grep";
+        desc = "Live grep (cwd)";
+      })
+      (map {
+        key = "<leader>sw";
+        action = openInRoot "grep_cword";
+        desc = "Grep word (root)";
+      })
+      (map {
+        key = "<leader>sW";
+        action = openInCwd "grep_cword";
+        desc = "Grep word (cwd)";
+      })
+      (map {
+        key = "<leader>sw";
+        mode = "v";
+        action = openInRoot "grep_visual";
+        desc = "Grep selection (root)";
+      })
+      (map {
+        key = "<leader>sW";
+        mode = "v";
+        action = openInCwd "grep_visual";
+        desc = "Grep selection (cwd)";
+      })
+    ];
+
+    extraConfigLuaPost = ''
+      do
+        require("fzf-lua").register_ui_select(${UISelect})
+      end
+    '';
   };
-
-  programs.nixvim.plugins.lsp.keymaps.extra = [
-    (map {
-      key = "gd";
-      action = lspOperation "definitions";
-      desc = "Goto definition";
-    })
-    (map {
-      key = "gr";
-      action = lspOperation "references";
-      desc = "References";
-    })
-    (map {
-      key = "gI";
-      action = lspOperation "implementations";
-      desc = "Goto implementation";
-    })
-    (map {
-      key = "gy";
-      action = lspOperation "typedefs";
-      desc = "Goto t[y]pe definition";
-    })
-  ];
-
-  programs.nixvim.plugins.which-key.settings.spec = [
-    {
-      __unkeyed-1 = "<leader>f";
-      group = "File / Find";
-    }
-    {
-      __unkeyed-1 = "<leader>s";
-      group = "Search";
-    }
-  ];
-
-  programs.nixvim.keymaps = [
-    (map {
-      key = "<leader>/";
-      action = openInRoot "live_grep";
-      desc = "Live grep (root)";
-    })
-    (map {
-      key = "<leader><space>";
-      action = openInRoot "files";
-      desc = "Find files (root)";
-    })
-    (map {
-      key = "<leader>ff";
-      action = openInRoot "files";
-      desc = "Find files (root)";
-    })
-    (map {
-      key = "<leader>fF";
-      action = openInCwd "files";
-      desc = "Find files (cwd)";
-    })
-    (map {
-      key = "<leader>fR";
-      action.__raw = ''function() require("fzf-lua").oldfiles({ cwd = vim.uv.cwd() }) end'';
-      desc = "Recent files (cwd)";
-    })
-    (map {
-      key = "<leader>sg";
-      action = openInRoot "live_grep";
-      desc = "Live grep (root)";
-    })
-    (map {
-      key = "<leader>sG";
-      action = openInCwd "live_grep";
-      desc = "Live grep (cwd)";
-    })
-    (map {
-      key = "<leader>sw";
-      action = openInRoot "grep_cword";
-      desc = "Grep word (root)";
-    })
-    (map {
-      key = "<leader>sW";
-      action = openInCwd "grep_cword";
-      desc = "Grep word (cwd)";
-    })
-    (map {
-      key = "<leader>sw";
-      mode = "v";
-      action = openInRoot "grep_visual";
-      desc = "Grep selection (root)";
-    })
-    (map {
-      key = "<leader>sW";
-      mode = "v";
-      action = openInCwd "grep_visual";
-      desc = "Grep selection (cwd)";
-    })
-  ];
-
-  programs.nixvim.extraConfigLuaPost = ''
-    do
-      require("fzf-lua").register_ui_select(${UISelect})
-    end
-  '';
 }

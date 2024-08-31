@@ -28,7 +28,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixos-wsl,
     home-manager,
@@ -72,13 +71,15 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
+              sharedModules = [nixvim.homeManagerModules.nixvim];
 
-            home-manager.users.${user} = import ./hosts/home-manager/wsl.nix;
-            home-manager.extraSpecialArgs = inputs;
+              users.${user} = import ./hosts/home-manager/wsl.nix;
+              extraSpecialArgs = inputs;
+            };
           }
         ];
       };
@@ -90,13 +91,15 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            home-manager.sharedModules = [nixvim.homeManagerModules.nixvim];
+              sharedModules = [nixvim.homeManagerModules.nixvim];
 
-            home-manager.users.${user} = import ./home-manager;
-            home-manager.extraSpecialArgs = inputs;
+              users.${user} = import ./home-manager;
+              extraSpecialArgs = inputs;
+            };
           }
         ];
       };
