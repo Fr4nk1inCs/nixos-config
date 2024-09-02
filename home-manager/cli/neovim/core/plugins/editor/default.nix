@@ -1,15 +1,16 @@
 {...}: {
   imports = [
+    ./colorize.nix
     ./explorer.nix
     ./fuzzy-finder.nix
     ./git.nix
-    ./todo.nix
     ./list.nix
     ./motion.nix
     ./search.nix
+    ./session.nix
     ./terminal.nix
-    ./which-key.nix
-    ./colorize.nix
+    ./todo.nix
     ./undotree.nix
+    ./which-key.nix
   ];
 }
