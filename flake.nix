@@ -53,6 +53,13 @@
           ./hosts/home-manager/sf.nix
         ];
       };
+      fushen = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          nixvim.homeManagerModules.nixvim
+          ./hosts/home-manager/fushen.nix
+        ];
+      };
       test = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
