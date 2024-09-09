@@ -2,14 +2,11 @@
   programs.nixvim.plugins = {
     treesitter.settings.ensure_installed = ["ninja" "rst"];
 
-    lsp.servers.pyright = {
+    lsp.servers.basedpyright = {
       enable = true;
-      package = pkgs.basedpyright;
-
-      cmd = ["basedpyright-langserver" "--stdio"];
 
       settings = {
-        basedpyright = {
+        pyright = {
           analysis = {
             typeCheckingMode = "basic";
             inlayHints = {
