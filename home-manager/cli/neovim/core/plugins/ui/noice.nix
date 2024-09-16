@@ -22,7 +22,7 @@ in {
   programs.nixvim.plugins = {
     noice = {
       enable = true;
-      # FIX: Wait for issue https://github.com/folke/noice.nvim/issues to be fixed
+      # FIX: Wait for issue https://github.com/folke/noice.nvim/issues/921 to be fixed
       package = pkgs.vimUtils.buildVimPlugin {
         name = "noice-nvim";
         src = pkgs.fetchFromGitHub {

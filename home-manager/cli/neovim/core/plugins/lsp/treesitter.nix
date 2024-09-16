@@ -49,9 +49,12 @@ _: {
       };
 
       treesitter-textobjects = {
-        enable = true;
+        # FIXME: Wait for collision of treesitter-grammar-nasm and
+        # treesitter-textobjects to be resolved
+        enable = false;
         move = {
           enable = true;
+          disable = ["nasm"];
           gotoNextStart = {
             "]f" = "@function.outer";
             "]c" = "@class.outer";
