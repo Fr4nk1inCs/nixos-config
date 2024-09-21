@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  maple-mono-NF-CN = pkgs.callPackage ../fonts {};
+  maple-mono = pkgs.callPackage ../fonts/maple-mono.nix {};
 in {
   # Default user
   users.users = {
@@ -84,12 +84,12 @@ in {
 
   # Fonts
   fonts = {
-    packages = with pkgs; [
-      inter # sans-serif
-      source-han-sans # sans-serif for CJK
-      source-han-serif # serif
-      maple-mono-NF-CN # monospace
-      noto-fonts-color-emoji # emoji
+    packages = [
+      pkgs.inter # sans-serif
+      pkgs.source-han-sans # sans-serif for CJK
+      pkgs.source-han-serif # serif
+      pkgs.noto-fonts-color-emoji # emoji
+      maple-mono # monospace
     ];
     fontconfig = {
       defaultFonts = {
