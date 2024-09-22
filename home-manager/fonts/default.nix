@@ -35,8 +35,10 @@ in {
             <string>Maple Mono NF CN</string>
           </test>
           <edit name="fontfeatures" mode="append">
+            <string>locl off</string>
             <string>cv01 on</string>
             <string>cv03 on</string>
+            <string>ss03 on</string>
           </edit>
         </match>
       </fontconfig>
