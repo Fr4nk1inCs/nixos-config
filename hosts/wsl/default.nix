@@ -13,6 +13,7 @@
     enable = true;
     defaultUser = "fushen";
     interop.includePath = false;
+    useWindowsDriver = true;
   };
 
   networking.hostName = "wsl"; # Define your hostname
