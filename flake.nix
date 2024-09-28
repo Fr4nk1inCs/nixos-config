@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -30,20 +35,49 @@
   outputs = {
     nixpkgs,
     nixos-wsl,
+    nix-darwin,
     home-manager,
     nixvim,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     user = "fushen";
+    x86DarwinPkgs = import nixpkgs {
+      system = "x86_64-darwin";
+      config.allowUnfree = true;
+    };
+    appleSiliconDarwinPkgs = import nixpkgs {
+      system = "aarch64-darwin";
+      config.allowUnfree = true;
+    };
     pkgs = import nixpkgs {
-      inherit system;
+      system = "x86_64-linux";
       config = {
         allowUnfree = true;
         cudaSupport = true;
       };
     };
   in {
+    darwinConfigurations."fushen-mac" = nix-darwin.lib.darwinSystem {
+      pkgs = x86DarwinPkgs;
+      system = "x86_64-darwin";
+      modules = [
+        ./hosts/darwin
+
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+            sharedModules = [nixvim.homeManagerModules.nixvim];
+
+            users.${user} = import ./hosts/home-manager/darwin.nix;
+            extraSpecialArgs = inputs;
+          };
+        }
+      ];
+    };
+
     homeConfigurations = {
       # lab server
       sf = home-manager.lib.homeManagerConfiguration {
@@ -70,7 +104,7 @@
     };
     nixosConfigurations = {
       wsl = nixpkgs.lib.nixosSystem {
-        inherit pkgs system;
+        inherit pkgs;
         modules = [
           ./hosts/wsl
 
@@ -92,7 +126,7 @@
       };
 
       nixos-vm = nixpkgs.lib.nixosSystem {
-        inherit pkgs system;
+        inherit pkgs;
         modules = [
           ./hosts/nixos-vm
 

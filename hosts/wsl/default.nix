@@ -6,6 +6,7 @@
 {...}: {
   imports = [
     ../../modules/system
+    ../../modules/system/linux.nix
     ../../modules/system/wsl.nix
   ];
 

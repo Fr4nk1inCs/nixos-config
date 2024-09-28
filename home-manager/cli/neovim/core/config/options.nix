@@ -1,5 +1,7 @@
-_: {
-  programs.nixvim = {
+{config, ...}: let
+  enableWlCopy = config.homeManagerConfig.system != "darwin";
+in {
+  config.programs.nixvim = {
     globals = {
       mapleader = " ";
       maplocalleader = "\\";
@@ -114,6 +116,6 @@ _: {
 
     luaLoader.enable = true;
 
-    clipboard.providers.wl-copy.enable = true;
+    clipboard.providers.wl-copy.enable = enableWlCopy;
   };
 }

@@ -58,7 +58,11 @@ in {
   config = {
     home = {
       inherit (cfg) username;
-      homeDirectory = "/home/${cfg.username}";
+      homeDirectory = lib.mkForce (
+        if cfg.system == "darwin"
+        then "/Users/${cfg.username}"
+        else "/home/${cfg.username}"
+      );
 
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage
