@@ -13,6 +13,8 @@
     telegram-desktop
     # streaming music
     spotify
+    # remote code editing
+    vscode
   ];
   programsForLinux = with pkgs; [
     # screen capture
@@ -40,9 +42,16 @@
     # system management
     baobab # disk usage analyzer
   ];
+  programsForDarwin = with pkgs; [
+    # browser
+    arc-browser
+    # app launcher
+    raycast
+  ];
   programs =
     programsForAllSystems
-    ++ lib.optionals (cfg.system != "darwin") programsForLinux;
+    ++ lib.optionals (cfg.system != "darwin") programsForLinux
+    ++ lib.optionals (cfg.system == "darwin") programsForDarwin;
 in {
   config.home.packages = lib.optionals enable programs;
 }
