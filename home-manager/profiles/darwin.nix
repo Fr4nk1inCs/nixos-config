@@ -6,6 +6,7 @@
   homeManagerConfig = {
     username = "fushen";
     system = "darwin";
+    gui.enable = true;
     extraProgramConfig = {
       zsh.initExtra = ''
         function ssh() {
