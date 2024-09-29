@@ -1,7 +1,5 @@
 # TODO: Desktop configuration
 {pkgs, ...}: {
-  users.defaultUserShell = pkgs.zsh;
-
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5 = {

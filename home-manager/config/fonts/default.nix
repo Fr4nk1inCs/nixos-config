@@ -1,6 +1,10 @@
-{pkgs, ...}: let
-  maple-mono = pkgs.callPackage ../../modules/fonts/maple-mono.nix {};
-  fandol = pkgs.callPackage ../../modules/fonts/fandol.nix {};
+{
+  pkgs,
+  self,
+  ...
+}: let
+  maple-mono = pkgs.callPackage "${self}/modules/fonts/maple-mono.nix" {};
+  fandol = pkgs.callPackage "${self}/modules/fonts/fandol.nix" {};
 in {
   home.packages = [
     pkgs.inter # sans-serif

@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../../home-manager
+    ../default.nix
   ];
 
   homeManagerConfig = {

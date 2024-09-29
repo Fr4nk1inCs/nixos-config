@@ -33,6 +33,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixos-wsl,
     nix-darwin,
@@ -56,92 +57,62 @@
         cudaSupport = true;
       };
     };
+    mkHomeManagerConfig = profile: {
+      home-manager = {
+        extraSpecialArgs = {inherit self;};
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        sharedModules = [nixvim.homeManagerModules.nixvim];
+        users.${user} = import profile;
+      };
+    };
+    mkHomeConfig = profile:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {inherit self;};
+        modules = [
+          nixvim.homeManagerModules.nixvim
+          profile
+        ];
+      };
   in {
     darwinConfigurations."fushen-mac" = nix-darwin.lib.darwinSystem {
       pkgs = x86DarwinPkgs;
       system = "x86_64-darwin";
       modules = [
-        ./hosts/darwin
+        "${self}/hosts/darwin"
 
         home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-
-            sharedModules = [nixvim.homeManagerModules.nixvim];
-
-            users.${user} = import ./hosts/home-manager/darwin.nix;
-            extraSpecialArgs = inputs;
-          };
-        }
+        (mkHomeManagerConfig "${self}/home-manager/profiles/darwin.nix")
       ];
     };
 
     homeConfigurations = {
       # lab server
-      sf = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ./hosts/home-manager/sf.nix
-        ];
-      };
-      fushen = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ./hosts/home-manager/fushen.nix
-        ];
-      };
-      test = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ./hosts/home-manager/test.nix
-        ];
-      };
+      sf = mkHomeConfig "${self}/home-manager/profiles/sf.nix";
+      fushen = mkHomeConfig "${self}/home-manager/profiles/fushen.nix";
+      test = mkHomeConfig "${self}/home-manager/profiles/test.nix";
     };
     nixosConfigurations = {
       wsl = nixpkgs.lib.nixosSystem {
         inherit pkgs;
         modules = [
-          ./hosts/wsl
+          "${self}/hosts/wsl"
 
           nixos-wsl.nixosModules.wsl
 
           home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              sharedModules = [nixvim.homeManagerModules.nixvim];
-
-              users.${user} = import ./hosts/home-manager/wsl.nix;
-              extraSpecialArgs = inputs;
-            };
-          }
+          (mkHomeManagerConfig "${self}/home-manager/profiles/wsl.nix")
         ];
       };
 
       nixos-vm = nixpkgs.lib.nixosSystem {
         inherit pkgs;
         modules = [
-          ./hosts/nixos-vm
+          "${self}/hosts/nixos-vm"
 
           home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-
-              sharedModules = [nixvim.homeManagerModules.nixvim];
-
-              users.${user} = import ./home-manager;
-              extraSpecialArgs = inputs;
-            };
-          }
+          (mkHomeManagerConfig "${self}/home-manager")
         ];
       };
     };

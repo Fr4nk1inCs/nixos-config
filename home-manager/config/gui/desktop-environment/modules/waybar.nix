@@ -4,9 +4,12 @@
   ...
 }: {
   options = {
-    hasBattery = lib.mkOption {
-      default = false;
-      description = "Enable battery module";
+    waybarConfig = {
+      enable = lib.mkEnableOption "Enable Waybar";
+      hasBattery = lib.mkOption {
+        default = false;
+        description = "Enable battery module";
+      };
     };
   };
   programs.waybar = {

@@ -50,9 +50,7 @@ in {
   };
 
   imports = [
-    ./fonts
-    ./cli
-    ./gui
+    ./config
   ];
 
   config = {
