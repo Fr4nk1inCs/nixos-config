@@ -9,14 +9,14 @@
   programsForAllSystems = with pkgs; [
     # browser
     google-chrome
-    # screen capture
-    obs-studio
     # instant messaging
     telegram-desktop
     # streaming music
     spotify
   ];
   programsForLinux = with pkgs; [
+    # screen capture
+    obs-studio
     # file syncing
     onedrive
     # document viewer
