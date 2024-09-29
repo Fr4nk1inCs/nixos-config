@@ -4,7 +4,8 @@
   lib,
   ...
 }: let
-  enable = config.homeManagerConfig.nixvimConfig.type == "full";
+  # enable = config.homeManagerConfig.nixvimConfig.type == "full";
+  enable = false;
   inherit (config.homeManagerConfig) system;
   workspaces = [
     {
