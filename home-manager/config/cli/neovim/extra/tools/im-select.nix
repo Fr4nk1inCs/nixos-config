@@ -47,8 +47,8 @@ in {
 
     programs.nixvim.extraConfigLua = ''
       require("im_select").setup({
-        default_command = "${default.command}";
-        default_im_select = "${default.mode}";
+        default_command = "${default.command}",
+        default_im_select = "${default.mode}",
       })
     '';
   };
