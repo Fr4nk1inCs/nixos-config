@@ -77,8 +77,8 @@
       };
   in {
     darwinConfigurations."fushen-mac" = nix-darwin.lib.darwinSystem {
-      pkgs = x86DarwinPkgs;
-      system = "x86_64-darwin";
+      pkgs = appleSiliconDarwinPkgs;
+      system = "aarch64-darwin";
       modules = [
         "${self}/hosts/darwin"
 
