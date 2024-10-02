@@ -6,7 +6,8 @@
   homeManagerConfig = {
     system = "wsl";
     gui = {
-      enable = false;
+      enable = true;
+      software.enable = false;
     };
   };
 }

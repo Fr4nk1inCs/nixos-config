@@ -12,7 +12,7 @@
 
   wsl = {
     enable = true;
-    defaultUser = "fushen";
+    defaultUser = "fr4nk1in";
     interop.includePath = false;
     useWindowsDriver = true;
   };

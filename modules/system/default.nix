@@ -5,13 +5,13 @@
 }: {
   # Default user
   users.users = {
-    fushen = {
-      description = "Fu Shen";
+    fr4nk1in = {
+      description = "fr4nk1in";
     };
   };
 
   nix.settings = {
-    trusted-users = ["fushen"];
+    trusted-users = ["fr4nk1in"];
 
     # Enable flakes globally
     experimental-features = ["nix-command" "flakes"];

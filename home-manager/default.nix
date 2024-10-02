@@ -9,7 +9,7 @@ in {
     homeManagerConfig = {
       username = lib.mkOption {
         type = lib.types.str;
-        default = "fushen";
+        default = "fr4nk1in";
         description = "The username";
       };
 

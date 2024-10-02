@@ -20,6 +20,6 @@ Quick start:
    ```
 4. Build the system with `darwin-rebuild`:
    ```sh
-   nix run --extra-experimental-features "nix-command flakes" nix-darwin -- switch --flake ~/nixos-config#fushen-mac
+   nix run --extra-experimental-features "nix-command flakes" nix-darwin -- switch --flake ~/nixos-config#fr4nk1in-macbook-air
    ```
 5. Reboot the system and enjoy!

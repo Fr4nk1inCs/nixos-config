@@ -41,7 +41,7 @@
     nixvim,
     ...
   } @ inputs: let
-    user = "fushen";
+    user = "fr4nk1in";
     x86DarwinPkgs = import nixpkgs {
       system = "x86_64-darwin";
       config.allowUnfree = true;
@@ -76,7 +76,7 @@
         ];
       };
   in {
-    darwinConfigurations."fushen-mac" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."fr4nk1in-macbook-air" = nix-darwin.lib.darwinSystem {
       pkgs = appleSiliconDarwinPkgs;
       system = "aarch64-darwin";
       modules = [

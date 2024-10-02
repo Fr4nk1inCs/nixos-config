@@ -4,7 +4,7 @@
   ];
 
   homeManagerConfig = {
-    username = "fushen";
+    username = "fr4nk1in";
     extraProgramConfig = {
       zsh.initExtra = ''
         function ssh() {

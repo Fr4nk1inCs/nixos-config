@@ -4,8 +4,8 @@
     ../../modules/system/darwin.nix
   ];
 
-  networking.computerName = "Fu Shen's MacBook Air";
-  networking.hostName = "fushen-macbook-air";
+  networking.computerName = "Fr4nk1in's MacBook Air";
+  networking.hostName = "fr4nk1in-macbook-air";
 
   system.stateVersion = 5;
 }

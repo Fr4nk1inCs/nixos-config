@@ -5,11 +5,9 @@
 }: let
   maple-mono = pkgs.callPackage ../fonts/maple-mono.nix {};
 in {
-  users.users = {
-    fushen = {
-      isNormalUser = true;
-      extraGroups = ["wheel"];
-    };
+  users.users.fr4nk1in = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
   };
 
   # Password is needed when using sudo
