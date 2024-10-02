@@ -3,7 +3,7 @@
     ./hardware-configuration.nix
 
     ../../modules/system
-    ../../modules/system/linux.nix
+    ../../modules/system/nixos.nix
     ../../modules/system/desktop.nix
   ];
 

@@ -14,6 +14,42 @@
 
   services.nix-daemon.enable = true;
 
+  # Nix-Darwin configurations
+  security.pam.enableSudoTouchIdAuth = true;
+
+  system.defaults = {
+    NSGlobalDomain = {
+      AppleICUForce24HourTime = true;
+      AppleInterfaceStyle = "Dark";
+      AppleMeasurementUnits = "Centimeters";
+      AppleMetricUnits = 1;
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      AppleShowScrollBars = "Automatic";
+      AppleTemperatureUnit = "Celsius";
+      InitialKeyRepeat = 15;
+      KeyRepeat = 2;
+      NSTextShowsControlCharacters = true;
+      "com.apple.keyboard.fnState" = true;
+    };
+    dock.orientation = "left";
+    finder = {
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      ShowPathbar = true;
+      ShowStatusBar = true;
+      _FXShowPosixPathInTitle = true;
+      _FXSortFoldersFirst = true;
+    };
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowDate = 0;
+      ShowDayOfMonth = true;
+      ShowDayOfWeek = true;
+    };
+  };
+
+  # Homebrew for softwares not available in Nixpkgs
   environment.variables = {
     HOMEBREW_BREW_GIT_REMOTE = "https://mirrors.ustc.edu.cn/brew.git";
     HOMEBREW_CORE_GIT_REMOTE = "https://mirrors.ustc.edu.cn/homebrew-core.git";
@@ -30,9 +66,15 @@
       "microsoft-office"
       "clash-verge-rev"
       "bitwarden"
+      "zotero"
+      "logi-options+"
+      "fliqlo"
     ];
     caskArgs = {
       language = "zh-CN";
+    };
+    masApps = {
+      OneDrive = 823766827;
     };
     onActivation = {
       cleanup = "zap";

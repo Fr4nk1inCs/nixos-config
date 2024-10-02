@@ -6,7 +6,7 @@
   # Default user
   users.users = {
     fushen = {
-      description = "Shen Fu";
+      description = "Fu Shen";
     };
   };
 
