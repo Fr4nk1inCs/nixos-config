@@ -1,6 +1,7 @@
 {...}: {
   imports = [
-    ./desktop-environment
-    ./softwares
+    ./window-manager.nix
+    ./terminal.nix
+    ./softwares.nix
   ];
 }

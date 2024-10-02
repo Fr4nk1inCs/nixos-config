@@ -34,7 +34,7 @@
     # image editing
     inkscape
     # academic research
-    zotero-beta
+    zotero
     # instant messaging
     qq
     # file explorer
