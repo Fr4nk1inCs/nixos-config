@@ -4,7 +4,7 @@
   themeFile = "Nord";
   font = {
     name = "Maple Mono NF CN";
-    size = 11.5;
+    size = 11;
   };
   keybindings = {}; # keybindings
   settings = {
@@ -16,7 +16,16 @@
 
     strip_trailing_spaces = "smart";
 
+    hide_window_decorations = "titlebar-only";
+
     tab_bar_edge = "top";
+    tab_bar_style = "powerline";
+    tab_powerline_style = "round";
+    tab_activity_symbol = "!";
+    tab_title_template = "• {bell_symbol}{activity_symbol}{index}:{title}";
+    active_tab_title_template = "⦿ {bell_symbol}{activity_symbol}{index}:{title}";
+
+    background_opacity = "0.8";
   }; # settings
   extraConfig = ''
     font_features MapleMono-NF-CN-Bold             -zero +cv01 -cv02 +cv03 -cv04 -cv99 -ss01
