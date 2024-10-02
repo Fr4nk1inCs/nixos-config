@@ -89,8 +89,7 @@
 
     homeConfigurations = {
       # lab server
-      sf = mkHomeConfig "${self}/home-manager/profiles/sf.nix";
-      fushen = mkHomeConfig "${self}/home-manager/profiles/fushen.nix";
+      cmdline = mkHomeConfig "${self}/home-manager/profiles/cmdline.nix";
       test = mkHomeConfig "${self}/home-manager/profiles/test.nix";
     };
     nixosConfigurations = {
