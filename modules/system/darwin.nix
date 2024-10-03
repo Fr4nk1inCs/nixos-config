@@ -47,6 +47,15 @@
       ShowDayOfMonth = true;
       ShowDayOfWeek = true;
     };
+    trackpad.TrackpadThreeFingerDrag = true;
+    CustomSystemPreferences = {
+      "com.apple.controlcenter" = {
+        Bluetooth = 18;
+        Sound = 18;
+        Display = 18;
+        BatteryShowPercentage = true;
+      };
+    };
   };
 
   # Homebrew for softwares not available in Nixpkgs
@@ -63,12 +72,13 @@
     casks = [
       "qq"
       "wechat"
-      "microsoft-office"
+      # "microsoft-office" # use institutional license instead
       "clash-verge-rev"
       "bitwarden"
       "zotero"
       "logi-options+"
       "fliqlo"
+      "topnotch"
     ];
     caskArgs = {
       language = "zh-CN";
