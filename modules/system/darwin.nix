@@ -2,9 +2,6 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableFzfCompletion = true;
-    enableFzfGit = true;
-    enableFzfHistory = true;
     enableSyntaxHighlighting = true;
   };
 
@@ -48,7 +45,7 @@
       ShowDayOfWeek = true;
     };
     trackpad.TrackpadThreeFingerDrag = true;
-    CustomSystemPreferences = {
+    CustomUserPreferences = {
       "com.apple.controlcenter" = {
         Bluetooth = 18;
         Sound = 18;
@@ -78,7 +75,6 @@
       "zotero"
       "logi-options+"
       "fliqlo"
-      "topnotch"
     ];
     caskArgs = {
       language = "zh-CN";
