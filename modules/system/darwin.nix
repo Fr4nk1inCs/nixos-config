@@ -83,9 +83,6 @@
     caskArgs = {
       language = "zh-CN";
     };
-    masApps = {
-      OneDrive = 823766827;
-    };
     onActivation = {
       cleanup = "zap";
     };
