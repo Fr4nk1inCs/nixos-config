@@ -23,7 +23,7 @@
       };
       darwin = {
         command = "${im-select-macos}";
-        mode = "com.apple.keylayout.US";
+        mode = "com.apple.keylayout.ABC";
       };
       linux = {
         command = "fcitx5-remote";

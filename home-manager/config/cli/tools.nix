@@ -68,4 +68,10 @@
 
     zoxide.enable = true;
   };
+
+  # workaround for btop's theme folder
+  home.file.".config/btop/themes" = {
+    recursive = true;
+    source = "${pkgs.btop}/share/btop/themes";
+  };
 }
