@@ -26,7 +26,14 @@
     active_tab_title_template = "⦿ {bell_symbol}{activity_symbol}{index}:{title}";
 
     background_opacity = "0.8";
+    background_blur = 15;
+
+    macos_option_as_alt = true;
   }; # settings
+  darwinLaunchOptions = [
+    "--single-instance"
+    "--directory=~"
+  ];
   extraConfig = ''
     font_features MapleMono-NF-CN-Bold             -zero +cv01 -cv02 +cv03 -cv04 -cv99 -ss01
     font_features MapleMono-NF-CN-BoldItalic       -zero +cv01 -cv02 +cv03 -cv04 -cv99 -ss01

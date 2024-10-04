@@ -1,15 +1,6 @@
-{config, ...}: let
-  cfg = config.homeManagerConfig;
-  enableWaybar = cfg.gui.enable && cfg.system == "linux";
-  enableSketchyBar = cfg.gui.enable && cfg.system == "darwin";
-  hasBattery = cfg.isMobile;
-in {
+_: {
   imports = [
     ./modules/waybar.nix
+    ./modules/aerospace.nix
   ];
-
-  waybarConfig = {
-    enable = enableWaybar;
-    inherit hasBattery;
-  };
 }

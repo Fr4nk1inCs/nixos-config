@@ -48,7 +48,7 @@
     # app launcher
     raycast
     # menubar utility
-    bartender
+    ice-bar
     # battery management
     aldente
   ];

@@ -1,19 +1,10 @@
-{
-  lib,
-  config,
-  ...
-}: {
-  options = {
-    waybarConfig = {
-      enable = lib.mkEnableOption "Enable Waybar";
-      hasBattery = lib.mkOption {
-        default = false;
-        description = "Enable battery module";
-      };
-    };
-  };
-  programs.waybar = {
-    enable = true;
+{config, ...}: let
+  cfg = config.homeManagerConfig;
+  enable = cfg.gui.enable && cfg.system == "linux";
+  hasBattery = cfg.isMobile;
+in {
+  config.programs.waybar = {
+    inherit enable;
     settings = {
       mainBar = {
         layer = "top";
@@ -37,7 +28,7 @@
             "backlight"
           ]
           ++ (
-            if config.options.hasBattery
+            if hasBattery
             then ["battery"]
             else []
           )

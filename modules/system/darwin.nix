@@ -1,4 +1,12 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  # imports = [
+  #   ./sketchybar.nix
+  # ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -24,9 +32,12 @@
       AppleShowAllFiles = true;
       AppleShowScrollBars = "Automatic";
       AppleTemperatureUnit = "Celsius";
+      AppleEnableMouseSwipeNavigateWithScrolls = true;
+      AppleEnableSwipeNavigateWithScrolls = true;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
       NSTextShowsControlCharacters = true;
+      NSWindowShouldDragOnGesture = true;
       "com.apple.keyboard.fnState" = true;
     };
     dock.orientation = "left";

@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  maple-mono = pkgs.callPackage ../fonts/maple-mono.nix {};
+  maple-mono = pkgs.callPackage ../packages/fonts/maple-mono.nix {};
 in {
   users.users.fr4nk1in = {
     isNormalUser = true;

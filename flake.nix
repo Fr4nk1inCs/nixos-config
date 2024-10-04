@@ -30,6 +30,8 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-std.url = "github:chessai/nix-std";
   };
 
   outputs = {
@@ -39,27 +41,27 @@
     nix-darwin,
     home-manager,
     nixvim,
+    nix-std,
     ...
   } @ inputs: let
     user = "fr4nk1in";
-    x86DarwinPkgs = import nixpkgs {
-      system = "x86_64-darwin";
-      config.allowUnfree = true;
-    };
-    appleSiliconDarwinPkgs = import nixpkgs {
-      system = "aarch64-darwin";
-      config.allowUnfree = true;
-    };
+    std = nix-std.lib;
     pkgs = import nixpkgs {
       system = "x86_64-linux";
       config = {
         allowUnfree = true;
         cudaSupport = true;
       };
+      overlays = [(import ./modules/packages)];
+    };
+    appleSiliconDarwinPkgs = import nixpkgs {
+      system = "aarch64-darwin";
+      config.allowUnfree = true;
+      overlays = [(import ./modules/packages)];
     };
     mkHomeManagerConfig = profile: {
       home-manager = {
-        extraSpecialArgs = {inherit self;};
+        extraSpecialArgs = {inherit std;};
         useGlobalPkgs = true;
         useUserPackages = true;
         sharedModules = [nixvim.homeManagerModules.nixvim];
@@ -69,7 +71,7 @@
     mkHomeConfig = profile:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = {inherit self;};
+        extraSpecialArgs = {inherit std;};
         modules = [
           nixvim.homeManagerModules.nixvim
           profile

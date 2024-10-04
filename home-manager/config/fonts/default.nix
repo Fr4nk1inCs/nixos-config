@@ -1,21 +1,14 @@
-{
-  pkgs,
-  self,
-  ...
-}: let
-  maple-mono = pkgs.callPackage "${self}/modules/fonts/maple-mono.nix" {};
-  fandol = pkgs.callPackage "${self}/modules/fonts/fandol.nix" {};
-in {
+{pkgs, ...}: {
   home.packages = [
     pkgs.inter # sans-serif
     pkgs.source-han-sans # sans-serif for CJK
     pkgs.source-han-serif # serif
-    maple-mono # monospace
+    pkgs.fonts.maple-mono # monospace
     pkgs.noto-fonts-color-emoji # emoji
 
     # document writing
     pkgs.libertinus # math
-    fandol
+    pkgs.fonts.fandol
   ];
 
   fonts.fontconfig = {
