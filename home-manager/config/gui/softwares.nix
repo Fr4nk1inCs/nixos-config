@@ -47,6 +47,10 @@
     arc-browser
     # app launcher
     raycast
+    # menubar utility
+    bartender
+    # battery management
+    aldente
   ];
   programs =
     programsForAllSystems
