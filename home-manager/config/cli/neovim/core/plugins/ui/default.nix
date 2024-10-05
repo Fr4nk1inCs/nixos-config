@@ -4,6 +4,7 @@
     ./colorscheme.nix
     ./bufferline.nix
     ./statusline.nix
+    ./icons.nix
     ./indent.nix
     ./noice.nix
     ./startup.nix
