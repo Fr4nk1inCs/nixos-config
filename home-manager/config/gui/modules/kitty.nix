@@ -29,6 +29,9 @@
     background_blur = 15;
 
     macos_option_as_alt = true;
+    macos_hide_from_tasks = true;
+    macos_quit_when_last_window_closed = true;
+    macos_menubar_title_max_length = 20;
   }; # settings
   darwinLaunchOptions = [
     "--single-instance"

@@ -36,6 +36,7 @@
       AppleEnableSwipeNavigateWithScrolls = true;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
+      NSAutomaticWindowAnimationsEnabled = false;
       NSTextShowsControlCharacters = true;
       NSWindowShouldDragOnGesture = true;
       "com.apple.keyboard.fnState" = true;
@@ -59,8 +60,6 @@
     CustomUserPreferences = {
       "com.apple.controlcenter" = {
         Bluetooth = 18;
-        Sound = 18;
-        Display = 18;
         BatteryShowPercentage = true;
       };
     };

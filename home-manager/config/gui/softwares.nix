@@ -49,8 +49,11 @@
     raycast
     # menubar utility
     ice-bar
+    stats
     # battery management
     aldente
+    # pdf reader
+    skimpdf
   ];
   programs =
     programsForAllSystems

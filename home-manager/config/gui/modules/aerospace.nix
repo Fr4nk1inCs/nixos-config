@@ -14,6 +14,13 @@ in {
       text = std.serde.toTOML {
         start-at-login = true;
 
+        after-startup-command = [
+          "exec-and-forget ${pkgs.jankyborders}/bin/borders active_color=0xff81a1c1 inactive_color=0xff2e3440 width=2.0"
+          "workspace 8"
+          "layout accordion"
+          "workspace-back-and-forth"
+        ];
+
         default-root-container-layout = "tiles";
         default-root-container-orientation = "auto";
 
@@ -100,6 +107,33 @@ in {
             minus = "resize smart -50";
             equal = "resize smart +50";
           };
+        };
+
+        on-window-detected = [
+          {
+            "if".app-id = "com.apple.mail";
+            run = ["move-node-to-workspace 8"];
+          }
+          {
+            "if".app-id = "com.tdesktop.Telegram";
+            run = ["move-node-to-workspace 8"];
+          }
+          {
+            "if".app-id = "com.tencent.qq";
+            run = ["move-node-to-workspace 8"];
+          }
+          {
+            "if".app-id = "com.tencent.xinWeChat";
+            run = ["move-node-to-workspace 8"];
+          }
+          {
+            "if".app-id = "com.spotify.client";
+            run = ["move-node-to-workspace 7"];
+          }
+        ];
+        workspace-to-monitor-force-assignment = {
+          "7" = "built-in";
+          "8" = "built-in";
         };
       };
     };
