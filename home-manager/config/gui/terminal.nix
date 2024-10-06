@@ -1,10 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  inherit (config.homeManagerConfig.gui) enable;
-in {
-  config.programs.kitty = lib.mkIf enable (import ./modules/kitty.nix);
-  config.programs.wezterm = lib.mkIf enable (import ./modules/wezterm.nix);
+_: {
+  imports = [
+    ./modules/kitty.nix
+    ./modules/wezterm.nix
+  ];
 }
