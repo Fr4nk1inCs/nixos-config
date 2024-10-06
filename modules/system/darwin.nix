@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   # imports = [
   #   ./sketchybar.nix
   # ];
@@ -61,6 +57,21 @@
       "com.apple.controlcenter" = {
         Bluetooth = 18;
         BatteryShowPercentage = true;
+      };
+
+      # "com.apple.inputsources" = {
+      #   AppleEnabledThirdPartyInputSources = [
+      #     {
+      #       "Bundle ID" = "com.sogou.inputmethod.sogou";
+      #       InputSourceKind = "Keyboard Input Method";
+      #     }
+      #   ];
+      # };
+
+      "com.apple.inputmethod.CoreChineseEnigneFramework" = {
+        candidateWindowDirection = 0;
+        fontSize = 14;
+        usesHalfwidthPunctuation = 1;
       };
     };
   };
