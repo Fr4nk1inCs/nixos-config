@@ -5,24 +5,23 @@
   ...
 }: let
   enable = config.homeManagerConfig.nixvimConfig.type == "full";
-  im-select-mspy = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/daipeihust/im-select/master/win-mspy/out/x64/im-select-mspy.exe";
-    sha256 = "sha256-FBRkrJXVemB6EY2PBt8UbrLsaENP4xQGPMzl8UKPrpo=";
-    executable = true;
-  };
-  im-select-macos = pkgs.fetchurl {
-    url = "https://github.com/daipeihust/im-select/raw/master/macOS/out/apple/im-select";
-    sha256 = "sha256-GTEp9Qp0MiZdFn7hYXN76dsR/zYuuaPDBtf7UwuyvVo=";
-    executable = true;
-  };
+
   default =
     {
       wsl = {
-        command = "${im-select-mspy}";
+        command = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/daipeihust/im-select/master/win-mspy/out/x64/im-select-mspy.exe";
+          sha256 = "sha256-FBRkrJXVemB6EY2PBt8UbrLsaENP4xQGPMzl8UKPrpo=";
+          executable = true;
+        };
         mode = "英语模式";
       };
       darwin = {
-        command = "${im-select-macos}";
+        command = pkgs.fetchurl {
+          url = "https://github.com/Fr4nk1inCs/macism/releases/download/v1.3.3/macism";
+          sha256 = "sha256-wn7Wlh291PpbSrQLWC/fU654suoPHK4/4O7zQ5Z3ldE=";
+          executable = true;
+        };
         mode = "com.apple.keylayout.ABC";
       };
       linux = {
