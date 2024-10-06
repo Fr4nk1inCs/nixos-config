@@ -54,6 +54,8 @@
     aldente
     # pdf reader
     skimpdf
+    # input method
+    sogou-pinyin-mac
   ];
   programs =
     programsForAllSystems
