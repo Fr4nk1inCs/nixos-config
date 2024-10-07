@@ -64,6 +64,11 @@
       ];
     };
 
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     ripgrep.enable = true;
 
     zoxide.enable = true;
