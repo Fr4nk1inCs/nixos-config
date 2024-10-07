@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    dust
     fd
     tldr
     wakatime
-    zsh
   ];
   programs = {
     bat = {
