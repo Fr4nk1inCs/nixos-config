@@ -109,6 +109,30 @@ in {
           silent = true;
         };
       }
+      {
+        key = "<leader>y";
+        action = "<cmd>Yazi toggle<cr>";
+        options = {
+          desc = "Resume last yazi session";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>fy";
+        action = "<cmd>Yazi cwd<cr>";
+        options = {
+          desc = "Open yazi at current working directory";
+          silent = true;
+        };
+      }
+      {
+        key = "<leader>fY";
+        action = "<cmd>Yazi<cr>";
+        options = {
+          desc = "Open yazi at currtn buffer";
+          silent = true;
+        };
+      }
     ];
 
     plugins.neo-tree = {
@@ -179,6 +203,14 @@ in {
       eventHandlers = {
         file_moved = onMove;
         file_renamed = onMove;
+      };
+    };
+
+    plugins.yazi = {
+      enable = true;
+      settings.keymaps = {
+        open_file_in_horizontal_split = "<c-h>";
+        change_working_directory = "<c-d>";
       };
     };
 
