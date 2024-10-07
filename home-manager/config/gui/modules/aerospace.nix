@@ -82,7 +82,8 @@ in {
             alt-shift-0 = "move-node-to-workspace 10";
 
             alt-space = "layout floating tiling";
-            alt-f = "fullscreen";
+            alt-m = "fullscreen";
+            alt-f = "macos-native-fullscreen";
 
             alt-q = "close";
 
