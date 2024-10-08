@@ -25,7 +25,7 @@ in {
   config = lib.mkIf enable {
     programs.nixvim = {
       plugins = {
-        treesitter.settings.ensure_installed = ["typst"];
+        treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst];
         lsp.servers.tinymist = {
           enable = true;
           extraOptions.single_file_support = true;

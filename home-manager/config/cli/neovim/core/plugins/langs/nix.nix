@@ -1,6 +1,6 @@
-_: {
+{pkgs, ...}: {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["nix"];
+    treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.nix];
     lsp.servers.nixd.enable = true;
     none-ls.sources = {
       formatting.alejandra.enable = true;

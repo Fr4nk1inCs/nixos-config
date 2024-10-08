@@ -2,7 +2,10 @@
   codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
 in {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["cpp"];
+    treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      c
+      cpp
+    ];
     clangd-extensions = {
       enable = true;
       ast = {

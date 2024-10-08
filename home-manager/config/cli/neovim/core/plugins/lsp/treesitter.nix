@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.nixvim = {
     plugins = {
       treesitter = {
@@ -7,35 +7,36 @@ _: {
         folding = true;
         nixvimInjections = true;
 
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          c
+          diff
+          html
+          javascript
+          jsdoc
+          json
+          jsonc
+          lua
+          luadoc
+          luap
+          markdown
+          markdown_inline
+          printf
+          python
+          query
+          regex
+          toml
+          tsx
+          typescript
+          vim
+          vimdoc
+          xml
+          yaml
+        ];
+
         settings = {
           highlight.enable = true;
           indent.enable = true;
-          ensure_installed = [
-            "bash"
-            "c"
-            "diff"
-            "html"
-            "javascript"
-            "jsdoc"
-            "json"
-            "jsonc"
-            "lua"
-            "luadoc"
-            "luap"
-            "markdown"
-            "markdown_inline"
-            "printf"
-            "python"
-            "query"
-            "regex"
-            "toml"
-            "tsx"
-            "typescript"
-            "vim"
-            "vimdoc"
-            "xml"
-            "yaml"
-          ];
           incremental_selection = {
             enable = true;
             keymaps = {
@@ -49,12 +50,9 @@ _: {
       };
 
       treesitter-textobjects = {
-        # FIXME: Wait for collision of treesitter-grammar-nasm and
-        # treesitter-textobjects to be resolved
-        enable = false;
+        enable = true;
         move = {
           enable = true;
-          disable = ["nasm"];
           gotoNextStart = {
             "]f" = "@function.outer";
             "]c" = "@class.outer";

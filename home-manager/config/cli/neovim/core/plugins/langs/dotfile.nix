@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.nixvim.filetype = {
     extension = {
       rasi = "rasi";
@@ -15,5 +15,9 @@ _: {
     };
   };
 
-  programs.nixvim.plugins.treesitter.settings.ensure_installed = ["git_config" "hyprlang" "rasi"];
+  programs.nixvim.plugins.treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+    git_config
+    hyprlang
+    rasi
+  ];
 }

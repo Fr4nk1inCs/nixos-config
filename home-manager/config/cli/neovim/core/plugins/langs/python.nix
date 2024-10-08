@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["ninja" "rst"];
+    treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      ninja
+      rst
+    ];
 
     lsp.servers.basedpyright = {
       enable = true;

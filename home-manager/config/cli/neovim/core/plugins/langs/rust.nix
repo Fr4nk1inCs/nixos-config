@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["rust" "ron"];
+    treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [rust ron];
     crates-nvim = {
       enable = true;
       extraOptions = {

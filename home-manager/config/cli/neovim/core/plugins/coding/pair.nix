@@ -21,9 +21,9 @@
       })
     '';
 
-    plugins.treesitter.settings.ensure_installed = [
-      "latex"
-      "verilog"
+    plugins.treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      latex
+      verilog
     ];
 
     plugins.rainbow-delimiters = {
