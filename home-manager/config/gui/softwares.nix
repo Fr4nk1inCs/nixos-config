@@ -56,6 +56,8 @@
     skimpdf
     # input method
     sogou-pinyin-mac
+    # Knowledge base
+    notion-for-apple-silicon
   ];
   programs =
     programsForAllSystems
