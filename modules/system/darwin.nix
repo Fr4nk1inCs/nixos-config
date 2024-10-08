@@ -1,8 +1,8 @@
-{lib, ...}: {
-  # imports = [
-  #   ./sketchybar.nix
-  # ];
-
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -83,6 +83,31 @@
     HOMEBREW_BOTTLE_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles";
     HOMEBREW_API_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles/api";
   };
+  environment.systemPackages = with pkgs; [
+    # browser
+    google-chrome
+    # instant messaging
+    telegram-desktop
+    # streaming music
+    spotify
+    # remote code editing
+    vscode
+    # browser
+    arc-browser
+    # app launcher
+    raycast
+    # menubar utility
+    ice-bar
+    stats
+    # battery management
+    aldente
+    # pdf reader
+    skimpdf
+    # input method
+    sogou-pinyin
+    # video player
+    iina
+  ];
   homebrew = {
     enable = true;
     brews = [
@@ -96,6 +121,8 @@
       "zotero"
       "logi-options+"
       "fliqlo"
+      "tencent-meeting"
+      "notion"
     ];
     caskArgs = {
       language = "zh-CN";
