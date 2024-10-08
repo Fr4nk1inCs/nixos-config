@@ -20,21 +20,23 @@
 
   system.defaults = {
     NSGlobalDomain = {
+      AppleEnableMouseSwipeNavigateWithScrolls = true;
+      AppleEnableSwipeNavigateWithScrolls = true;
       AppleICUForce24HourTime = true;
       AppleInterfaceStyle = "Dark";
       AppleMeasurementUnits = "Centimeters";
       AppleMetricUnits = 1;
+      ApplePressAndHoldEnabled = false;
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
       AppleShowScrollBars = "Automatic";
       AppleTemperatureUnit = "Celsius";
-      AppleEnableMouseSwipeNavigateWithScrolls = true;
-      AppleEnableSwipeNavigateWithScrolls = true;
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
       NSAutomaticWindowAnimationsEnabled = false;
       NSTextShowsControlCharacters = true;
       NSWindowShouldDragOnGesture = true;
+
       "com.apple.keyboard.fnState" = true;
     };
     dock = {
