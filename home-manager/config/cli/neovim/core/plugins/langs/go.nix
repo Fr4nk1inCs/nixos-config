@@ -1,6 +1,11 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["go" "gomod" "gowork" "gosum"];
+    treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      go
+      gomod
+      gowork
+      gosum
+    ];
     lsp.servers.gopls = {
       enable = true;
       settings.gopls = {

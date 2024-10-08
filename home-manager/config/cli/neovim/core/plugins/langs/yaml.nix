@@ -1,6 +1,6 @@
-_: {
+{pkgs, ...}: {
   programs.nixvim.plugins = {
-    treesitter.settings.ensure_installed = ["json5"];
+    treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.json5];
     lsp.servers.yamlls = {
       enable = true;
 

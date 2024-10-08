@@ -1,3 +1,7 @@
-_: {
-  programs.nixvim.plugins.treesitter.settings.ensure_installed = ["mlir" "tablegen" "llvm"];
+{pkgs, ...}: {
+  programs.nixvim.plugins.treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+    mlir
+    tablegen
+    llvm
+  ];
 }
