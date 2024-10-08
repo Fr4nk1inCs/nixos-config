@@ -58,6 +58,8 @@
     sogou-pinyin-mac
     # Knowledge base
     notion-for-apple-silicon
+    # online meeting
+    tencent-meeting
   ];
   programs =
     programsForAllSystems
