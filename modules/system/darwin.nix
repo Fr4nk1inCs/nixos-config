@@ -37,7 +37,22 @@
       NSWindowShouldDragOnGesture = true;
       "com.apple.keyboard.fnState" = true;
     };
-    dock.orientation = "left";
+    dock = {
+      orientation = "left";
+      persistent-apps = [
+        "/System/Applications/Launchpad.app"
+        "${pkgs.kitty}/Applications/Kitty.app"
+        "${pkgs.arc-browser}/Applications/Arc.app"
+        "/Applications/QQ.app"
+        "/Applications/WeChat.app"
+        "/System/Applications/Mail.app"
+        "/Applications/Notion.app"
+        "/Applications/Zotero.app"
+        "${pkgs.spotify}/Applications/Spotify.app"
+        "/System/Applications/Music.app"
+        "/System/Applications/System Settings.app"
+      ];
+    };
     finder = {
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
