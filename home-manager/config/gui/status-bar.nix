@@ -1,6 +1,6 @@
 _: {
   imports = [
     ./modules/waybar.nix
-    ./modules/aerospace.nix
+    ./modules/sketchybar.nix
   ];
 }

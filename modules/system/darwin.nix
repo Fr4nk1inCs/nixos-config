@@ -14,6 +14,12 @@
   };
 
   services.nix-daemon.enable = true;
+  services.sketchybar.enable = true;
+
+  launchd.user.agents.sketchybar.serviceConfig = {
+    StandardErrorPath = "/tmp/sketchybar.error.log";
+    StandardOutPath = "/tmp/sketchybar.out.log";
+  };
 
   # Nix-Darwin configurations
   security.pam.enableSudoTouchIdAuth = true;
@@ -41,6 +47,7 @@
     };
     dock = {
       orientation = "left";
+      autohide = true;
       persistent-apps = [
         "/System/Applications/Launchpad.app"
         "${pkgs.kitty}/Applications/Kitty.app"

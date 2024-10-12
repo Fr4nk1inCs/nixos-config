@@ -7,6 +7,11 @@
 }: let
   cfg = config.homeManagerConfig;
   enable = cfg.gui.enable && cfg.system == "darwin";
+  triggerSketchybarEvent = pkgs.writeShellScript "aerospace-trigger-workspace-change.sh" ''
+    ${pkgs.sketchybar}/bin/sketchybar --trigger aerospace_workspace_change \
+        FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE \
+        PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE
+  '';
 in {
   config = lib.mkIf enable {
     home.packages = [pkgs.aerospace];
@@ -29,6 +34,10 @@ in {
         on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
         on-focus-changed = ["move-mouse window-lazy-center"];
 
+        exec-on-workspace-change = [
+          (toString triggerSketchybarEvent)
+        ];
+
         gaps = {
           inner = {
             horizontal = 5;
@@ -38,7 +47,7 @@ in {
             left = 5;
             right = 5;
             top = 5;
-            bottom = 5;
+            bottom = 30;
           };
         };
 
