@@ -147,6 +147,7 @@
       "fliqlo"
       "tencent-meeting"
       "notion"
+      "tomatobar"
     ];
     caskArgs = {
       language = "zh-CN";
