@@ -11,20 +11,19 @@
 
   # General configuration
   fonts = {
-    label = {
-      normal = "Maple Mono NF CN:Regular:12.0";
-      superScript = "Maple Mono NF CN:Regular:8.0";
-    };
-    icon = "Maple Mono NF CN:Regular:14.0";
-    appIcon = "sketchybar-app-font:Regular:14.0";
+    label = "Maple Mono NF CN:Regular:12.0";
+    icon = "Maple Mono NF CN:Regular:12.0";
+    appIcon = "sketchybar-app-font:Regular:11.5";
   };
   colors = {
     background = {
       default = "0xff2e3440";
+      lighter = "0xff444c5e";
     };
     foreground = {
       default = "0xffcdcecf";
     };
+    border = "0xff5a657d";
     palette = {
       blue = "0xff81a1c1";
       red = "0xffbf616a";
@@ -49,22 +48,34 @@
 
     workspaceAppIcons = pkgs.writeShellScript "workspace-app-icons.sh" ''
       APPNAMES=$(${aerospace} list-windows --workspace "$1" --format "%{app-name}")
+      source ${sketchybarAppFontNameToIcon}
 
       APPICONS=""
       for APP in $APPNAMES; do
-        APPICONS="$APPICONS$(${sketchybarAppFontNameToIcon} $APP) "
+        __icon_map $APP
+        APPICONS="$APPICONS$icon_result"
       done
 
       echo "$APPICONS"
     '';
 
-    setWorkspaceHighlight = pkgs.writeShellScript "sketchybar-set-workspace-highlight.sh" ''
-      echo "ARG: $1, Name: $NAME, Focused: $FOCUSED_WORKSPACE, Prev: $PREV_WORKSPACE"
-      if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-        sketchybar --set $NAME icon.highlight="on" label.highlight="on"
-      else
-        sketchybar --set $NAME icon.highlight="off" label.highlight="off"
+    onWorkspaceChange = pkgs.writeShellScript "sketchybar-on-workspace-change.sh" ''
+      echo "FOCUSED_WORKSPACE=$FOCUSED_WORKSPACE, PREV_WORKSPACE=$PREV_WORKSPACE"
+      # set highlight
+      sketchybar --set "space.$FOCUSED_WORKSPACE" label.highlight="on"  icon.highlight="on"
+      sketchybar --set "space.$PREV_WORKSPACE"    label.highlight="off" icon.highlight="off"
+
+      # set border
+      sketchybar --set "space.$FOCUSED_WORKSPACE" background.border_color="${colors.border}"
+      sketchybar --set "space.$PREV_WORKSPACE"    background.border_color="${colors.background.lighter}"
+
+      # set label
+      APPICONS=$(${scripts.workspaceAppIcons} $PREV_WORKSPACE)
+      if [ "$APPICONS" != "" ]; then
+        sketchybar --set "space.$PREV_WORKSPACE"    label.drawing="on"
+        sketchybar --set "space.$PREV_WORKSPACE"    label="$APPICONS"
       fi
+      sketchybar --set "space.$FOCUSED_WORKSPACE" label.drawing="off"
     '';
 
     sketchybarAppFontNameToIcon = "${pkgs.sketchybar-app-font}/bin/icon_map.sh";
@@ -74,36 +85,33 @@
   events = ["aerospace_workspace_change"];
 
   workspaces = map toString (lib.range 1 10);
-  workspaceIcons = let
-    defaultIcon = "󰨇";
-    specialIcons = {
-      "7" = "󰝚";
-      "8" = "󰚢";
-    };
-  in
-    lib.listToAttrs (
-      map (space: {
-        name = space;
-        value = specialIcons.${space} or defaultIcon;
-      })
-      workspaces
-    );
 
   mkWorkspaceConfig = space: {
-    icon = workspaceIcons.${space};
-    "icon.padding_right" = 2;
+    "background.height" = 17;
+    "background.color" = colors.background.lighter;
+    "background.border_color" = colors.background.lighter;
+    "background.border_width" = 1;
+    "background.corner_radius" = 4;
+    "background.padding_left" = 2;
+    "background.padding_right" = 2;
+
+    icon = space;
+    "icon.font" = fonts.label; # icon is used to display workspace number
     "icon.highlight_color" = colors.palette.blue;
     "icon.highlight" = "off";
+    "icon.padding_left" = 6;
+    "icon.padding_right" = 6;
 
-    label = space;
-    "label.font" = fonts.label.superScript;
-    "label.y_offset" = 6;
-    "label.padding_left" = 0;
+    label = "";
+    "label.drawing" = "off";
+    "label.font" = fonts.appIcon; # label is used to display opened apps
+    "label.y_offset" = 0;
     "label.highlight_color" = colors.palette.blue;
     "label.highlight" = "off";
+    "label.padding_left" = 0;
+    "label.padding_right" = 6;
 
     click_script = "${aerospace} workspace ${space}";
-    script = "${scripts.setWorkspaceHighlight} ${space}";
   };
 
   sketchybarConfig = {
@@ -120,10 +128,16 @@
       "icon.padding_left" = 4;
       "icon.padding_right" = 4;
 
-      "label.font" = fonts.label.normal;
+      "label.font" = fonts.label;
       "label.color" = colors.foreground.default;
       "label.padding_left" = 4;
       "label.padding_right" = 4;
+    };
+
+    workspaceChangeHandler = {
+      script = scripts.onWorkspaceChange;
+      "label.drawing" = "off";
+      "icon.drawing" = "off";
     };
 
     chevron = {
@@ -185,7 +199,6 @@
         name = "space.${space}";
         config = mkWorkspaceConfig space;
         position = "left";
-        subscriptions = ["aerospace_workspace_change"];
       })
     workspaces
   );
@@ -221,7 +234,15 @@ in {
           name = "spaceTitle";
           config = sketchybarConfig.spaceTitle;
           position = "left";
-          subscriptions = ["front_app_switched" "window_focus"];
+          subscriptions = ["front_app_switched"];
+        }}
+
+        ${mkSketchybarRc {
+          type = "item";
+          name = "__workspaceChangeHandler";
+          config = sketchybarConfig.workspaceChangeHandler;
+          subscriptions = ["aerospace_workspace_change"];
+          position = "right";
         }}
 
         sketchybar --update
