@@ -60,8 +60,12 @@
     '';
 
     onWorkspaceChange = pkgs.writeShellScript "sketchybar-on-workspace-change.sh" ''
-      echo "FOCUSED_WORKSPACE=$FOCUSED_WORKSPACE, PREV_WORKSPACE=$PREV_WORKSPACE"
+      if [ "$FOCUSED_WORKSPACE" = "" ] || [ "$PREV_WORKSPACE" = "" ]; then
+        exit 0
+      fi
+
       # set highlight
+      sketchybar --set "space.$FOCUSED_WORKSPACE" icon.drawing="on"
       sketchybar --set "space.$FOCUSED_WORKSPACE" label.highlight="on"  icon.highlight="on"
       sketchybar --set "space.$PREV_WORKSPACE"    label.highlight="off" icon.highlight="off"
 
@@ -72,8 +76,10 @@
       # set label
       APPICONS=$(${scripts.workspaceAppIcons} $PREV_WORKSPACE)
       if [ "$APPICONS" != "" ]; then
-        sketchybar --set "space.$PREV_WORKSPACE"    label.drawing="on"
-        sketchybar --set "space.$PREV_WORKSPACE"    label="$APPICONS"
+        sketchybar --set "space.$PREV_WORKSPACE" label.drawing="on"
+        sketchybar --set "space.$PREV_WORKSPACE" label="$APPICONS"
+      else
+        sketchybar --set "space.$PREV_WORKSPACE" icon.drawing="off"
       fi
       sketchybar --set "space.$FOCUSED_WORKSPACE" label.drawing="off"
     '';
@@ -87,15 +93,14 @@
   workspaces = map toString (lib.range 1 10);
 
   mkWorkspaceConfig = space: {
-    "background.height" = 17;
+    "background.height" = 20;
     "background.color" = colors.background.lighter;
     "background.border_color" = colors.background.lighter;
     "background.border_width" = 1;
     "background.corner_radius" = 4;
-    "background.padding_left" = 2;
-    "background.padding_right" = 2;
 
     icon = space;
+    "icon.drawing" = "off";
     "icon.font" = fonts.label; # icon is used to display workspace number
     "icon.highlight_color" = colors.palette.blue;
     "icon.highlight" = "off";
@@ -108,7 +113,7 @@
     "label.y_offset" = 0;
     "label.highlight_color" = colors.palette.blue;
     "label.highlight" = "off";
-    "label.padding_left" = 0;
+    "label.padding_left" = 3;
     "label.padding_right" = 6;
 
     click_script = "${aerospace} workspace ${space}";
@@ -132,6 +137,13 @@
       "label.color" = colors.foreground.default;
       "label.padding_left" = 4;
       "label.padding_right" = 4;
+    };
+
+    workspaceBracket = {
+      "background.color" = colors.background.lighter;
+      "background.drawing" = "on";
+      "background.corner_radius" = 4;
+      "background.height" = 20;
     };
 
     workspaceChangeHandler = {
@@ -174,17 +186,40 @@
       ${configToSketchybarKvPairs config}
   '';
 
+  _mkBracketRc = {
+    name,
+    matches ? [],
+    regex ? "",
+    config,
+  }: let
+    matchesStr =
+      if matches == []
+      then "'${regex}'"
+      else toString matches;
+  in ''
+    sketchybar --add bracket ${name} ${matchesStr} \
+      --set ${name} \
+      ${configToSketchybarKvPairs config}
+  '';
+
   mkSketchybarRc = {
     type ? "default",
     config,
     name ? "",
     position ? "",
     subscriptions ? [],
+    matches ? [],
+    regex ? "",
   }:
     if type == "item"
     then
       _mkItemRc {
         inherit name config position subscriptions;
+      }
+    else if type == "bracket"
+    then
+      _mkBracketRc {
+        inherit name matches regex config;
       }
     else ''
       sketchybar --${type} \
@@ -221,6 +256,13 @@ in {
         }}
 
         ${workspacesRc}
+
+        ${mkSketchybarRc {
+          type = "bracket";
+          name = "workspaceBracket";
+          config = sketchybarConfig.workspaceBracket;
+          regex = "/space\\.\.*/";
+        }}
 
         ${mkSketchybarRc {
           type = "item";
