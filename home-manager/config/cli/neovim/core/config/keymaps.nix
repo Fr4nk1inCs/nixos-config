@@ -259,26 +259,26 @@
         silent = true;
       };
     }) [
-      {
-        key = "h";
-        action = "wincmd h";
-        desc = "Go to left window";
-      }
-      {
-        key = "j";
-        action = "wincmd j";
-        desc = "Go to lower window";
-      }
-      {
-        key = "k";
-        action = "wincmd k";
-        desc = "Go to upper window";
-      }
-      {
-        key = "l";
-        action = "wincmd l";
-        desc = "Go to right window";
-      }
+      # {
+      #   key = "h";
+      #   action = "wincmd h";
+      #   desc = "Go to left window";
+      # }
+      # {
+      #   key = "j";
+      #   action = "wincmd j";
+      #   desc = "Go to lower window";
+      # }
+      # {
+      #   key = "k";
+      #   action = "wincmd k";
+      #   desc = "Go to upper window";
+      # }
+      # {
+      #   key = "l";
+      #   action = "wincmd l";
+      #   desc = "Go to right window";
+      # }
       {
         key = "/";
         action = "close";
