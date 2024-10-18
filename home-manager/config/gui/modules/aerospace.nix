@@ -137,6 +137,10 @@ in {
             run = ["move-node-to-workspace 8"];
           }
           {
+            "if".app-id = "com.alibaba.DingTalkMac";
+            run = ["move-node-to-workspace 8"];
+          }
+          {
             "if".app-id = "com.spotify.client";
             run = ["move-node-to-workspace 7"];
           }

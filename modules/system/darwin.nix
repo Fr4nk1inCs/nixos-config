@@ -147,6 +147,7 @@
       "fliqlo"
       "tencent-meeting"
       "notion"
+      "dingtalk"
       "tomatobar"
     ];
     caskArgs = {
