@@ -15,15 +15,17 @@ in {
           help = true;
         };
 
-        suggestion.enabled = false;
-        panel.enabled = false;
-      };
+        suggestion = {
+          enabled = true;
+          keymap = {
+            accept = "<c-a>";
+            prev = "<c-[>";
+            next = "<c-]>";
 
-      cmp.settings.sources = [
-        {
-          name = "copilot";
-        }
-      ];
+            dismiss = "<c-q>";
+          };
+        };
+      };
 
       lualine.settings.sections.lualine_x = [
         {
