@@ -1,8 +1,10 @@
 _: {
   programs.nixvim.plugins.auto-session = {
     enable = true;
-    autoRestore.enabled = false;
-    bypassSessionSaveFileTypes = ["dashboard"];
-    extraOptions.cwdChangeHandling = true;
+    settings = {
+      cwdChangeHandling = true;
+      bypassSessionSaveFileTypes = ["dashboard"];
+      autoRestore.enabled = false;
+    };
   };
 }

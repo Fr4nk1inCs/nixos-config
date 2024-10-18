@@ -1,4 +1,5 @@
 {
+  pkgs-stable,
   pkgs,
   lib,
   ...
@@ -111,7 +112,9 @@
     # browser
     google-chrome
     # instant messaging
-    telegram-desktop
+    # FIX: temporarily fix telegram-desktop build failure
+    # telegram-desktop
+    pkgs-stable.telegram-desktop
     # streaming music
     spotify
     # remote code editing

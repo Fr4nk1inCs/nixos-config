@@ -1,6 +1,6 @@
 _: {
   programs.nixvim.plugins = {
-    lsp.servers.lua-ls = {
+    lsp.servers.lua_ls = {
       enable = true;
       settings.Lua = {
         workspace = {
