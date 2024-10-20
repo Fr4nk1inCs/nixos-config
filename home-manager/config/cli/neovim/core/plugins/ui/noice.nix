@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+_: let
   views = builtins.listToAttrs (
     builtins.map (
       item: {
@@ -22,16 +22,6 @@ in {
   programs.nixvim.plugins = {
     noice = {
       enable = true;
-      # FIX: Wait for issue https://github.com/folke/noice.nvim/issues/921 to be fixed
-      package = pkgs.vimUtils.buildVimPlugin {
-        name = "noice-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "iguanacucumber";
-          repo = "noice.nvim";
-          rev = "c609f1145a0d06f30b629326030e7555b11ccda3";
-          hash = "sha256-XQzHCvStT3jHDhxsWWkJaL5VMO+g+/6FUYe5L6P4BG4=";
-        };
-      };
 
       lsp = {
         override = {
