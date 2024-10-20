@@ -25,7 +25,7 @@ in {
   config = lib.mkIf enable {
     programs.nixvim = {
       plugins = {
-        treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst];
+        # treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst];
         lsp.servers.tinymist = {
           enable = true;
           extraOptions.single_file_support = true;
@@ -35,6 +35,8 @@ in {
             formatterPrintWidth = 80;
           };
         };
+
+        typst-vim.enable = true;
       };
 
       extraPlugins = [
