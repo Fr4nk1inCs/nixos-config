@@ -35,6 +35,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixos-wsl,
     nix-darwin,
@@ -56,7 +57,10 @@
       };
     mkHomeManagerConfig = profile: {
       home-manager = {
-        extraSpecialArgs = {inherit std;};
+        extraSpecialArgs = {
+          inherit std;
+          flakeRoot = self;
+        };
         useGlobalPkgs = true;
         useUserPackages = true;
         sharedModules = [nixvim.homeManagerModules.nixvim];
@@ -66,7 +70,10 @@
     mkHomeConfig = profile:
       home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs "x86_64-linux";
-        extraSpecialArgs = {inherit std;};
+        extraSpecialArgs = {
+          inherit std;
+          flakeRoot = self;
+        };
         modules = [
           nixvim.homeManagerModules.nixvim
           profile
@@ -119,4 +126,4 @@
       };
     };
   };
-}
+  }
