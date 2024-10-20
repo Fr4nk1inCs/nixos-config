@@ -14,7 +14,7 @@ _: {
               vim.b[event.buf].autoformat = vim.g.autoformat
             end
             if vim.b[event.buf].autoformat then
-              vim.lsp.buf.format({ bufnr = event.buf })
+              vim.lsp.buf.format({ async = true, bufnr = event.buf })
             end
           end
         '';
@@ -26,7 +26,7 @@ _: {
       {
         action.__raw = ''
           function()
-            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            vim.lsp.buf.format({ async = true, bufnr = vim.api.nvim_get_current_buf() })
           end
         '';
         key = "<leader>cf";
