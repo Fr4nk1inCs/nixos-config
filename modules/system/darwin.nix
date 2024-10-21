@@ -52,13 +52,13 @@
       persistent-apps = [
         "/System/Applications/Launchpad.app"
         "${pkgs.kitty}/Applications/Kitty.app"
-        "${pkgs.arc-browser}/Applications/Arc.app"
+        "/Applications/Arc.app"
         "/Applications/QQ.app"
         "/Applications/WeChat.app"
         "/System/Applications/Mail.app"
         "/Applications/Notion.app"
         "/Applications/Zotero.app"
-        "${pkgs.spotify}/Applications/Spotify.app"
+        "/Applications/Spotify.app"
         "/System/Applications/Music.app"
         "/System/Applications/System Settings.app"
       ];
@@ -119,8 +119,6 @@
     spotify
     # remote code editing
     vscode
-    # browser
-    arc-browser
     # app launcher
     raycast
     # menubar utility
@@ -142,6 +140,8 @@
     casks = [
       "qq"
       "wechat"
+      "arc"
+      "spotify"
       # "microsoft-office" # use institutional license instead
       "clash-verge-rev"
       "bitwarden"
