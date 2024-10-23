@@ -14,7 +14,7 @@ _: {
               vim.b[event.buf].autoformat = vim.g.autoformat
             end
             if vim.b[event.buf].autoformat then
-              vim.lsp.buf.format({ async = true, bufnr = event.buf })
+              vim.lsp.buf.format({ bufnr = event.buf, timeout_ms = 5000 })
             end
           end
         '';
@@ -32,7 +32,7 @@ _: {
         key = "<leader>cf";
         mode = ["n" "v"];
         options = {
-          desc = "Format";
+          desc = "Format (Async)";
           silent = true;
         };
       }
