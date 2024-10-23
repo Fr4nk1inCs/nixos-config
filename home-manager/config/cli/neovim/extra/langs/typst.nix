@@ -13,14 +13,6 @@
       darwin = "open %s";
     }
     .${system};
-
-  openPackages =
-    {
-      wsl = [pkgs.wsl-open];
-      linux = [pkgs.xdg-utils];
-      darwin = [];
-    }
-    .${system};
 in {
   config = lib.mkIf enable {
     programs.nixvim = {
@@ -28,15 +20,19 @@ in {
         # treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst];
         lsp.servers.tinymist = {
           enable = true;
-          extraOptions.single_file_support = true;
+          extraOptions = {
+            offset_encoding = "utf-8";
+            single_file_support = true;
+          };
           settings = {
             exportPdf = "onDocumentHasTitle";
-            formatterMode = "typstyle";
-            formatterPrintWidth = 80;
+            semanticTokens = "disable";
+            formatterMode = "disable";
+            compileStatus = "disable";
           };
         };
-
         typst-vim.enable = true;
+        none-ls.sources.formatting.typstyle.enable = true;
       };
 
       extraPlugins = [
@@ -45,8 +41,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "chomosuke";
             repo = "typst-preview.nvim";
-            rev = "7ae2b82cf334819494505b772745beb28705b12b";
-            hash = "sha256-kJ6IfLSBmJMgEFuCy6fGtqSRBXjt2Aoxu2NW9iyzRLU=";
+            rev = "0f43ed7fa661617751bfd0ca2f01ee13eba6569e";
+            hash = "sha256-olO2hh2xU/tiuwMNKGuKU+Wa5taiTUOv9jlK2/99yvk=";
           };
         })
       ];
@@ -54,14 +50,15 @@ in {
       extraConfigLua = ''
         require("typst-preview").setup({
           dependencies_bin = {
-            ["typst-preview"] = "tinymist",
-            ["websocat"] = "websocat";
+            ["tinymist"] = "${pkgs.tinymist}/bin/tinymist",
+            ["websocat"] = "${pkgs.websocat}/bin/websocat";
           },
           open_cmd = "${openCmd}",
+          get_root = function(path)
+            return require("lspconfig.util").find_git_ancestor(path) or path
+          end,
         })
       '';
-
-      extraPackages = [pkgs.websocat] ++ openPackages;
     };
   };
 }
