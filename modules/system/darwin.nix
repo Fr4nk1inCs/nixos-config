@@ -152,6 +152,7 @@
       "notion"
       "dingtalk"
       "tomatobar"
+      "jetbrains-toolbox"
     ];
     caskArgs = {
       language = "zh-CN";

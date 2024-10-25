@@ -7,6 +7,10 @@
   cfg = config.homeManagerConfig;
   enable = cfg.gui.enable && cfg.gui.software.enable && cfg.system == "linux";
 in {
+  imports = [
+    ./modules/ideavim.nix
+  ];
+
   config.home.packages = lib.optionals enable (
     with pkgs; [
       # browser
