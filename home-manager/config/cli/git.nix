@@ -1,4 +1,5 @@
-_: {
+{pkgs, ...}: {
+  home.packages = with pkgs; [glab];
   programs = {
     gh.enable = true;
 
