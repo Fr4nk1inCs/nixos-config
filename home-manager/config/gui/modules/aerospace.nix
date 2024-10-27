@@ -144,6 +144,10 @@ in {
             "if".app-id = "com.spotify.client";
             run = ["move-node-to-workspace 7"];
           }
+          {
+            "if".app-id = "com.apple.Music";
+            run = ["move-node-to-workspace 7"];
+          }
         ];
         workspace-to-monitor-force-assignment = {
           "7" = "built-in";

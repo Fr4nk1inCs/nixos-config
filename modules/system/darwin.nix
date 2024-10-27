@@ -58,7 +58,6 @@
         "/System/Applications/Mail.app"
         "/Applications/Notion.app"
         "/Applications/Zotero.app"
-        "/Applications/Spotify.app"
         "/System/Applications/Music.app"
         "/System/Applications/System Settings.app"
       ];
@@ -115,8 +114,6 @@
     # FIX: temporarily fix telegram-desktop build failure
     # telegram-desktop
     pkgs-stable.telegram-desktop
-    # streaming music
-    spotify
     # remote code editing
     vscode
     # app launcher
@@ -141,7 +138,6 @@
       "qq"
       "wechat"
       "arc"
-      "spotify"
       # "microsoft-office" # use institutional license instead
       "clash-verge-rev"
       "bitwarden"
