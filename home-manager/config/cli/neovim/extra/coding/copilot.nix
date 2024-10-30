@@ -17,6 +17,7 @@ in {
 
         suggestion = {
           enabled = true;
+          autoTrigger = true;
           keymap = {
             accept = "<c-a>";
             prev = "<c-[>";
