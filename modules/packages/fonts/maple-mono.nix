@@ -6,8 +6,8 @@ stdenvNoCC.mkDerivation {
   name = "maple-mono-NF-CN";
   dontConfigue = true;
   src = fetchzip {
-    url = "https://github.com/subframe7536/maple-font/releases/download/v7.0-beta26/MapleMono-NF-CN.zip";
-    sha256 = "sha256-ez+7uIuZSaSH7ImU4W7w0ZlB9rceCtRoLuZzC0i0AQc=";
+    url = "https://github.com/subframe7536/maple-font/releases/download/v7.0-beta29/MapleMono-NF-CN.zip";
+    sha256 = "sha256-ybCeft2/i7UY3C/Pew76RiwVEM+vzUtDQuvr4dAkaUY=";
     stripRoot = false;
   };
 
