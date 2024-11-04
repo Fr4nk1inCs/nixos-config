@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -39,6 +44,7 @@
     nixpkgs,
     nixos-wsl,
     nix-darwin,
+    nix-ld,
     home-manager,
     nixvim,
     nix-std,
@@ -109,7 +115,7 @@
           ./hosts/wsl
 
           nixos-wsl.nixosModules.wsl
-
+          nix-ld.nixosModules.nix-ld
           home-manager.nixosModules.home-manager
           (mkHomeManagerConfig ./home-manager/profiles/wsl.nix)
         ];
@@ -120,6 +126,7 @@
         modules = [
           ./hosts/nixos-vm
 
+          nix-ld.nixosModules.nix-ld
           home-manager.nixosModules.home-manager
           (mkHomeManagerConfig ./home-manager)
         ];

@@ -92,4 +92,6 @@ in {
   programs.starship = {
     enable = true;
   };
+
+  programs.nix-ld.dev.enable = true;
 }
