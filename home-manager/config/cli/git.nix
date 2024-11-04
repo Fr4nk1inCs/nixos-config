@@ -15,7 +15,12 @@
       };
       userEmail = "fushen@mail.ustc.edu.cn";
       userName = "Fr4nk1in";
-      extraConfig.credential.helper = "store";
+      extraConfig = {
+        credential = {
+          helper = "store";
+          "https://gitlab.com".helper = "${pkgs.glab}/bin/glab auth git-credential";
+        };
+      };
     };
 
     lazygit = {
