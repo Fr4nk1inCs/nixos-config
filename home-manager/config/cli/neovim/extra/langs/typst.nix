@@ -21,7 +21,6 @@ in {
         lsp.servers.tinymist = {
           enable = true;
           extraOptions = {
-            offset_encoding = "utf-8";
             single_file_support = true;
           };
           settings = {
