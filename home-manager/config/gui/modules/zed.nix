@@ -8,16 +8,11 @@
 in {
   config.programs.zed-editor = lib.mkIf enable {
     enable = true;
-    extensions = [
-      "nvim-nightfox"
-      "nix"
-    ];
+    extensions = ["nvim-nightfox" "nix"];
     userKeymaps = [
       {
         context = "Workspace";
-        bindings = {
-          "ctrl-\\" = "terminal_panel::ToggleFocus";
-        };
+        bindings = {"ctrl-\\" = "terminal_panel::ToggleFocus";};
       }
       {
         "context" = "vim_mode == normal && !menu";
@@ -38,22 +33,24 @@ in {
           "b d" = "pane::CloseActiveItem";
           "b o" = "pane::CloseInactiveItems";
           # file
-          "space e" = "workspace::ToggleLeftDock";
+          "space e" = "project_panel::ToggleFocus";
+          "space f e" = "project_panel::ToggleFocus";
+          "space s e" = "outline_panel::ToggleFocus";
           "space f f" = "file_finder::Toggle";
           # search
           "space s g" = "workspace::NewSearch";
           "space s s" = "outline::Toggle";
           # git
           "space g b" = "editor::ToggleGitBlame";
-          # lsp
+          # code
           "space c d" = "editor::Hover";
+          "space c f" = "editor::Format";
+          "space c a" = "editor::ToggleCodeActions";
         };
       }
       {
         "context" = "vim_mode == visual && !menu";
-        "bindings" = {
-          ">" = "editor::Indent";
-        };
+        "bindings" = {">" = "editor::Indent";};
       }
       {
         "context" = "Editor && vim_mode == insert";
@@ -67,13 +64,24 @@ in {
         "context" = "ProjectPanel && not_editing";
         "bindings" = {
           "space e" = "workspace::ToggleLeftDock";
+          "space s e" = "outline_panel::ToggleFocus";
           "q" = "workspace::ToggleLeftDock";
+          "a" = "project_panel::NewFile";
+          "A" = "project_panel::NewDirectory";
+          "x" = "project_panel::Cut";
+          "y" = "project_panel::Copy";
+          "p" = "project_panel::Paste";
+          "d" = "project_panel::Delete";
+          "r" = "project_panel::Rename";
         };
       }
       {
         "context" = "OutlinePanel && not_editing";
         "bindings" = {
-          "space e" = "workspace::ToggleLeftDock";
+          "space e" = "project_panel::ToggleFocus";
+          "space f e" = "project_panel::ToggleFocus";
+          "space s e" = "workspace::ToggleLeftDock";
+          "q" = "workspace::ToggleLeftDock";
         };
       }
     ];
@@ -87,7 +95,7 @@ in {
       # Appearance
       ui_font_size = 14;
       buffer_font_family = "Maple Mono NF CN";
-      buffer_font_size = 12;
+      buffer_font_size = 11;
       buffer_font_features = {
         calt = true;
         zero = false;
@@ -104,11 +112,9 @@ in {
         light = "Dawnfox";
         dark = "Nordfox";
       };
+      tab_size = 2;
     };
   };
-  config.home.packages = lib.optionals enable (
-    with pkgs; [
-      nixd
-    ]
-  );
+  config.home.packages =
+    lib.optionals enable (with pkgs; [nixd nixfmt-classic]);
 }
