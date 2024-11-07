@@ -149,6 +149,7 @@
       "dingtalk"
       "tomatobar"
       "jetbrains-toolbox"
+      "follow"
     ];
     caskArgs = {
       language = "zh-CN";

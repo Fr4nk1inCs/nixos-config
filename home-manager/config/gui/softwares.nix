@@ -45,6 +45,8 @@ in {
       nautilus
       # system management
       baobab # disk usage analyzer
+      # RSS reader
+      follow
     ]
   );
 }
