@@ -3,9 +3,10 @@
   lib,
   ...
 }: let
+  username = "fr4nk1in";
   maple-mono = pkgs.callPackage ../packages/fonts/maple-mono.nix {};
 in {
-  users.users.fr4nk1in = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = ["wheel"];
   };
@@ -60,38 +61,46 @@ in {
   };
 
   # Docker
+  # after rebuild remember to generate the cdi spec,
+  # with pkgs.nvidia-docker installed:
+  # $ sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+  # $ nvidia-ctk cdi generate --output=/home/${username}/.cdi/nvidia.yaml
   virtualisation.docker = {
     enable = true;
     rootless = {
       enable = true;
       setSocketVariable = true;
       daemon.settings = {
-        registry-mirrors = [
-          # "https://docker.mirrors.ustc.edu.cn"
-          # "http://hub-mirror.c.163.com"
-          # "https://registry.docker-cn.com"
-        ];
+        features.cdi = true;
+        cdi-spec-dirs = ["/home/${username}/.cdi"];
       };
     };
     daemon.settings = {
-      registry-mirrors = [
-        # "https://docker.mirrors.ustc.edu.cn"
-        # "http://hub-mirror.c.163.com"
-        # "https://registry.docker-cn.com"
-      ];
+      features.cdi = true;
     };
   };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
+  hardware = {
+    nvidia = {
+      modesetting.enable = true;
+      nvidiaSettings = false;
+      open = false;
+    };
+    nvidia-container-toolkit.enable = true;
   };
+  services.xserver.videoDrivers = ["nvidia"];
 
-  programs.starship = {
-    enable = true;
+  programs = {
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+    };
+
+    starship = {
+      enable = true;
+    };
+
+    nix-ld.dev.enable = true;
   };
-
-  programs.nix-ld.dev.enable = true;
 }
