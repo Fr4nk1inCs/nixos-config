@@ -20,6 +20,7 @@ in {
         disable_ligatures = "never";
 
         cursor_shape = "beam";
+        cursor_trail = 3;
 
         scrollback_lines = 10000;
 
