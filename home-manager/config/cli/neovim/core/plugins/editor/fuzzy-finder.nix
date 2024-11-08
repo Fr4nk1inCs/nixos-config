@@ -1,4 +1,4 @@
-_: let
+{pkgs, ...}: let
   actions = func: {__raw = ''require("fzf-lua.actions").${func}'';};
   UISelect = ''
     function(fzf_opts, items)
@@ -122,6 +122,14 @@ in {
             builtin = {
               "<c-f>" = "preview-page-down";
               "<c-b>" = "preview-page-up";
+            };
+          };
+          previewers.builtin = {
+            extensions = {
+              png = ["${pkgs.chafa}/bin/chafa" "--format=symbols"];
+              svg = ["${pkgs.chafa}/bin/chafa" "--format=symbols"];
+              jpg = ["${pkgs.chafa}/bin/chafa" "--format=symbols"];
+              gif = ["${pkgs.chafa}/bin/chafa" "--format=symbols"];
             };
           };
         };
