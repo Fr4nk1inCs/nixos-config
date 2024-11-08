@@ -53,12 +53,13 @@ in {
       sessionoptions = [
         "buffers"
         "curdir"
+        "folds"
+        "globals"
+        "help"
+        "localoptions"
+        "skiprtp"
         "tabpages"
         "winsize"
-        "help"
-        "globals"
-        "skiprtp"
-        "folds"
       ];
       shiftround = true;
       shiftwidth = 2; # Size of an indent
