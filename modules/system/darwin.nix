@@ -1,5 +1,4 @@
 {
-  pkgs-stable,
   pkgs,
   lib,
   ...
@@ -111,9 +110,7 @@
     # browser
     google-chrome
     # instant messaging
-    # FIX: temporarily fix telegram-desktop build failure
-    # telegram-desktop
-    pkgs-stable.telegram-desktop
+    telegram-desktop
     # remote code editing
     vscode
     # app launcher

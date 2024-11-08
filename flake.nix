@@ -89,12 +89,6 @@
     darwinConfigurations."fr4nk1in-macbook-air" = nix-darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
       pkgs = mkPkgs system;
-      specialArgs = {
-        pkgs-stable = import inputs.nixpkgs-stable {
-          inherit system;
-          config = {allowUnfree = true;};
-        };
-      };
       modules = [
         ./hosts/darwin
 
