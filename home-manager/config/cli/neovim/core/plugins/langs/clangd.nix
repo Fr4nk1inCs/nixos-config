@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
 in {
   programs.nixvim.plugins = {
@@ -139,4 +143,26 @@ in {
       ];
     };
   };
+
+  home.file.".clangd" = let
+    inherit (pkgs) apple-sdk;
+    inherit (pkgs.gcc13) cc;
+    inherit (cc) version;
+  in
+    lib.mkIf pkgs.stdenv.isDarwin {
+      text = ''
+        If:
+          PathMatch: [.*\.c, .*\.cpp, .*\.cc, .*\.hpp, .*\.h]
+        CompileFlags:
+          Add:
+            - -I${cc}/include
+            - -I${cc}/include/c++/${version}
+            - -I${cc}/include/c++/${version}/backward
+            - -I${cc}/include/c++/${version}/aarch64-apple-darwin
+            - -I${cc}/lib/gcc/aarch64-apple-darwin/${version}/include
+            - -I${cc}/lib/gcc/aarch64-apple-darwin/${version}/include-fixed
+            - -I${apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
+            - -I${apple-sdk}/MacOSX.plarform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+      '';
+    };
 }
