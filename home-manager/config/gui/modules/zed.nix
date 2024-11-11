@@ -120,6 +120,9 @@ in {
         dark = "Nordfox";
       };
       tab_size = 2;
+      wrap_guides = [80 120];
+      # code
+      preferred_line_length = 80;
     };
   };
   config.home.packages =
