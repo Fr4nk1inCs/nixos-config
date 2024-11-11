@@ -46,6 +46,13 @@ in {
           "space c d" = "editor::Hover";
           "space c f" = "editor::Format";
           "space c a" = "editor::ToggleCodeActions";
+          "g d" = "editor::GoToDefinition";
+          "g p d" = "editor::GoToDefinitionSplit";
+          "g r" = "editor::FindAllReferences";
+          "g y" = "editor::GoToTypeDefinition";
+          "g p y" = "editor::GoToTypeDefinitionSplit";
+          "g I" = "editor::GoToImplementation";
+          "g p I" = "editor::GoToImplementationSplit";
         };
       }
       {
