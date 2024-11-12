@@ -132,21 +132,22 @@
     brews = [
     ];
     casks = [
-      "qq"
-      "wechat"
       "arc"
-      # "microsoft-office" # use institutional license instead
-      "clash-verge-rev"
+      "betterdisplay"
       "bitwarden"
-      "zotero"
-      "logi-options+"
-      "fliqlo"
-      "tencent-meeting"
-      "notion"
+      "clash-verge-rev"
       "dingtalk"
-      "tomatobar"
-      "jetbrains-toolbox"
+      "fliqlo"
       "follow"
+      "jetbrains-toolbox"
+      "logi-options+"
+      # "microsoft-office" # use institutional license instead
+      "notion"
+      "qq"
+      "tencent-meeting"
+      "tomatobar"
+      "wechat"
+      "zotero"
     ];
     caskArgs = {
       language = "zh-CN";
