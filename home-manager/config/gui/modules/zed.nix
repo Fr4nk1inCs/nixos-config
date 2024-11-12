@@ -94,6 +94,7 @@ in {
     ];
     userSettings = {
       vim_mode = true;
+      relative_line_numbers = true;
       command_aliases = {
         W = "w";
         Wq = "wq";
