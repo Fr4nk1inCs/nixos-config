@@ -149,6 +149,10 @@
       "wechat"
       "zotero"
     ];
+    masApps = {
+      Notability = 360593530;
+      Goodnotes = 1444383602;
+    };
     caskArgs = {
       language = "zh-CN";
     };
