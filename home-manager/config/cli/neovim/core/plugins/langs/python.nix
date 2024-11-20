@@ -9,9 +9,9 @@
       enable = true;
 
       settings = {
-        pyright = {
+        basedpyright = {
           analysis = {
-            typeCheckingMode = "basic";
+            typeCheckingMode = "standard";
             inlayHints = {
               callArgumentNames = "partial";
               functionReturnTypes = true;
@@ -41,5 +41,10 @@
     };
 
     cmp.settings.auto_brackets = ["python"];
+
+    none-ls.sources.formatting = {
+      black.enable = true;
+      isort.enable = true;
+    };
   };
 }
