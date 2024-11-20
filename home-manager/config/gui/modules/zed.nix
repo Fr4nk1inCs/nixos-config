@@ -46,6 +46,7 @@ in {
           "space c d" = "editor::Hover";
           "space c f" = "editor::Format";
           "space c a" = "editor::ToggleCodeActions";
+          "space c r" = "editor::Rename";
           "g d" = "editor::GoToDefinition";
           "g p d" = "editor::GoToDefinitionSplit";
           "g r" = "editor::FindAllReferences";
