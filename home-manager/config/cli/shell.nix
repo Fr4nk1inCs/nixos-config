@@ -36,12 +36,13 @@
     plugins = [
       {
         name = "zsh-nix-shell";
-        src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
-        file = "nix-shell.plugin.zsh";
+        src = pkgs.zsh-nix-shell;
+        file = "share/zsh-nix-shell/zsh-nix-shell.plugin.zsh";
       }
       {
         name = "fzf-tab";
-        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
       }
       {
         name = "zsh-wakatime";
@@ -52,7 +53,17 @@
           hash = "sha256-QN/MUDm+hVJUMA4PDqs0zn9XC2wQZrgQr4zmCF0Vruk=";
         };
       }
+      {
+        name = "zsh-vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
     ];
+
+    localVariables = {
+      ZVM_VI_HIGHLIGHT_FOREGROUND = "white";
+      ZVM_VI_HIGHLIGHT_BACKGROUND = "#434c5e";
+    };
 
     initExtra = "setopt interactivecomments";
   };
