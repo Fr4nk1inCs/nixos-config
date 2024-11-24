@@ -6,10 +6,10 @@
 }: let
   inherit (config.homeManagerConfig.gui) enable;
 in {
-  config.programs.zed-editor = lib.mkIf enable {
-    enable = true;
-    extensions = ["nvim-nightfox" "nix"];
-    userKeymaps = [
+  config = {
+    home.packages = lib.optionals enable (with pkgs; [zed-editor nixd nixfmt-classic]);
+
+    xdg.configFile."zed/keymap.json".text = builtins.toJSON [
       {
         context = "Workspace";
         bindings = {"ctrl-\\" = "terminal_panel::ToggleFocus";};
@@ -93,40 +93,40 @@ in {
         };
       }
     ];
-    userSettings = {
-      vim_mode = true;
-      relative_line_numbers = true;
-      command_aliases = {
-        W = "w";
-        Wq = "wq";
-        Q = "q";
-      };
-      # Appearance
-      ui_font_size = 14;
-      buffer_font_family = "Maple Mono NF CN";
-      buffer_font_size = 11;
-      buffer_font_features = {
-        calt = true;
-        zero = false;
-        cv01 = true;
-        cv02 = false;
-        cv03 = false;
-        cv04 = false;
-        cv98 = false;
-        cv99 = false;
-        ss01 = false;
-      };
-      theme = {
-        mode = "system";
-        light = "Dawnfox";
-        dark = "Nordfox";
-      };
-      tab_size = 2;
-      wrap_guides = [80 120];
-      # code
-      preferred_line_length = 80;
-    };
+
+    # user settings should be modifiable since zed constantly updates it
+    # xdg.configFile."zed/settings.json".text = {
+    #   vim_mode = true;
+    #   relative_line_numbers = true;
+    #   command_aliases = {
+    #     W = "w";
+    #     Wq = "wq";
+    #     Q = "q";
+    #   };
+    #   # Appearance
+    #   ui_font_size = 14;
+    #   buffer_font_family = "Maple Mono NF CN";
+    #   buffer_font_size = 11;
+    #   buffer_font_features = {
+    #     calt = true;
+    #     zero = false;
+    #     cv01 = true;
+    #     cv02 = false;
+    #     cv03 = false;
+    #     cv04 = false;
+    #     cv98 = false;
+    #     cv99 = false;
+    #     ss01 = false;
+    #   };
+    #   theme = {
+    #     mode = "system";
+    #     light = "Dawnfox";
+    #     dark = "Nordfox";
+    #   };
+    #   tab_size = 2;
+    #   wrap_guides = [80 120];
+    #   # code
+    #   preferred_line_length = 80;
+    # };
   };
-  config.home.packages =
-    lib.optionals enable (with pkgs; [nixd nixfmt-classic]);
 }
