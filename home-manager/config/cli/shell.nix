@@ -53,11 +53,11 @@
           hash = "sha256-QN/MUDm+hVJUMA4PDqs0zn9XC2wQZrgQr4zmCF0Vruk=";
         };
       }
-      {
-        name = "zsh-vi-mode";
-        src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
+      # {
+      #   name = "zsh-vi-mode";
+      #   src = pkgs.zsh-vi-mode;
+      #   file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      # }
     ];
 
     localVariables = {
@@ -65,7 +65,10 @@
       ZVM_VI_HIGHLIGHT_BACKGROUND = "#434c5e";
     };
 
-    initExtra = "setopt interactivecomments";
+    initExtra = ''
+      setopt interactivecomments
+      bindkey -v
+    '';
   };
 
   programs.starship = {
