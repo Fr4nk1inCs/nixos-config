@@ -79,6 +79,7 @@
     CustomUserPreferences = {
       "com.apple.controlcenter" = {
         Bluetooth = 18;
+        Battery = 9;
         BatteryShowPercentage = true;
       };
 
