@@ -37,7 +37,7 @@
       {
         name = "zsh-nix-shell";
         src = pkgs.zsh-nix-shell;
-        file = "share/zsh-nix-shell/zsh-nix-shell.plugin.zsh";
+        file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
       }
       {
         name = "fzf-tab";
