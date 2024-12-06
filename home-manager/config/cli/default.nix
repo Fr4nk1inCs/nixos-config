@@ -3,6 +3,6 @@
     ./shell.nix
     ./tools.nix
     ./git.nix
-    ./neovim
+    ./neovim.nix
   ];
 }
