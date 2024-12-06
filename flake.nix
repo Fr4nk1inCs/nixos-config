@@ -65,7 +65,6 @@
       home-manager = {
         extraSpecialArgs = {
           inherit std;
-          flakeRoot = self;
         };
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -78,7 +77,6 @@
         pkgs = mkPkgs "x86_64-linux";
         extraSpecialArgs = {
           inherit std;
-          flakeRoot = self;
         };
         modules = [
           nixvim.homeManagerModules.nixvim
