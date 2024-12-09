@@ -143,6 +143,7 @@
       "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
+      "motrix"
       "notion"
       "qq"
       "tencent-meeting"
