@@ -15,7 +15,6 @@ in {
         name = "Maple Mono NF CN";
         size = 11;
       };
-      keybindings = {}; # keybindings
       settings = {
         disable_ligatures = "never";
 
@@ -46,6 +45,12 @@ in {
         paste_actions = "quote-urls-at-prompt";
         clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
       }; # settings
+      keybindings = {
+        "ctrl+shift+t" = "new_tab";
+        "super+t" = "new_tab_with_cwd";
+        "ctrl+shift+enter" = "new_window";
+        "super+enter" = "new_window_with_cwd";
+      };
       darwinLaunchOptions = [
         "--single-instance"
         "--directory=~"
