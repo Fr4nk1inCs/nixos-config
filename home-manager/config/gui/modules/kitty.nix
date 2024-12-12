@@ -44,6 +44,8 @@ in {
 
         paste_actions = "quote-urls-at-prompt";
         clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
+
+        enabled_layouts = "grid";
       }; # settings
       keybindings = {
         "ctrl+shift+t" = "new_tab";
