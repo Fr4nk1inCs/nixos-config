@@ -5,18 +5,18 @@
   ...
 }: let
   pname = "sogou_mac";
-  shortVersion = "615c";
+  shortVersion = "616a";
   appName = "${pname}_${shortVersion}.app";
   stdAppName = "Install Sogou Pinyin.app";
 in
   stdenvNoCC.mkDerivation {
     name = "sogouinput";
-    version = "6.15.2";
+    version = "6.16.0";
 
     src = fetchzip {
       extension = "zip";
       url = "https://rabbit-linker.vercel.app/gtimg/${pname}/${shortVersion}";
-      sha256 = "sha256-gVZmvkrFKHc8y7lWc80T9o6TUw33safS8M79MSZBkbU=";
+      sha256 = "sha256-JeUmcgMrVLsO70fEMAsfoZCO+a8rtCJ3u4yY5bNeH1I=";
       stripRoot = false;
     };
 
