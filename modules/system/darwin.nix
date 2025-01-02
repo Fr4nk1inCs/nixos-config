@@ -140,6 +140,7 @@
       "dingtalk"
       "fliqlo"
       "follow"
+      "ghostty" # FIXME: Temporary
       "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
