@@ -143,12 +143,15 @@
       "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
+      "moonlight"
       "motrix"
       "notion"
+      "parsec"
       "qq"
       "tencent-meeting"
       "tomatobar"
       "wechat"
+      "zerotier-one"
       "zotero"
     ];
     masApps = {
