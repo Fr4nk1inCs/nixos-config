@@ -17,7 +17,7 @@ in {
     home.packages = [pkgs.aerospace];
     xdg.configFile."aerospace/aerospace.toml" = {
       text = std.serde.toTOML {
-        start-at-login = true;
+        start-at-login = false;
 
         after-startup-command = [
           "exec-and-forget ${pkgs.jankyborders}/bin/borders active_color=0xff81a1c1 inactive_color=0xff2e3440 width=2.0"

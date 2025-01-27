@@ -14,7 +14,7 @@
   };
 
   services.nix-daemon.enable = true;
-  services.sketchybar.enable = true;
+  # services.sketchybar.enable = true;
 
   launchd.user.agents.sketchybar.serviceConfig = {
     StandardErrorPath = "/tmp/sketchybar.error.log";
