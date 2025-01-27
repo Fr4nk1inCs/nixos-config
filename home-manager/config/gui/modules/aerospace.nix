@@ -1,8 +1,8 @@
 {
   config,
   pkgs,
-  std,
   lib,
+  inputs,
   ...
 }: let
   cfg = config.homeManagerConfig;
@@ -16,7 +16,7 @@ in {
   config = lib.mkIf enable {
     home.packages = [pkgs.aerospace];
     xdg.configFile."aerospace/aerospace.toml" = {
-      text = std.serde.toTOML {
+      text = inputs.nix-std.lib.serde.toTOML {
         start-at-login = false;
 
         after-startup-command = [

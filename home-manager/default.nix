@@ -27,12 +27,10 @@ in {
         description = "Enable GUI softwares";
       };
 
-      nixvimConfig = {
-        type = lib.mkOption {
-          type = lib.types.enum ["full" "minimal"];
-          default = "full";
-          description = "The nixvim configuration";
-        };
+      neovimType = lib.mkOption {
+        type = lib.types.enum ["full" "minimal"];
+        default = "full";
+        description = "The nixvim configuration";
       };
 
       extraPackages = lib.mkOption {

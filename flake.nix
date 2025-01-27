@@ -31,8 +31,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:Fr4nk1inCs/nixvim";
+    nixCats = {
+      url = "github:Fr4nk1inCs/nixcats-nvim";
     };
 
     nix-std.url = "github:chessai/nix-std";
@@ -45,11 +45,9 @@
     nix-darwin,
     nix-ld,
     home-manager,
-    nix-std,
     ...
   } @ inputs: let
     user = "fr4nk1in";
-    std = nix-std.lib;
     mkPkgs = system:
       import nixpkgs {
         inherit system;
@@ -59,15 +57,12 @@
         };
         overlays = [
           (import ./modules/packages)
-          (final: _: {
-            nixvim = inputs.nixvim.packages.${system};
-          })
         ];
       };
     mkHomeManagerConfig = profile: {
       home-manager = {
         extraSpecialArgs = {
-          inherit std;
+          inherit inputs;
         };
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -78,7 +73,7 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs "x86_64-linux";
         extraSpecialArgs = {
-          inherit std;
+          inherit inputs;
         };
         modules = [
           profile

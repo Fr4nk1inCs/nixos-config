@@ -1,29 +1,30 @@
 {
-  pkgs,
   config,
+  inputs,
   ...
 }: let
   cfg = config.homeManagerConfig;
-  nixvim =
-    if cfg.nixvimConfig.type == "full"
-    then
-      if cfg.system == "wsl"
-      then pkgs.nixvim.fullWsl
-      else pkgs.nixvim.full
-    else pkgs.nixvim.minimal;
+  package =
+    if cfg.neovimType == "full"
+    then "nvim"
+    else "minivim";
 in {
+  imports = [
+    inputs.nixCats.homeModule
+  ];
   config = {
     programs.zsh.shellAliases = {
-      "vimdiff" = "nvim -d";
-      "v" = "nvim";
+      "vimdiff" = "${package} -d";
+      "v" = package;
     };
 
     home.sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = package;
     };
 
-    home.packages = [
-      nixvim
-    ];
+    nvim = {
+      enable = true;
+      packageNames = [package];
+    };
   };
 }
