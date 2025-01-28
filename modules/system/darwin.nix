@@ -148,6 +148,7 @@
       "notion"
       "parsec"
       "qq"
+      "steam"
       "tencent-meeting"
       "tomatobar"
       "wechat"
