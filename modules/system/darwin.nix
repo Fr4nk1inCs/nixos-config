@@ -15,10 +15,20 @@
 
   services.nix-daemon.enable = true;
   # services.sketchybar.enable = true;
+  services.skhd = {
+    enable = true;
+    skhdConfig = ''
+      alt - return : kitty --directory ~
+    '';
+  };
 
   launchd.user.agents.sketchybar.serviceConfig = {
     StandardErrorPath = "/tmp/sketchybar.error.log";
     StandardOutPath = "/tmp/sketchybar.out.log";
+  };
+  launchd.user.agents.skhd.serviceConfig = {
+    StandardErrorPath = "/tmp/skhd.error.log";
+    StandardOutPath = "/tmp/skhd.out.log";
   };
 
   # Nix-Darwin configurations
