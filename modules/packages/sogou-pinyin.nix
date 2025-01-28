@@ -5,7 +5,7 @@
   ...
 }: let
   pname = "sogou_mac";
-  shortVersion = "616a";
+  shortVersion = "616b";
   appName = "${pname}_${shortVersion}.app";
   stdAppName = "Install Sogou Pinyin.app";
 in
@@ -16,7 +16,7 @@ in
     src = fetchzip {
       extension = "zip";
       url = "https://rabbit-linker.vercel.app/gtimg/${pname}/${shortVersion}";
-      sha256 = "sha256-JeUmcgMrVLsO70fEMAsfoZCO+a8rtCJ3u4yY5bNeH1I=";
+      sha256 = "sha256-Qu/VuSQnBzbybvWJdK+esdtNqIBK8v/ZhWFJcHtaUEo=";
       stripRoot = false;
     };
 
