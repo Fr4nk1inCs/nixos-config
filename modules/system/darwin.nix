@@ -100,6 +100,11 @@
     };
   };
 
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+  };
+
   # Homebrew for softwares not available in Nixpkgs
   environment.variables = {
     HOMEBREW_BREW_GIT_REMOTE = "https://mirrors.ustc.edu.cn/brew.git";
