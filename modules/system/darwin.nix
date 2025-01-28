@@ -108,6 +108,8 @@
     HOMEBREW_API_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles/api";
   };
   environment.systemPackages = with pkgs; [
+    # terminal
+    kitty
     # browser
     google-chrome
     # instant messaging
