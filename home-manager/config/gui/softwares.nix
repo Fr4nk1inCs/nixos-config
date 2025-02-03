@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && cfg.gui.software.enable && cfg.system == "linux";
+  enable = cfg.gui.enable && cfg.gui.software.enable && pkgs.stdenv.isLinux;
 in {
   imports = [
     ./modules/ideavim.nix

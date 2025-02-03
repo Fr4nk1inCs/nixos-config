@@ -1,6 +1,10 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && cfg.system == "linux";
+  enable = cfg.gui.enable && pkgs.stdenv.isLinux;
   hasBattery = cfg.isMobile;
 in {
   config.programs.waybar = {

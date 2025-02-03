@@ -1,12 +1,13 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
   cfg = config.homeManagerConfig;
   inherit (cfg.gui) enable;
   renderFrontend =
-    if cfg.system == "darwin"
+    if pkgs.stdenv.isDarwin
     then "WebGpu"
     else "OpenGL";
 in {

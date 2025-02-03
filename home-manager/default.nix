@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
@@ -11,12 +12,6 @@ in {
         type = lib.types.str;
         default = "fr4nk1in";
         description = "The username";
-      };
-
-      system = lib.mkOption {
-        type = lib.types.enum ["linux" "darwin" "wsl"];
-        default = "linux";
-        description = "The system type";
       };
 
       gui.enable = lib.mkEnableOption "Enable GUI programs";
@@ -56,7 +51,7 @@ in {
     home = {
       inherit (cfg) username;
       homeDirectory = lib.mkForce (
-        if cfg.system == "darwin"
+        if pkgs.stdenv.isDarwin
         then "/Users/${cfg.username}"
         else "/home/${cfg.username}"
       );

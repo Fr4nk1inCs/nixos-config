@@ -5,7 +5,6 @@
 
   homeManagerConfig = {
     username = "fr4nk1in";
-    system = "darwin";
     gui.enable = true;
     extraProgramConfig = {
       zsh.initExtra = ''

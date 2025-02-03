@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && cfg.system == "darwin";
+  enable = cfg.gui.enable && pkgs.stdenv.isDarwin;
   triggerSketchybarEvent = pkgs.writeShellScript "aerospace-trigger-workspace-change.sh" ''
     ${pkgs.sketchybar}/bin/sketchybar --trigger aerospace_workspace_change \
         FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE \
