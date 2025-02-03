@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -68,6 +72,8 @@
     initExtra = ''
       setopt interactivecomments
       bindkey -v
+
+      export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
     '';
   };
 

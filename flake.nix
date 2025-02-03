@@ -24,10 +24,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,6 +32,8 @@
     };
 
     nix-std.url = "github:chessai/nix-std";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = {
@@ -43,7 +41,6 @@
     nixpkgs,
     nixos-wsl,
     nix-darwin,
-    nix-ld,
     home-manager,
     ...
   } @ inputs: let
@@ -88,6 +85,8 @@
 
         home-manager.darwinModules.home-manager
         (mkHomeManagerConfig ./home-manager/profiles/darwin.nix)
+
+        inputs.agenix.darwinModules.default
       ];
     };
 
@@ -103,9 +102,12 @@
           ./hosts/wsl
 
           nixos-wsl.nixosModules.wsl
-          nix-ld.nixosModules.nix-ld
           home-manager.nixosModules.home-manager
           (mkHomeManagerConfig ./home-manager/profiles/wsl.nix)
+
+          inputs.nix-ld.nixosModules.nix-ld
+
+          inputs.agenix.nixosModules.default
         ];
       };
 
@@ -114,9 +116,12 @@
         modules = [
           ./hosts/nixos-vm
 
-          nix-ld.nixosModules.nix-ld
           home-manager.nixosModules.home-manager
           (mkHomeManagerConfig ./home-manager)
+
+          inputs.nix-ld.nixosModules.nix-ld
+
+          inputs.agenix.nixosModules.default
         ];
       };
     };

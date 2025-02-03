@@ -52,5 +52,7 @@
   ];
 
   # Setting default editor to vim
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 }

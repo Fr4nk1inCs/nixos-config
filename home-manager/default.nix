@@ -49,6 +49,7 @@ in {
 
   imports = [
     ./config
+    ./age.nix
   ];
 
   config = {
