@@ -170,6 +170,7 @@
       "tomatobar"
       "wechat"
       "zerotier-one"
+      "zoom"
       "zotero"
     ];
     masApps = {
