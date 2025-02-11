@@ -13,7 +13,6 @@
     Weekday = 7;
   };
 
-  services.nix-daemon.enable = true;
   # services.sketchybar.enable = true;
   services.skhd = {
     enable = true;
