@@ -5,7 +5,7 @@
 
   homeManagerConfig = {
     gui = {
-      enable = true;
+      enable = false;
       software.enable = false;
     };
   };
