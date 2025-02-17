@@ -156,6 +156,7 @@
       "dingtalk"
       "fliqlo"
       "follow"
+      "ghostty"
       "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
