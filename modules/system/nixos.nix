@@ -4,7 +4,6 @@
   ...
 }: let
   username = "fr4nk1in";
-  maple-mono = pkgs.callPackage ../packages/fonts/maple-mono.nix {};
 in {
   users.users.${username} = {
     isNormalUser = true;
@@ -30,12 +29,12 @@ in {
 
   # Fonts
   fonts = {
-    packages = [
-      pkgs.inter # sans-serif
-      pkgs.source-han-sans # sans-serif for CJK
-      pkgs.source-han-serif # serif
-      pkgs.noto-fonts-color-emoji # emoji
-      maple-mono # monospace
+    packages = with pkgs; [
+      inter # sans-serif
+      source-han-sans # sans-serif for CJK
+      source-han-serif # serif
+      noto-fonts-color-emoji # emoji
+      fonts.maple-mono # monospace
     ];
     fontconfig = {
       defaultFonts = {
