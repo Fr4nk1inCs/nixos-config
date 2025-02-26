@@ -17,8 +17,9 @@
       share = true;
       extended = true;
       expireDuplicatesFirst = true;
-      ignoreDups = true;
+      ignoreAllDups = true;
       ignoreSpace = true;
+      saveNoDups = true;
     };
 
     historySubstringSearch = {
@@ -73,10 +74,12 @@
       setopt interactivecomments
       bindkey -v
 
-      export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
-
       # fix fzf-tab configuration
       zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
+    '';
+
+    envExtra = ''
+      export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
     '';
   };
 
