@@ -14,12 +14,12 @@
   };
 
   # services.sketchybar.enable = true;
-  services.skhd = {
-    enable = true;
-    skhdConfig = ''
-      alt - return : kitty --directory ~
-    '';
-  };
+  # services.skhd = {
+  #   enable = true;
+  #   skhdConfig = ''
+  #     alt - return : kitty --directory ~
+  #   '';
+  # };
 
   launchd.user.agents.sketchybar.serviceConfig = {
     StandardErrorPath = "/tmp/sketchybar.error.log";
