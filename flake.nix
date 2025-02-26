@@ -63,6 +63,7 @@
         };
         useGlobalPkgs = true;
         useUserPackages = true;
+        backupFileExtension = "hm-backup";
         users.${user} = import profile;
       };
     };
