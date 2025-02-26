@@ -74,6 +74,9 @@
       bindkey -v
 
       export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
+
+      # fix fzf-tab configuration
+      zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
     '';
   };
 
