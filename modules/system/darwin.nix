@@ -57,6 +57,7 @@
     dock = {
       orientation = "left";
       autohide = true;
+      mru-spaces = false;
       persistent-apps = [
         "/System/Applications/Launchpad.app"
         "${pkgs.kitty}/Applications/Kitty.app"
