@@ -3,10 +3,9 @@
   pkgs,
   ...
 }: let
-  inherit (config.homeManagerConfig.gui) enable;
 in {
   programs.neovide = {
-    inherit enable;
+    inherit (config.homeManagerConfig.gui) enable;
     settings = {
       frame =
         if pkgs.stdenv.isDarwin

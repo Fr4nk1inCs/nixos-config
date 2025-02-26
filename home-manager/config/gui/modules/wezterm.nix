@@ -1,18 +1,15 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
-  cfg = config.homeManagerConfig;
-  inherit (cfg.gui) enable;
   renderFrontend =
     if pkgs.stdenv.isDarwin
     then "WebGpu"
     else "OpenGL";
 in {
-  config.programs.wezterm = lib.mkIf enable {
-    enable = true;
+  config.programs.wezterm = {
+    inherit (config.homeManagerConfig.gui) enable;
     enableZshIntegration = true;
     extraConfig = ''
       local wezterm = require("wezterm")

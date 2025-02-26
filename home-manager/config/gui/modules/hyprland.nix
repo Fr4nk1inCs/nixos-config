@@ -1,14 +1,10 @@
 {
   config,
   pkgs,
-  lib,
   ...
-}: let
-  cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && pkgs.stdenv.isLinux;
-in {
-  config.wayland.windowManager.hyprland = lib.mkIf enable {
-    enable = true;
+}: {
+  config.wayland.windowManager.hyprland = {
+    enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.isLinux;
     xwayland.enable = true;
     settings = {
       general = {

@@ -4,11 +4,10 @@
   ...
 }: let
   cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && pkgs.stdenv.isLinux;
   hasBattery = cfg.isMobile;
 in {
   config.programs.waybar = {
-    inherit enable;
+    enable = cfg.gui.enable && pkgs.stdenv.isLinux;
     settings = {
       mainBar = {
         layer = "top";
