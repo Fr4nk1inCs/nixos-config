@@ -67,6 +67,8 @@ in {
       stateVersion = "24.05";
 
       packages = cfg.extraPackages;
+
+      preferXdgDirectories = true;
     };
 
     # Let Home Manager install and manage itself.
