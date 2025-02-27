@@ -50,6 +50,7 @@
 
       shell-integration-features = ["cursor" "sudo" "title"];
 
+      macos-titlebar-style = "transparent";
       macos-titlebar-proxy-icon = "hidden";
       macos-option-as-alt = true;
 
