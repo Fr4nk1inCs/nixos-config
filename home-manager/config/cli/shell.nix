@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   programs.zsh = {
@@ -70,13 +71,17 @@
       ZVM_VI_HIGHLIGHT_BACKGROUND = "#434c5e";
     };
 
-    initExtra = ''
-      setopt interactivecomments
-      bindkey -v
+    initExtra =
+      ''
+        setopt interactivecomments
+        bindkey -v
 
-      # fix fzf-tab configuration
-      zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
-    '';
+        # fix fzf-tab configuration
+        zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
+      ''
+      + lib.optionalString (pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin) ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      '';
 
     envExtra = ''
       export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
