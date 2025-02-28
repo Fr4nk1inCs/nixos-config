@@ -51,7 +51,7 @@
         "marker" = "#EBCB8B";
       };
       defaultOptions = [
-        "--height 100%"
+        "--height=~100%"
       ];
     };
 
