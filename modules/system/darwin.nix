@@ -164,6 +164,7 @@
       "moonlight"
       "motrix"
       "notion"
+      "obsidian"
       "parsec"
       "qq"
       "steam"
