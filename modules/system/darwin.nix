@@ -165,6 +165,7 @@
       "motrix"
       "notion"
       "obsidian"
+      "orbstack"
       "parsec"
       "qq"
       "steam"
