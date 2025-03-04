@@ -144,6 +144,8 @@
     sogou-pinyin
     # video player
     iina
+    # google drive
+    gdrive3
   ];
   homebrew = {
     enable = true;
@@ -158,6 +160,7 @@
       "fliqlo"
       "follow"
       "ghostty"
+      "google-drive"
       "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
