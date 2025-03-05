@@ -5,48 +5,81 @@
   ...
 }: let
   cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && cfg.gui.software.enable && pkgs.stdenv.isLinux;
+  enable = cfg.gui.enable && cfg.gui.software.enable;
 in {
   imports = [
     ./modules/ideavim.nix
   ];
 
   config.home.packages = lib.optionals enable (
-    with pkgs; [
-      # browser
-      google-chrome
-      # instant messaging
-      telegram-desktop
-      # streaming music
-      spotify
-      # remote code editing
-      vscode
-      # screen capture
-      obs-studio
-      # file syncing
-      onedrive
-      # document viewer
-      evince
-      zathura
-      # note taking
-      obsidian
-      # video player
-      mpv
-      vlc
-      # remote desktop
-      parsec-bin
-      # image editing
-      inkscape
-      # academic research
-      zotero
-      # instant messaging
-      qq
-      # file explorer
-      nautilus
-      # system management
-      baobab # disk usage analyzer
-      # RSS reader
-      follow
-    ]
+    with pkgs;
+      [
+        # browser
+        google-chrome
+        # instant messaging
+        telegram-desktop
+        # remote code editing
+        vscode
+        code-cursor
+        # file syncing
+        gdrive3
+        # image editing
+        inkscape
+        # academic research
+        zotero
+        # streaming
+        moonlight-qt
+        # online meeting
+        zoom-us
+        # password management
+        bitwarden-cli
+      ]
+      ++ lib.optionals pkgs.stdenv.isLinux [
+        # file syncing
+        onedrive
+        # screen capture
+        obs-studio
+        # video player
+        mpv
+        vlc
+        # note taking
+        obsidian
+        # document viewer
+        evince
+        zathura
+        # instant messaging
+        qq
+        # file explorer
+        nautilus
+        # system management
+        baobab # disk usage analyzer
+        # online meeting
+        wemeet
+        # RSS reader
+        follow
+        # password management
+        bitwarden-desktop
+        # subnet penetration
+        zerotierone
+      ]
+      ++ lib.optionals pkgs.stdenv.isDarwin [
+        # browser
+        arc-browser
+        # display management
+        betterdisplay
+        # app launcher
+        raycast
+        # menubar utility
+        ice-bar
+        stats
+        # battery management
+        aldente
+        # pdf reader
+        skimpdf
+        # input method
+        sogou-pinyin
+        # video player
+        iina
+      ]
   );
 }

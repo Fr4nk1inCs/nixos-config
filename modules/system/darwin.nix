@@ -61,12 +61,13 @@
       persistent-apps = [
         "/System/Applications/Launchpad.app"
         "${pkgs.kitty}/Applications/Kitty.app"
-        "/Applications/Arc.app"
+        "/Applications/Ghostty.app"
+        "${pkgs.arc-browser}/Applications/Arc.app"
         "/Applications/QQ.app"
         "/Applications/WeChat.app"
         "/System/Applications/Mail.app"
         "/Applications/Notion.app"
-        "/Applications/Zotero.app"
+        "${pkgs.zotero}/Applications/Zotero.app"
         "/System/Applications/Music.app"
         "/System/Applications/System Settings.app"
       ];
@@ -115,6 +116,10 @@
     remapCapsLockToEscape = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    kitty
+  ];
+
   # Homebrew for softwares not available in Nixpkgs
   environment.variables = {
     HOMEBREW_BREW_GIT_REMOTE = "https://mirrors.ustc.edu.cn/brew.git";
@@ -122,62 +127,28 @@
     HOMEBREW_BOTTLE_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles";
     HOMEBREW_API_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles/api";
   };
-  environment.systemPackages = with pkgs; [
-    # terminal
-    kitty
-    # browser
-    google-chrome
-    # instant messaging
-    telegram-desktop
-    # remote code editing
-    vscode
-    # app launcher
-    raycast
-    # menubar utility
-    ice-bar
-    stats
-    # battery management
-    aldente
-    # pdf reader
-    skimpdf
-    # input method
-    sogou-pinyin
-    # video player
-    iina
-    # google drive
-    gdrive3
-  ];
   homebrew = {
     enable = true;
     brews = [
     ];
     casks = [
-      "arc"
-      "betterdisplay"
       "bitwarden"
       "clash-verge-rev"
       "dingtalk"
-      "fliqlo"
       "follow"
       "ghostty"
       "google-drive"
-      "jetbrains-toolbox"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
-      "moonlight"
       "motrix"
       "notion"
       "obsidian"
       "orbstack"
-      "parsec"
       "qq"
-      "steam"
       "tencent-meeting"
       "tomatobar"
       "wechat"
       "zerotier-one"
-      "zoom"
-      "zotero"
     ];
     masApps = {
       Notability = 360593530;
