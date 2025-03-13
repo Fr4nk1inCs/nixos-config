@@ -26,6 +26,12 @@ in {
         mode = "0600";
         symlink = false;
       };
+      atuin-key = {
+        file = ../secrets/atuin-key.age;
+        path = "${config.home.homeDirectory}/.local/share/atuin/key";
+        mode = "0600";
+        symlink = false;
+      };
     };
   };
 
