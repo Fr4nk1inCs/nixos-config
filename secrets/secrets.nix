@@ -14,4 +14,5 @@ in {
   "deepseek-apikey.age".publicKeys = allUsers ++ allSystems;
   "fr4nk1in-ed25519.age".publicKeys = allUsers;
   "wakatime-cfg.age".publicKeys = allUsers;
+  "atuin-key.age".publicKeys = allUsers;
 }
