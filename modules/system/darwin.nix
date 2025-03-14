@@ -89,19 +89,14 @@
     trackpad.TrackpadThreeFingerDrag = true;
     CustomUserPreferences = {
       "com.apple.controlcenter" = {
+        # 9 - Hide, 18 - Always Show
         Bluetooth = 18;
+        Display = 9;
+        Sound = 9;
+
         Battery = 9;
         BatteryShowPercentage = true;
       };
-
-      # "com.apple.inputsources" = {
-      #   AppleEnabledThirdPartyInputSources = [
-      #     {
-      #       "Bundle ID" = "com.sogou.inputmethod.sogou";
-      #       InputSourceKind = "Keyboard Input Method";
-      #     }
-      #   ];
-      # };
 
       "com.apple.inputmethod.CoreChineseEnigneFramework" = {
         candidateWindowDirection = 0;
