@@ -76,8 +76,6 @@ in {
         aldente
         # pdf reader
         skimpdf
-        # input method
-        sogou-pinyin
         # video player
         iina
       ]
