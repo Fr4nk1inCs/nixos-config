@@ -34,7 +34,7 @@ in {
       source-han-sans # sans-serif for CJK
       source-han-serif # serif
       noto-fonts-color-emoji # emoji
-      fonts.maple-mono # monospace
+      maple-mono.NF-CN # monospace
     ];
     fontconfig = {
       defaultFonts = {
@@ -48,10 +48,9 @@ in {
             <string>Maple Mono NF CN</string>
           </test>
           <edit name="fontfeatures" mode="assign_replace">
-            <string>locl off</string>
+            <string>calt on</string>
             <string>cv01 on</string>
             <string>cv03 on</string>
-            <string>cv98 off</string>
             <string>ss03 on</string>
           </edit>
         </match>

@@ -104,21 +104,21 @@ in {
       "--directory=~"
     ];
     extraConfig = ''
-      font_features MapleMono-NF-CN-Bold             -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-BoldItalic       -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-ExtraBold        -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-ExtraBoldItalic  -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-Light            -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-LightItalic      -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-ExtraLight       -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-ExtraLightItalic -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-Italic           -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-Medium           -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-Regular          -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-SemiBold         -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-SemiBoldItalic   -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-Thin             -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
-      font_features MapleMono-NF-CN-ThinItalic       -zero +cv01 -cv02 +cv03 -cv04 -cv98 -cv99 -ss01
+      font_features MapleMono-NF-CN-Bold             +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-BoldItalic       +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-ExtraBold        +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-ExtraBoldItalic  +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-Light            +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-LightItalic      +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-ExtraLight       +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-ExtraLightItalic +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-Italic           +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-Medium           +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-Regular          +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-SemiBold         +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-SemiBoldItalic   +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-Thin             +calt +cv01 +cv03 +ss03
+      font_features MapleMono-NF-CN-ThinItalic       +calt +cv01 +cv03 +ss03
     '';
   };
 }

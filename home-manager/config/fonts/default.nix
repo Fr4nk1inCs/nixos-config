@@ -3,7 +3,7 @@
     pkgs.inter # sans-serif
     pkgs.source-han-sans # sans-serif for CJK
     pkgs.source-han-serif # serif
-    pkgs.fonts.maple-mono # monospace
+    pkgs.maple-mono.NF-CN # monospace
     pkgs.noto-fonts-color-emoji # emoji
 
     # document writing
@@ -34,7 +34,7 @@
             <string>Maple Mono NF CN</string>
           </test>
           <edit name="fontfeatures" mode="append">
-            <string>locl off</string>
+            <string>calt on</string>
             <string>cv01 on</string>
             <string>cv03 on</string>
             <string>ss03 on</string>

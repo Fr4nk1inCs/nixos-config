@@ -3,6 +3,5 @@ _final: prev: {
   fira-math = prev.callPackage ./fonts/fira-math.nix {};
   fonts = {
     fandol = prev.callPackage ./fonts/fandol.nix {};
-    maple-mono = prev.callPackage ./fonts/maple-mono.nix {};
   };
 }

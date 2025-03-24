@@ -15,14 +15,10 @@
 
       font-family = "Maple Mono NF CN";
       font-feature = [
-        "-zero"
+        "+calt"
         "+cv01"
-        "-cv02"
         "+cv03"
-        "-cv04"
-        "-cv98"
-        "-cv99"
-        "-ss01"
+        "+ss03"
       ];
       font-size = 11;
 
