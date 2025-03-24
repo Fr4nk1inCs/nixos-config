@@ -130,7 +130,7 @@
       "bitwarden"
       "clash-verge-rev"
       "dingtalk"
-      "follow"
+      "folo"
       "ghostty"
       "google-drive"
       "logi-options+"

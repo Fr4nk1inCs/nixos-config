@@ -31,8 +31,6 @@ in {
         moonlight-qt
         # online meeting
         zoom-us
-        # password management
-        bitwarden-cli
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         # file syncing
