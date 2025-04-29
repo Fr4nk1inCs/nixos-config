@@ -29,8 +29,6 @@ in {
         zotero
         # streaming
         moonlight-qt
-        # online meeting
-        zoom-us
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         # file syncing
@@ -59,6 +57,8 @@ in {
         bitwarden-desktop
         # subnet penetration
         zerotierone
+        # online meeting
+        zoom-us
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # browser

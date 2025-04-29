@@ -6,7 +6,7 @@
   homeManagerConfig = {
     username = "fr4nk1in";
     extraProgramConfig = {
-      zsh.initExtra = ''
+      zsh.initContent = ''
         function ssh() {
           case $TERM in
             *kitty*)

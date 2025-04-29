@@ -72,7 +72,7 @@
         ZVM_VI_HIGHLIGHT_BACKGROUND = "#434c5e";
       };
 
-      initExtra =
+      initContent =
         ''
           setopt interactivecomments
           bindkey -v

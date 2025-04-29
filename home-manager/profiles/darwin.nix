@@ -7,7 +7,7 @@
     username = "fr4nk1in";
     gui.enable = true;
     extraProgramConfig = {
-      zsh.initExtra = ''
+      zsh.initContent = ''
         function ssh() {
           case $TERM in
             *kitty*)

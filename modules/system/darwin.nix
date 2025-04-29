@@ -144,6 +144,7 @@
       "tomatobar"
       "wechat"
       "zerotier-one"
+      "zoom"
     ];
     masApps = {
       Notability = 360593530;
