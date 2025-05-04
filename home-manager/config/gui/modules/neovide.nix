@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}: let
-in {
+}: {
   programs.neovide = {
     inherit (config.homeManagerConfig.gui) enable;
     settings = {
@@ -16,6 +15,7 @@ in {
         size = 11.5;
 
         features."Maple Mono NF CN" = [
+          "+calt"
           "-zero"
           "+cv01"
           "-cv02"
@@ -24,6 +24,7 @@ in {
           "-cv98"
           "-cv99"
           "-ss01"
+          "+ss03"
         ];
       };
     };
