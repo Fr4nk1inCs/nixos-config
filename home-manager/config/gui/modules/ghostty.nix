@@ -56,6 +56,10 @@
         "ctrl+enter=new_split:auto"
         "cmd+e=equalize_splits"
         "cmd+f=toggle_fullscreen"
+        "cmd+h=goto_split:left"
+        "cmd+j=goto_split:down"
+        "cmd+k=goto_split:up"
+        "cmd+l=goto_split:right"
         "global:cmd+enter=new_window"
         "global:cmd+backslash=toggle_quick_terminal"
       ];
