@@ -61,8 +61,6 @@ in {
         zoom-us
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
-        # browser
-        arc-browser
         # display management
         betterdisplay
         # app launcher

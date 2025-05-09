@@ -62,7 +62,7 @@
         "/System/Applications/Launchpad.app"
         "${pkgs.kitty}/Applications/Kitty.app"
         "/Applications/Ghostty.app"
-        "${pkgs.arc-browser}/Applications/Arc.app"
+        "/Applications/Arc.app"
         "/Applications/QQ.app"
         "/Applications/WeChat.app"
         "/System/Applications/Mail.app"
@@ -127,6 +127,7 @@
     brews = [
     ];
     casks = [
+      "arc"
       "bitwarden"
       "clash-verge-rev"
       "dingtalk"
