@@ -33,84 +33,87 @@
   # Nix-Darwin configurations
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  system.defaults = {
-    NSGlobalDomain = {
-      AppleEnableMouseSwipeNavigateWithScrolls = true;
-      AppleEnableSwipeNavigateWithScrolls = true;
-      AppleICUForce24HourTime = true;
-      AppleInterfaceStyle = "Dark";
-      AppleMeasurementUnits = "Centimeters";
-      AppleMetricUnits = 1;
-      ApplePressAndHoldEnabled = false;
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      AppleShowScrollBars = "Automatic";
-      AppleTemperatureUnit = "Celsius";
-      InitialKeyRepeat = 15;
-      KeyRepeat = 2;
-      NSAutomaticWindowAnimationsEnabled = false;
-      NSTextShowsControlCharacters = true;
-      NSWindowShouldDragOnGesture = true;
+  system = {
+    primaryUser = "fr4nk1in";
 
-      "com.apple.keyboard.fnState" = true;
-    };
-    dock = {
-      orientation = "left";
-      autohide = true;
-      mru-spaces = false;
-      persistent-apps = [
-        "/System/Applications/Launchpad.app"
-        "${pkgs.kitty}/Applications/Kitty.app"
-        "/Applications/Ghostty.app"
-        "/Applications/Arc.app"
-        "/Applications/QQ.app"
-        "/Applications/WeChat.app"
-        "/System/Applications/Mail.app"
-        "/Applications/Notion.app"
-        "${pkgs.zotero}/Applications/Zotero.app"
-        "/System/Applications/Music.app"
-        "/System/Applications/System Settings.app"
-      ];
-    };
-    finder = {
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      ShowPathbar = true;
-      ShowStatusBar = true;
-      _FXShowPosixPathInTitle = true;
-      _FXSortFoldersFirst = true;
-    };
-    menuExtraClock = {
-      Show24Hour = true;
-      ShowDate = 0;
-      ShowDayOfMonth = true;
-      ShowDayOfWeek = true;
-    };
-    trackpad.TrackpadThreeFingerDrag = true;
-    CustomUserPreferences = {
-      "com.apple.controlcenter" = {
-        # 9 - Hide, 18 - Always Show
-        Bluetooth = 18;
-        Display = 9;
-        Sound = 9;
+    defaults = {
+      NSGlobalDomain = {
+        AppleEnableMouseSwipeNavigateWithScrolls = true;
+        AppleEnableSwipeNavigateWithScrolls = true;
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyle = "Dark";
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
+        ApplePressAndHoldEnabled = false;
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        AppleShowScrollBars = "Automatic";
+        AppleTemperatureUnit = "Celsius";
+        InitialKeyRepeat = 15;
+        KeyRepeat = 2;
+        NSAutomaticWindowAnimationsEnabled = false;
+        NSTextShowsControlCharacters = true;
+        NSWindowShouldDragOnGesture = true;
 
-        Battery = 9;
-        BatteryShowPercentage = true;
+        "com.apple.keyboard.fnState" = true;
       };
-
-      "com.apple.inputmethod.CoreChineseEnigneFramework" = {
-        candidateWindowDirection = 0;
-        fontSize = 14;
-        usesHalfwidthPunctuation = 1;
+      dock = {
+        orientation = "left";
+        autohide = true;
+        mru-spaces = false;
+        persistent-apps = [
+          "/System/Applications/Launchpad.app"
+          "${pkgs.kitty}/Applications/Kitty.app"
+          "/Applications/Ghostty.app"
+          "/Applications/Arc.app"
+          "/Applications/QQ.app"
+          "/Applications/WeChat.app"
+          "/System/Applications/Mail.app"
+          "/Applications/Notion.app"
+          "${pkgs.zotero}/Applications/Zotero.app"
+          "/System/Applications/Music.app"
+          "/System/Applications/System Settings.app"
+        ];
       };
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        _FXShowPosixPathInTitle = true;
+        _FXSortFoldersFirst = true;
+      };
+      menuExtraClock = {
+        Show24Hour = true;
+        ShowDate = 0;
+        ShowDayOfMonth = true;
+        ShowDayOfWeek = true;
+      };
+      trackpad.TrackpadThreeFingerDrag = true;
+      CustomUserPreferences = {
+        "com.apple.controlcenter" = {
+          # 9 - Hide, 18 - Always Show
+          Bluetooth = 18;
+          Display = 9;
+          Sound = 9;
+
+          Battery = 9;
+          BatteryShowPercentage = true;
+        };
+
+        "com.apple.inputmethod.CoreChineseEnigneFramework" = {
+          candidateWindowDirection = 0;
+          fontSize = 14;
+          usesHalfwidthPunctuation = 1;
+        };
+      };
+    };
+
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
     };
   };
-
-  system.keyboard = {
-    enableKeyMapping = true;
-    remapCapsLockToEscape = true;
-  };
-
   environment.systemPackages = with pkgs; [
     kitty
   ];
