@@ -154,6 +154,7 @@
       Notability = 360593530;
       Goodnotes = 1444383602;
       Numbers = 409203825;
+      "Any Text" = 1643199620;
       XCode = 497799835;
     };
     caskArgs = {
