@@ -131,6 +131,7 @@
     ];
     casks = [
       "arc"
+      "appflowy"
       "bitwarden"
       "clash-verge-rev"
       "dingtalk"

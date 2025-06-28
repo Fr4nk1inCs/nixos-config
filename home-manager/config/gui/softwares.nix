@@ -40,6 +40,8 @@ in {
         vlc
         # note taking
         obsidian
+        # knowledge base
+        appflowy
         # document viewer
         evince
         zathura
