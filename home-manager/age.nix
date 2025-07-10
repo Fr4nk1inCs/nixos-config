@@ -32,6 +32,12 @@ in {
         mode = "0600";
         symlink = false;
       };
+      sshconfig-lab = {
+        file = ../secrets/sshconfig-lab.age;
+        path = "${config.home.homeDirectory}/.ssh/config.d/lab";
+        mode = "0600";
+        symlink = true;
+      };
     };
   };
 
