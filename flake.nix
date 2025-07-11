@@ -67,6 +67,7 @@
         users.${user} = import profile;
       };
     };
+
     mkHomeConfig = profile:
       home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs "x86_64-linux";
@@ -77,53 +78,63 @@
           profile
         ];
       };
+    mkDarwinConfig = config:
+      nix-darwin.lib.darwinSystem rec {
+        inherit (config) system;
+        pkgs = mkPkgs system;
+        modules =
+          [
+            ./hosts/darwin
+
+            home-manager.darwinModules.home-manager
+            (mkHomeManagerConfig config.home-manager)
+
+            inputs.agenix.darwinModules.default
+          ]
+          ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
+      };
+    mkNixosConfig = config:
+      nixpkgs.lib.nixosSystem
+      rec {
+        pkgs = mkPkgs config.system;
+        modules =
+          [
+            config.host
+
+            home-manager.nixosModules.home-manager
+            (mkHomeManagerConfig config.home-manager)
+
+            inputs.nix-ld.nixosModules.nix-ld
+            inputs.agenix.nixosModules.default
+          ]
+          ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
+      };
   in {
-    darwinConfigurations."fr4nk1in-macbook-air" = nix-darwin.lib.darwinSystem rec {
-      system = "aarch64-darwin";
-      pkgs = mkPkgs system;
-      modules = [
-        ./hosts/darwin
-
-        home-manager.darwinModules.home-manager
-        (mkHomeManagerConfig ./home-manager/profiles/darwin.nix)
-
-        inputs.agenix.darwinModules.default
-      ];
-    };
-
     homeConfigurations = {
       # lab server
       cmdline = mkHomeConfig ./home-manager/profiles/cmdline.nix;
       test = mkHomeConfig ./home-manager/profiles/test.nix;
     };
+
+    darwinConfigurations."fr4nk1in-macbook-air" = mkDarwinConfig {
+      system = "aarch64-darwin";
+      home-manager = ./home-manager/profiles/darwin;
+    };
+
     nixosConfigurations = {
-      wsl = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs "x86_64-linux";
-        modules = [
-          ./hosts/wsl
-
+      wsl = mkNixosConfig {
+        system = "x86_64-linux";
+        host = ./hosts/wsl;
+        home-manager = ./home-manager/profiles/wsl.nix;
+        extra-modules = [
           nixos-wsl.nixosModules.wsl
-          home-manager.nixosModules.home-manager
-          (mkHomeManagerConfig ./home-manager/profiles/wsl.nix)
-
-          inputs.nix-ld.nixosModules.nix-ld
-
-          inputs.agenix.nixosModules.default
         ];
       };
 
-      nixos-vm = nixpkgs.lib.nixosSystem {
-        pkgs = mkPkgs "x86_64-linux";
-        modules = [
-          ./hosts/nixos-vm
-
-          home-manager.nixosModules.home-manager
-          (mkHomeManagerConfig ./home-manager)
-
-          inputs.nix-ld.nixosModules.nix-ld
-
-          inputs.agenix.nixosModules.default
-        ];
+      nixos-vm = mkNixosConfig {
+        system = "x86_64-linux";
+        host = ./hosts/nixos-vm;
+        home-manager = ./home-manager;
       };
     };
   };
