@@ -13,7 +13,7 @@ in {
     inputs.nixCats.homeModule
   ];
   config = {
-    programs.zsh.shellAliases = {
+    home.shellAliases = {
       "vimdiff" = "${package} -d";
       "v" = package;
     };

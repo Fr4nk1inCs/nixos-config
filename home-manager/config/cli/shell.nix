@@ -4,6 +4,10 @@
   lib,
   ...
 }: {
+  home.shellAliases = {
+    ":q" = "exit";
+  };
+
   programs = {
     zsh = {
       enable = true;
@@ -34,10 +38,6 @@
         #   "^[[A"
         #   "^[OA"
         # ];
-      };
-
-      shellAliases = {
-        ":q" = "exit";
       };
 
       plugins = [

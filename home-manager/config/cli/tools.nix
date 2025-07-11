@@ -63,17 +63,17 @@
     ripgrep.enable = true;
 
     zoxide.enable = true;
+  };
 
-    zsh.shellAliases = {
-      # eza
-      "ls" = "eza";
-      "ll" = "eza -l";
-      "la" = "eza -a";
-      "l" = "eza -alh";
-      "tree" = "eza -T";
-      # zoxide
-      "cd" = "z";
-    };
+  home.shellAliases = {
+    # eza
+    "ls" = "eza";
+    "ll" = "eza -l";
+    "la" = "eza -a";
+    "l" = "eza -alh";
+    "tree" = "eza -T";
+    # zoxide
+    "cd" = "z";
   };
 
   # workaround for btop's theme folder
