@@ -25,7 +25,7 @@ in {
       neovimType = lib.mkOption {
         type = lib.types.enum ["full" "minimal"];
         default = "full";
-        description = "The nixvim configuration";
+        description = "The nixCats-nvim configuration";
       };
 
       extraPackages = lib.mkOption {
