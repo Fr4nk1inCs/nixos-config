@@ -118,7 +118,7 @@
 
     darwinConfigurations."fr4nk1in-macbook-air" = mkDarwinConfig {
       system = "aarch64-darwin";
-      home-manager = ./home-manager/profiles/darwin;
+      home-manager = ./home-manager/profiles/darwin.nix;
     };
 
     nixosConfigurations = {
