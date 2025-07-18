@@ -61,6 +61,8 @@ in {
         zerotierone
         # online meeting
         zoom-us
+        # teamspeak
+        teamspeak6-client
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # display management

@@ -145,6 +145,7 @@
       "obsidian"
       "orbstack"
       "qq"
+      "teamspeak-client@beta"
       "tencent-meeting"
       "tomatobar"
       "wechat"
