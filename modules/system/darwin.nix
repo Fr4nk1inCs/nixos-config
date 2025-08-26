@@ -9,8 +9,9 @@
     enableSyntaxHighlighting = true;
   };
 
-  nix.gc.interval = lib.mkDefault {
-    Weekday = 7;
+  nix.gc = {
+    automatic = true;
+    interval = lib.mkDefault {Weekday = 7;};
   };
 
   # services.sketchybar.enable = true;
