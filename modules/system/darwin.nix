@@ -22,14 +22,14 @@
   #   '';
   # };
 
-  launchd.user.agents.sketchybar.serviceConfig = {
-    StandardErrorPath = "/tmp/sketchybar.error.log";
-    StandardOutPath = "/tmp/sketchybar.out.log";
-  };
-  launchd.user.agents.skhd.serviceConfig = {
-    StandardErrorPath = "/tmp/skhd.error.log";
-    StandardOutPath = "/tmp/skhd.out.log";
-  };
+  # launchd.user.agents.sketchybar.serviceConfig = {
+  #   StandardErrorPath = "/tmp/sketchybar.error.log";
+  #   StandardOutPath = "/tmp/sketchybar.out.log";
+  # };
+  # launchd.user.agents.skhd.serviceConfig = {
+  #   StandardErrorPath = "/tmp/skhd.error.log";
+  #   StandardOutPath = "/tmp/skhd.out.log";
+  # };
 
   # Nix-Darwin configurations
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -157,7 +157,7 @@
       Notability = 360593530;
       Goodnotes = 1444383602;
       Numbers = 409203825;
-      "Any Text" = 1643199620;
+      # "Any Text" = 1643199620;
       XCode = 497799835;
     };
     caskArgs = {
