@@ -17,4 +17,5 @@ in {
   "wakatime-cfg.age".publicKeys = allUsers;
   "atuin-key.age".publicKeys = allUsers;
   "sshconfig-lab.age".publicKeys = allUsers;
+  "sshconfig-personal.age".publicKeys = allUsers;
 }

@@ -43,6 +43,10 @@ in {
         file = ../secrets/sshconfig-lab.age;
         path = "${HOME}/.ssh/config.d/lab";
       };
+      sshconfig-personal = {
+        file = ../secrets/sshconfig-personal.age;
+        path = "${HOME}/.ssh/config.d/personal";
+      };
     };
   };
 

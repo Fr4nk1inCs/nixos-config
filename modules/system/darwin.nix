@@ -14,6 +14,16 @@
     interval = lib.mkDefault {Weekday = 7;};
   };
 
+  services.openssh = {
+    enable = true;
+    extraConfig = ''
+      PermitRootLogin no
+      PubkeyAuthentication yes
+      PasswordAuthentication no
+      ChallengeResponseAuthentication no
+    '';
+  };
+
   # services.sketchybar.enable = true;
   # services.skhd = {
   #   enable = true;
