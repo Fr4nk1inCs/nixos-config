@@ -156,11 +156,11 @@
       "obsidian"
       "orbstack"
       "qq"
+      "tailscale-app"
       "teamspeak-client@beta"
       "tencent-meeting"
       "tomatobar"
       "wechat"
-      "zerotier-one"
       "zoom"
     ];
     masApps = {

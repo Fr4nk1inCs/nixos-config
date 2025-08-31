@@ -58,7 +58,7 @@ in {
         # password management
         bitwarden-desktop
         # subnet penetration
-        zerotierone
+        tailscale
         # online meeting
         zoom-us
         # teamspeak
