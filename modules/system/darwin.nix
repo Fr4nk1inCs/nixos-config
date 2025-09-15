@@ -155,6 +155,7 @@
       "notion"
       "obsidian"
       "orbstack"
+      "pixpin"
       "qq"
       "tailscale-app"
       "teamspeak-client@beta"
