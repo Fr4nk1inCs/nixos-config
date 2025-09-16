@@ -127,6 +127,7 @@
   };
   environment.systemPackages = with pkgs; [
     kitty
+    zed-editor
   ];
 
   # Homebrew for softwares not available in Nixpkgs
