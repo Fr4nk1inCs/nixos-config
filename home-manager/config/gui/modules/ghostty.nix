@@ -6,8 +6,8 @@
   config.programs.ghostty = {
     inherit (config.homeManagerConfig.gui) enable;
     package =
-      if pkgs.ghostty.meta.broken
-      then null
+      if pkgs.stdenv.isDarwin
+      then pkgs.ghostty-bin
       else pkgs.ghostty;
 
     settings = {

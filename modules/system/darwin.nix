@@ -75,7 +75,7 @@
         persistent-apps = [
           "/System/Applications/Launchpad.app"
           "${pkgs.kitty}/Applications/Kitty.app"
-          "/Applications/Ghostty.app"
+          "${pkgs.ghostty-bin}/Applications/Ghostty.app"
           "/Applications/Arc.app"
           "/Applications/QQ.app"
           "/Applications/WeChat.app"
@@ -127,6 +127,7 @@
   };
   environment.systemPackages = with pkgs; [
     kitty
+    ghostty-bin
     zed-editor
   ];
 
@@ -148,7 +149,6 @@
       "clash-verge-rev"
       "dingtalk"
       "folo"
-      "ghostty"
       "google-drive"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
