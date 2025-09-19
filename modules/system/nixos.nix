@@ -1,10 +1,15 @@
 {
+  config,
   pkgs,
   lib,
   ...
 }: let
   username = "fr4nk1in";
 in {
+  age = {
+    secrets.mihomo-westdata.file = ../../secrets/westdata.age;
+  };
+
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = ["wheel"];
@@ -19,8 +24,8 @@ in {
   # Increase the amount of inotify watchers
   # Note that inotify watches consume 1kB on 64-bit machines.
   boot.kernel.sysctl = {
-    "fs.inotify.max_user_watches" = 1048576; # default:  8192
-    "fs.inotify.max_user_instances" = 1024; # default:   128
+    "fs.inotify.max_user_watches" = 1048576; # default: 8192
+    "fs.inotify.max_user_instances" = 1024; # default: 128
     "fs.inotify.max_queued_events" = 1048576; # default: 16384
   };
 
@@ -58,6 +63,28 @@ in {
     };
   };
 
+  services = {
+    # OpenSSH
+    openssh = {
+      enable = true;
+      ports = [2222];
+      settings = {
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
+      };
+    };
+
+    xserver.videoDrivers = ["nvidia"];
+
+    # Proxy provider
+    mihomo = {
+      enable = true;
+      tunMode = true;
+      webui = pkgs.metacubexd;
+      configFile = config.age.secrets.mihomo-westdata.path;
+    };
+  };
+
   # Docker
   # after rebuild remember to generate the cdi spec,
   # with pkgs.nvidia-docker installed:
@@ -85,7 +112,6 @@ in {
     };
     nvidia-container-toolkit.enable = true;
   };
-  services.xserver.videoDrivers = ["nvidia"];
 
   programs = {
     zsh = {

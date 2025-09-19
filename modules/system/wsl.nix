@@ -19,4 +19,8 @@
   environment.variables = {
     LD_LIBRARY_PATH = "/usr/lib/wsl/lib/";
   };
+
+  services.openssh = {
+    ports = lib.mkForce [2223];
+  };
 }
