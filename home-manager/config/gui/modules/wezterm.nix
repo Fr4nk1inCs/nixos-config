@@ -10,7 +10,6 @@
 in {
   config.programs.wezterm = {
     inherit (config.homeManagerConfig.gui) enable;
-    enableZshIntegration = true;
     extraConfig = ''
       local wezterm = require("wezterm")
 

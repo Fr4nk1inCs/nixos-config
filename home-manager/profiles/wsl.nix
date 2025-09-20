@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ../default.nix
   ];
@@ -7,6 +7,9 @@
     gui = {
       enable = false;
       software.enable = false;
+    };
+    extraProgramConfig = {
+      wezterm.enable = lib.mkForce true;
     };
   };
 }

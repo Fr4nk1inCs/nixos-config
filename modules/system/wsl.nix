@@ -20,6 +20,10 @@
     LD_LIBRARY_PATH = "/usr/lib/wsl/lib/";
   };
 
+  environment.systemPackages = with pkgs; [
+    wezterm
+  ];
+
   services.openssh = {
     ports = lib.mkForce [2223];
   };
