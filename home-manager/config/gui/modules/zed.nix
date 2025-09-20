@@ -18,12 +18,12 @@ in {
         "context" = "vim_mode == normal && !menu";
         "bindings" = {
           # navigation
-          "H" = "pane::ActivatePrevItem";
+          "H" = "pane::ActivatePreviousItem";
           "L" = "pane::ActivateNextItem";
-          "ctrl-h" = ["workspace::ActivatePaneInDirection" "Left"];
-          "ctrl-l" = ["workspace::ActivatePaneInDirection" "Right"];
-          "ctrl-k" = ["workspace::ActivatePaneInDirection" "Up"];
-          "ctrl-j" = ["workspace::ActivatePaneInDirection" "Down"];
+          "ctrl-h" = "workspace::ActivatePaneLeft";
+          "ctrl-l" = "workspace::ActivatePaneRight";
+          "ctrl-k" = "workspace::ActivatePaneUp";
+          "ctrl-j" = "workspace::ActivatePaneDown";
           # yank
           "Y" = ["workspace::SendKeystrokes" "y $"];
           # move lines
@@ -41,7 +41,7 @@ in {
           "space s g" = "workspace::NewSearch";
           "space s s" = "outline::Toggle";
           # git
-          "space g b" = "editor::ToggleGitBlame";
+          "space g b" = "git::Blame";
           # code
           "space c d" = "editor::Hover";
           "space c f" = "editor::Format";
@@ -61,9 +61,9 @@ in {
         "bindings" = {">" = "editor::Indent";};
       }
       {
-        "context" = "Editor && vim_mode == insert";
+        "context" = "Editor";
         "bindings" = {
-          "ctrl-a" = "editor::AcceptInlineCompletion";
+          "ctrl-a" = "editor::AcceptEditPrediction";
           "ctrl-[" = "copilot::PreviousSuggestion";
           "ctrl-]" = "copilot::NextSuggestion";
         };
@@ -90,6 +90,18 @@ in {
           "space f e" = "project_panel::ToggleFocus";
           "space s e" = "workspace::ToggleLeftDock";
           "q" = "workspace::ToggleLeftDock";
+        };
+      }
+      {
+        "context" = "Editor && (showing_code_actions || showing_completions)";
+        "bindings" = {
+          "enter" = "editor::ConfirmCompletionInsert";
+          "tab" = "editor::ContextMenuNext";
+          "shift-tab" = "editor::ContextMenuPrevious";
+          "up" = "editor::ContextMenuPrevious";
+          "down" = "editor::ContextMenuNext";
+          "ctrl-p" = "editor::ContextMenuPrevious";
+          "ctrl-n" = "editor::ContextMenuNext";
         };
       }
     ];
