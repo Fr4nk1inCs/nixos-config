@@ -94,6 +94,8 @@ in {
 
   environment.systemPackages = with pkgs; [
     tailscale
+    nvidia-container-toolkit
+    libnvidia-container
   ];
 
   # Docker

@@ -27,4 +27,6 @@
   services.openssh = {
     ports = lib.mkForce [2223];
   };
+
+  hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 }
