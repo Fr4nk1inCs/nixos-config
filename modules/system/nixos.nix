@@ -83,7 +83,18 @@ in {
       webui = pkgs.metacubexd;
       configFile = config.age.secrets.mihomo-westdata.path;
     };
+
+    # Tailscale
+    tailscale = {
+      enable = true;
+      openFirewall = true;
+      interfaceName = "Tailscale";
+    };
   };
+
+  environment.systemPackages = with pkgs; [
+    tailscale
+  ];
 
   # Docker
   # after rebuild remember to generate the cdi spec,
