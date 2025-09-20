@@ -12,7 +12,7 @@ in {
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "podman"];
   };
 
   # Password is needed when using sudo
@@ -96,27 +96,45 @@ in {
     tailscale
     nvidia-container-toolkit
     libnvidia-container
+
+    podman-compose
+    podman-tui
   ];
 
-  # Docker
+  # Container runtimes
   # after rebuild remember to generate the cdi spec,
-  # with pkgs.nvidia-docker installed:
+  # with pkgs.nvidia-container-toolkit installed:
   # $ sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
   # $ nvidia-ctk cdi generate --output=/home/${username}/.cdi/nvidia.yaml
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
+  virtualisation = {
+    # docker = {
+    #   enable = true;
+    #   rootless = {
+    #     enable = true;
+    #     setSocketVariable = true;
+    #     daemon.settings = {
+    #       features.cdi = true;
+    #       cdi-spec-dirs = ["/home/${username}/.cdi"];
+    #     };
+    #   };
+    #   daemon.settings = {
+    #     features.cdi = true;
+    #   };
+    # };
+    podman = {
       enable = true;
-      setSocketVariable = true;
-      daemon.settings = {
-        features.cdi = true;
-        cdi-spec-dirs = ["/home/${username}/.cdi"];
+      dockerCompat = true;
+      dockerSocket.enable = true;
+      autoPrune = {
+        enable = true;
+        dates = "monthly";
+      };
+      defaultNetwork.settings = {
+        dns_enabled = true;
       };
     };
-    daemon.settings = {
-      features.cdi = true;
-    };
   };
+
   hardware = {
     nvidia = {
       modesetting.enable = true;
