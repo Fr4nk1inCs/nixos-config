@@ -73,8 +73,8 @@
         autohide = true;
         mru-spaces = false;
         persistent-apps = [
-          "/System/Applications/Launchpad.app"
-          "${pkgs.kitty}/Applications/Kitty.app"
+          "/System/Applications/Apps.app"
+          # "${pkgs.kitty}/Applications/Kitty.app"
           "${pkgs.ghostty-bin}/Applications/Ghostty.app"
           "/Applications/Arc.app"
           "/Applications/QQ.app"
