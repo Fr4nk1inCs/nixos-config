@@ -50,6 +50,8 @@
       macos-titlebar-proxy-icon = "hidden";
       macos-option-as-alt = true;
 
+      bell-features = ["system" "no-audio" "no-attention"];
+
       keybind = [
         "cmd+t=new_tab"
         "ctrl+shift+t=new_tab"
