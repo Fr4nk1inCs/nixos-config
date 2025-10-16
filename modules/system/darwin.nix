@@ -154,6 +154,7 @@
       # "microsoft-office" # use institutional license instead
       "motrix"
       "notion"
+      "nvidia-nsight-systems"
       "obsidian"
       "orbstack"
       "pixpin"
