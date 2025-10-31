@@ -149,6 +149,7 @@
       "clash-verge-rev"
       "dingtalk"
       "folo"
+      "feishu"
       "google-drive"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
