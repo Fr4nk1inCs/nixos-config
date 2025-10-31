@@ -1,25 +1,25 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [glab];
+_: {
   programs = {
     gh.enable = true;
+    glab.enable = true;
 
     git = {
       enable = true;
-      delta = {
-        enable = true;
-        options = {
-          navigate = true;
-          light = false;
-          side-by-side = false;
+      settings = {
+        user = {
+          name = "Fr4nk1in";
+          email = "fushen@mail.ustc.edu.cn";
         };
       };
-      userEmail = "fushen@mail.ustc.edu.cn";
-      userName = "Fr4nk1in";
-      extraConfig = {
-        credential = {
-          helper = "store";
-          "https://gitlab.com".helper = "${pkgs.glab}/bin/glab auth git-credential";
-        };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        navigate = true;
+        light = false;
+        side-by-side = false;
       };
     };
 

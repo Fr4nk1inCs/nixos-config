@@ -1,10 +1,4 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    dust
-    fd
-    tldr
-    wakatime
-  ];
   programs = {
     bat = {
       enable = true;
@@ -65,20 +59,29 @@
     zoxide.enable = true;
   };
 
-  home.shellAliases = {
-    # eza
-    "ls" = "eza";
-    "ll" = "eza -l";
-    "la" = "eza -a";
-    "l" = "eza -alh";
-    "tree" = "eza -T";
-    # zoxide
-    "cd" = "z";
-  };
+  home = {
+    packages = with pkgs; [
+      dust
+      fd
+      tldr
+      wakatime-cli
+    ];
 
-  # workaround for btop's theme folder
-  home.file.".config/btop/themes" = {
-    recursive = true;
-    source = "${pkgs.btop}/share/btop/themes";
+    shellAliases = {
+      # eza
+      "ls" = "eza";
+      "ll" = "eza -l";
+      "la" = "eza -a";
+      "l" = "eza -alh";
+      "tree" = "eza -T";
+      # zoxide
+      "cd" = "z";
+    };
+
+    # workaround for btop's theme folder
+    file.".config/btop/themes" = {
+      recursive = true;
+      source = "${pkgs.btop}/share/btop/themes";
+    };
   };
 }
