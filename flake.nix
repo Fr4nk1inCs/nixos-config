@@ -29,6 +29,7 @@
 
     nixCats = {
       url = "github:Fr4nk1inCs/nixcats-nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-std.url = "github:chessai/nix-std";
