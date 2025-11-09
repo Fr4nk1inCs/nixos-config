@@ -65,6 +65,9 @@
       fd
       tldr
       wakatime-cli
+      # cli coding agents
+      github-copilot-cli
+      gemini-cli
     ];
 
     shellAliases = {
