@@ -11,9 +11,6 @@
         then "transparent"
         else "normal";
       font = {
-        normal = "Maple Mono NF CN";
-        size = 11.5;
-
         features."Maple Mono NF CN" = [
           "+calt"
           "-zero"

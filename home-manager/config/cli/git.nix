@@ -43,17 +43,6 @@ _: {
 
         gui = {
           nerdFontsVersion = "3";
-          theme = {
-            unstagedChangesColor = ["#bf616a"];
-            selectedLineBgColor = ["#3e4a5b"];
-            searchingActiveBorderColor = ["#ebcb8b" "bold"];
-            optionsTextColor = ["#8cafd2"];
-            inactiveBorderColor = ["#7e8188"];
-            defaultFgColor = ["#cdcecf"];
-            cherryPickedCommitFgColor = ["#8cafd2"];
-            cherryPickedCommitBgColor = ["#88c0d0"];
-            activeBorderColor = ["#ebcb8b" "bold"];
-          };
         };
 
         git.pagers = [{pager = "delta --dark --paging=never";}];

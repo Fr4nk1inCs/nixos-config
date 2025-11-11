@@ -35,6 +35,11 @@
     nix-std.url = "github:chessai/nix-std";
 
     agenix.url = "github:ryantm/agenix";
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -91,6 +96,7 @@
             (mkHomeManagerConfig config.home-manager)
 
             inputs.agenix.darwinModules.default
+            inputs.stylix.darwinModules.stylix
           ]
           ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
       };
@@ -107,6 +113,7 @@
 
             inputs.nix-ld.nixosModules.nix-ld
             inputs.agenix.nixosModules.default
+            inputs.stylix.nixosModules.stylix
           ]
           ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
       };

@@ -11,22 +11,18 @@
       else pkgs.ghostty;
 
     settings = {
-      theme = "nordfox";
-
-      font-family = "Maple Mono NF CN";
+      # font-family = "Maple Mono NF CN";
       font-feature = [
         "+calt"
         "+cv01"
         "+cv03"
         "+ss03"
       ];
-      font-size = 11;
 
       cursor-click-to-move = true;
 
       mouse-hide-while-typing = true;
 
-      background-opacity = 0.8;
       background-blur = 20;
 
       link-url = true;
@@ -50,6 +46,9 @@
       macos-titlebar-proxy-icon = "hidden";
       macos-option-as-alt = true;
 
+      gtk-single-instance = true;
+      gtk-titlebar-style = "tabs";
+
       bell-features = ["system" "no-audio" "no-attention"];
 
       keybind = [
@@ -65,42 +64,6 @@
         "global:cmd+enter=new_window"
         "global:cmd+backslash=toggle_quick_terminal"
       ];
-    };
-
-    themes = {
-      nordfox = {
-        background = "2e3440";
-        foreground = "cdcecf";
-
-        selection-background = "3e4a5b";
-        selection-foreground = "cdcecf";
-        cursor-color = "cdcecf";
-
-        palette = [
-          # normal
-          "0=#3b4252"
-          "1=#bf616a"
-          "2=#a3be8c"
-          "3=#ebcb8b"
-          "4=#81a1c1"
-          "5=#b48ead"
-          "6=#88c0d0"
-          "7=#e5e9f0"
-
-          # bright
-          "8=#465780"
-          "9=#d06f79"
-          "10=#b1d196"
-          "11=#f0d399"
-          "12=#8cafd2"
-          "13=#c895bf"
-          "14=#93ccdc"
-          "15=#e7ecf4"
-
-          # extended colors
-          "16=#c9826b"
-        ];
-      };
     };
   };
 }
