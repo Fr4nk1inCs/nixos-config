@@ -5,5 +5,6 @@
     ./terminal.nix
     ./softwares.nix
     ./editors.nix
+    ./browser.nix
   ];
 }

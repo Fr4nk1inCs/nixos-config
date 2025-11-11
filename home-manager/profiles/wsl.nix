@@ -1,15 +1,13 @@
-{lib, ...}: {
+{inputs, ...}: {
   imports = [
     ../default.nix
+    inputs.zen-browser.homeModules.default
   ];
 
   homeManagerConfig = {
     gui = {
-      enable = false;
-      software.enable = false;
-    };
-    extraProgramConfig = {
-      wezterm.enable = lib.mkForce true;
+      enable = true;
+      software.enable = true;
     };
   };
 }
