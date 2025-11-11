@@ -14,13 +14,10 @@ in {
   config.home.packages = lib.optionals enable (
     with pkgs;
       [
-        # browser
-        google-chrome
         # instant messaging
         telegram-desktop
         # remote code editing
         vscode
-        code-cursor
         # file syncing
         gdrive3
         # image editing
@@ -54,7 +51,7 @@ in {
         # online meeting
         wemeet
         # RSS reader
-        follow
+        folo
         # password management
         bitwarden-desktop
         # subnet penetration
