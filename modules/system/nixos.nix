@@ -12,8 +12,11 @@ in {
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "podman"];
+    extraGroups = ["wheel" "podman" "networkmanager"];
   };
+
+  # networkmanager
+  networking.networkmanager.enable = true;
 
   # Password is needed when using sudo
   security.sudo.wheelNeedsPassword = true;

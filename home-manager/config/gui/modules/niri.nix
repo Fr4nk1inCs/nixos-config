@@ -7,6 +7,10 @@
   enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.hostPlatform.isLinux;
   HOME = config.home.homeDirectory;
 in {
+  home.packages = lib.mkIf enable (with pkgs; [
+    blueman
+  ]);
+
   programs.niri = lib.mkIf enable {
     settings = {
       screenshot-path = "${HOME}/Pictures/Screenshots/screenshot-%Y-%m-%d-%H%M%S.png";
@@ -16,6 +20,7 @@ in {
         {sh = "echo $NIRI_SOCKET > ${HOME}/.niri-socket";}
         {argv = ["waybar"];}
         {argv = ["vicinae" "server"];}
+        {argv = ["blueman-applet"];}
       ];
 
       input = {
