@@ -28,5 +28,7 @@
     ports = lib.mkForce [2223];
   };
 
+  programs.niri.enable = true;
+
   hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 }

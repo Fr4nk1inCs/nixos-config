@@ -3,11 +3,11 @@
   pkgs,
   ...
 }: let
-  cfg = config.homeManagerConfig;
-  hasBattery = cfg.isMobile;
+  inherit (config.homeManagerConfig.gui) enable;
+  inherit (config.homeManagerConfig) hasBattery;
 in {
   config.programs.waybar = {
-    enable = cfg.gui.enable && pkgs.stdenv.isLinux;
+    enable = enable && pkgs.stdenv.isLinux;
     settings = {
       mainBar = {
         layer = "top";
@@ -16,12 +16,12 @@ in {
         spacing = 0;
         margin = "5 5 0 5";
 
-        modules-left = ["hyprland/workspaces"];
-        modules-center = ["custom/spotify"];
+        modules-left = ["workspaces"];
+        modules-center = ["clock"];
         modules-right =
           [
             "tray"
-            "custom/dunst"
+            # "custom/dunst"
             "network"
             "bluetooth"
             "cpu"
@@ -34,8 +34,7 @@ in {
             if hasBattery
             then ["battery"]
             else []
-          )
-          ++ ["clock"];
+          );
       };
     }; # settings
   };

@@ -101,6 +101,8 @@ in {
     podman-tui
   ];
 
+  environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
+
   # Container runtimes
   # after rebuild remember to generate the cdi spec,
   # with pkgs.nvidia-container-toolkit installed:

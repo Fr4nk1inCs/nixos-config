@@ -14,12 +14,30 @@ in {
         description = "The username";
       };
 
-      gui.enable = lib.mkEnableOption "Enable GUI programs";
-      gui.software.enable = lib.mkOption {
+      gui = {
+        enable = lib.mkEnableOption "Enable GUI programs";
+        software.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          example = false;
+          description = "Enable GUI softwares";
+        };
+        mod-key = lib.mkOption {
+          type = lib.types.enum ["Super" "Alt"];
+          default = "Super";
+          description = "The modifier key for GUI applications";
+        };
+        mod-key-nested = lib.mkOption {
+          type = lib.types.enum ["Super" "Alt"];
+          default = "Alt";
+          description = "The modifier key for nested GUI applications";
+        };
+      };
+
+      hasBattery = lib.mkOption {
         type = lib.types.bool;
-        default = true;
-        example = false;
-        description = "Enable GUI softwares";
+        default = false;
+        description = "Whether the device has a battery";
       };
 
       neovimType = lib.mkOption {
