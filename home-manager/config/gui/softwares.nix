@@ -44,6 +44,7 @@ in {
         zathura
         # instant messaging
         qq
+        wechat
         # file explorer
         nautilus
         # system management
