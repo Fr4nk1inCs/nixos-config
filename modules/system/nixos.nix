@@ -46,9 +46,10 @@ in {
     ];
     fontconfig = {
       defaultFonts = {
-        sansSerif = ["Inter Display" "Source Han Sans SC"];
-        serif = ["Source Han Serif SC"];
+        sansSerif = ["SF Pro Display" "Inter Display" "PingFang SC" "Source Han Sans SC"];
+        serif = ["New York" "Songti SC" "Source Han Serif SC"];
         monospace = ["Maple Mono NF CN"];
+        emoji = ["Apple Color Emoji" "Noto Color Emoji"];
       };
       localConf = ''
         <match target="font">
