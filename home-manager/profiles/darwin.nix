@@ -1,24 +1,18 @@
-{...}: {
-  imports = [
-    ../default.nix
-  ];
+{
+  home.username = "fr4nk1in";
+  programs.zsh.initContent = ''
+    function ssh() {
+      case $TERM in
+        *kitty*)
+          kitty +kitten ssh "$@"
+          ;;
+        *)
+          command ssh "$@"
+          ;;
+      esac
+    }
+  '';
 
-  homeManagerConfig = {
-    username = "fr4nk1in";
-    gui.enable = true;
-    extraProgramConfig = {
-      zsh.initContent = ''
-        function ssh() {
-          case $TERM in
-            *kitty*)
-              kitty +kitten ssh "$@"
-              ;;
-            *)
-              command ssh "$@"
-              ;;
-          esac
-        }
-      '';
-    };
-  };
+  profile.guiSoftwares.enable = true;
+  # profile.windowManager.enable = true;
 }

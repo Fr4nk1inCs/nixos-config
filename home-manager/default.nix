@@ -3,59 +3,37 @@
   pkgs,
   lib,
   ...
-}: let
-  cfg = config.homeManagerConfig;
-in {
+}: {
   options = {
-    homeManagerConfig = {
-      username = lib.mkOption {
-        type = lib.types.str;
-        default = "fr4nk1in";
-        description = "The username";
+    profile = {
+      neovimPackage = lib.mkOption {
+        type = lib.types.enum ["nvim" "minivim"];
+        default = "nvim";
+        description = "The Neovim package to use";
       };
 
-      gui = {
-        enable = lib.mkEnableOption "Enable GUI programs";
-        software.enable = lib.mkOption {
-          type = lib.types.bool;
-          default = true;
-          example = false;
-          description = "Enable GUI softwares";
-        };
-        mod-key = lib.mkOption {
+      guiSoftwares.enable = lib.mkEnableOption "Enable GUI softwares";
+
+      windowManager = {
+        enable = lib.mkEnableOption "Enable window manager configuration";
+
+        modKey = lib.mkOption {
           type = lib.types.enum ["Super" "Alt"];
           default = "Super";
-          description = "The modifier key for GUI applications";
+          description = "The modifier key for the window manager";
         };
-        mod-key-nested = lib.mkOption {
+
+        nestedModKey = lib.mkOption {
           type = lib.types.enum ["Super" "Alt"];
           default = "Alt";
-          description = "The modifier key for nested GUI applications";
+          description = "The modifier key for nested window manager applications";
         };
-      };
 
-      hasBattery = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether the device has a battery";
-      };
-
-      neovimType = lib.mkOption {
-        type = lib.types.enum ["full" "minimal"];
-        default = "full";
-        description = "The nixCats-nvim configuration";
-      };
-
-      extraPackages = lib.mkOption {
-        type = lib.types.listOf lib.types.package;
-        default = [];
-        description = "A list of extra packages to install";
-      };
-
-      extraProgramConfig = lib.mkOption {
-        type = lib.types.attrs;
-        default = {};
-        description = "Extra program configuration";
+        bar = {
+          battery.enable = lib.mkEnableOption "Enable battery status on the bar";
+          temperature.enable = lib.mkEnableOption "Enable temperature status on the bar";
+          backlight.enable = lib.mkEnableOption "Enable backlight status on the bar";
+        };
       };
     };
   };
@@ -67,11 +45,10 @@ in {
 
   config = {
     home = {
-      inherit (cfg) username;
       homeDirectory = lib.mkForce (
         if pkgs.stdenv.isDarwin
-        then "/Users/${cfg.username}"
-        else "/home/${cfg.username}"
+        then "/Users/${config.home.username}"
+        else "/home/${config.home.username}"
       );
 
       # This value determines the Home Manager release that your
@@ -84,12 +61,10 @@ in {
       # changes in each release.
       stateVersion = "24.05";
 
-      packages = cfg.extraPackages;
-
       preferXdgDirectories = true;
     };
 
     # Let Home Manager install and manage itself.
-    programs = {home-manager.enable = true;} // cfg.extraProgramConfig;
+    programs = {home-manager.enable = true;};
   };
 }

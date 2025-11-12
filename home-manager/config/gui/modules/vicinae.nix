@@ -1,11 +1,16 @@
 {
+  inputs,
   config,
   pkgs,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.isLinux;
+  enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
 in {
-  services.vicinae = {
+  imports = [
+    inputs.vicinae.homeManagerModules.default
+  ];
+
+  config.services.vicinae = {
     inherit enable;
     autoStart = false;
 

@@ -4,8 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && pkgs.stdenv.isDarwin;
+  enable = config.profile.windowManager.enable && pkgs.stdenv.isDarwin;
 
   aerospace = "${pkgs.aerospace}/bin/aerospace";
 

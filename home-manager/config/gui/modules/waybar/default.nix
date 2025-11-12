@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.isLinux;
-  inherit (config.homeManagerConfig) hasBattery;
+  enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
+  barCfg = config.profile.windowManager.bar;
 in {
   stylix.targets.waybar.enable = false;
   home.packages = lib.optionals enable (with pkgs; [
@@ -27,12 +27,19 @@ in {
 
         modules-left = ["niri/workspaces" "niri/window"];
         modules-center = ["clock"];
-        modules-right = [
-          "group/systray"
-          "group/audio"
-          "group/brightness"
-          "group/hardware"
-        ];
+        modules-right =
+          if barCfg.backlight.enable
+          then [
+            "group/systray"
+            "group/audio"
+            "group/brightness"
+            "group/hardware"
+          ]
+          else [
+            "group/systray"
+            "group/audio"
+            "group/hardware"
+          ];
 
         "niri/window" = {
           icon = true;
@@ -136,7 +143,10 @@ in {
 
         "group/hardware" = {
           orientation = "inherit";
-          modules = (lib.optional hasBattery "battery") ++ ["cpu" "memory" "temperature"];
+          modules =
+            (lib.optional barCfg.battery.enable "battery")
+            ++ ["cpu" "memory"]
+            ++ (lib.optional barCfg.temperature.enable "temperature");
           drawer = {
             transition-duration = 200;
             children-class = "not-hardware";

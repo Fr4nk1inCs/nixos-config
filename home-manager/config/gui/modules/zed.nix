@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (config.homeManagerConfig.gui) enable;
+  inherit (config.profile.guiSoftwares) enable;
 in {
   config = {
     home.packages = lib.optionals enable (with pkgs; [zed-editor nixd nixfmt-classic]);

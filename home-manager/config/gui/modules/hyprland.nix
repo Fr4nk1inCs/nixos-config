@@ -4,7 +4,7 @@
   ...
 }: {
   config.wayland.windowManager.hyprland = {
-    enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.isLinux;
+    enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
     xwayland.enable = true;
     settings = {
       general = {

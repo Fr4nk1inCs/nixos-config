@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (config.homeManagerConfig.gui) enable;
+  inherit (config.profile.guiSoftwares) enable;
 in {
   config.xdg.configFile."ideavim/ideavimrc" = lib.optionalAttrs enable {
     text = ''

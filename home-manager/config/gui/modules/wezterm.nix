@@ -9,7 +9,7 @@
     else "OpenGL";
 in {
   config.programs.wezterm = {
-    inherit (config.homeManagerConfig.gui) enable;
+    inherit (config.profile.guiSoftwares) enable;
     extraConfig = ''
       local wezterm = require("wezterm")
 

@@ -1,13 +1,4 @@
-{...}: {
-  imports = [
-    ../default.nix
-  ];
-
-  homeManagerConfig = {
-    username = "test";
-    gui = {
-      enable = true;
-      software.enable = false;
-    };
-  };
+{
+  home.username = "test";
+  profile.windowManager.enable = true;
 }

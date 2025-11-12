@@ -1,9 +1,14 @@
 {
+  inputs,
   config,
   pkgs,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable && config.homeManagerConfig.gui.software.enable && pkgs.stdenv.isLinux;
+  enable = config.profile.guiSoftwares.enable && pkgs.stdenv.isLinux;
 in {
+  imports = [
+    inputs.zen-browser.homeModules.default
+  ];
+
   programs.zen-browser.enable = enable;
 }

@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   stylix = {
-    enable = true;
     autoEnable = true;
 
     base16Scheme = {

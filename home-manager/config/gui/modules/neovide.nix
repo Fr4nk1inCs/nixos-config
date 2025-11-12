@@ -4,7 +4,7 @@
   ...
 }: {
   programs.neovide = {
-    inherit (config.homeManagerConfig.gui) enable;
+    inherit (config.profile.guiSoftwares) enable;
     settings = {
       frame =
         if pkgs.stdenv.isDarwin

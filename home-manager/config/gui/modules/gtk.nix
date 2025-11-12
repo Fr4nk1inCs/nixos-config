@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.isLinux;
+  enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
   whitesur-gtk-theme =
     (pkgs.whitesur-gtk-theme.override {
       schemeVariants = ["nord"];
@@ -19,9 +19,9 @@
         '';
     });
 in {
-  gtk = {
+  gtk = lib.mkForce {
     inherit enable;
-    theme = lib.mkForce {
+    theme = {
       name = "WhiteSur-Dark-nord";
       package = whitesur-gtk-theme;
     };

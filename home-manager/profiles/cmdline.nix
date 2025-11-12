@@ -1,23 +1,16 @@
-{...}: {
-  imports = [
-    ../default.nix
-  ];
+{
+  home.username = "fr4nk1in";
 
-  homeManagerConfig = {
-    username = "fr4nk1in";
-    extraProgramConfig = {
-      zsh.initContent = ''
-        function ssh() {
-          case $TERM in
-            *kitty*)
-              kitty +kitten ssh "$@"
-              ;;
-            *)
-              command ssh "$@"
-              ;;
-          esac
-        }
-      '';
-    };
-  };
+  programs.zsh.initContent = ''
+    function ssh() {
+      case $TERM in
+        *kitty*)
+          kitty +kitten ssh "$@"
+          ;;
+        *)
+          command ssh "$@"
+          ;;
+      esac
+    }
+  '';
 }

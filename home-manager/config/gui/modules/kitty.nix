@@ -1,5 +1,5 @@
 {config, ...}: let
-  inherit (config.homeManagerConfig.gui) enable;
+  inherit (config.profile.guiSoftwares) enable;
 in {
   config.programs.kitty = {
     inherit enable;

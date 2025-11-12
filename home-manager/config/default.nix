@@ -5,4 +5,6 @@ _: {
     ./fonts
     ../../modules/stylix.nix
   ];
+
+  stylix.enable = true;
 }

@@ -4,14 +4,14 @@
   config,
   ...
 }: let
-  enable = config.homeManagerConfig.gui.enable && pkgs.stdenv.hostPlatform.isLinux;
+  enable = config.profile.windowManager.enable && pkgs.stdenv.hostPlatform.isLinux;
   HOME = config.home.homeDirectory;
 in {
-  home.packages = lib.optionals enable (with pkgs; [
+  config.home.packages = lib.optionals enable (with pkgs; [
     blueman
   ]);
 
-  programs = lib.optionalAttrs enable {
+  config.programs = lib.optionalAttrs enable {
     niri = {
       settings = {
         screenshot-path = "${HOME}/Pictures/Screenshots/screenshot-%Y-%m-%d-%H%M%S.png";
@@ -31,7 +31,8 @@ in {
         ];
 
         input = {
-          inherit (config.homeManagerConfig.gui) mod-key mod-key-nested;
+          mod-key = config.profile.windowManager.modKey;
+          mod-key-nested = config.profile.windowManager.nestedModKey;
           focus-follows-mouse.enable = true;
           keyboard = {
             numlock = true;

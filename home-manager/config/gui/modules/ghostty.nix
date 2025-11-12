@@ -9,7 +9,7 @@
     else "ctrl+shift";
 in {
   config.programs.ghostty = {
-    inherit (config.homeManagerConfig.gui) enable;
+    inherit (config.profile.guiSoftwares) enable;
     package =
       if pkgs.stdenv.isDarwin
       then pkgs.ghostty-bin

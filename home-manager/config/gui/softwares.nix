@@ -4,11 +4,11 @@
   lib,
   ...
 }: let
-  cfg = config.homeManagerConfig;
-  enable = cfg.gui.enable && cfg.gui.software.enable;
+  inherit (config.profile.guiSoftwares) enable;
 in {
   imports = [
     ./modules/ideavim.nix
+    ./modules/zen-browser.nix
   ];
 
   config.home.packages = lib.optionals enable (

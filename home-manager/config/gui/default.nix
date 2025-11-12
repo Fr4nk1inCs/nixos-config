@@ -6,6 +6,5 @@
     ./softwares.nix
     ./editors.nix
     ./app-launcher.nix
-    ./browser.nix
   ];
 }
