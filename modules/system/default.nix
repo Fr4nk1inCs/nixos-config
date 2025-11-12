@@ -3,10 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ../stylix.nix
-  ];
-
   # Default user
   users.users = {
     fr4nk1in = {
