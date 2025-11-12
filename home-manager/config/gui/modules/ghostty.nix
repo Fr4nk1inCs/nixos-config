@@ -2,7 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  mod =
+    if pkgs.stdenv.isDarwin
+    then "cmd"
+    else "ctrl+shift";
+in {
   config.programs.ghostty = {
     inherit (config.homeManagerConfig.gui) enable;
     package =
@@ -48,21 +53,21 @@
 
       gtk-single-instance = true;
       gtk-titlebar-style = "tabs";
+      gtk-titlebar-hide-when-maximized = true;
 
       bell-features = ["system" "no-audio" "no-attention"];
 
       keybind = [
-        "cmd+t=new_tab"
-        "ctrl+shift+t=new_tab"
         "ctrl+enter=new_split:auto"
-        "cmd+e=equalize_splits"
-        "cmd+f=toggle_fullscreen"
-        "cmd+h=goto_split:left"
-        "cmd+j=goto_split:down"
-        "cmd+k=goto_split:up"
-        "cmd+l=goto_split:right"
-        "global:cmd+enter=new_window"
-        "global:cmd+backslash=toggle_quick_terminal"
+        "${mod}+t=new_tab"
+        "${mod}+e=equalize_splits"
+        "${mod}+f=toggle_fullscreen"
+        "${mod}+h=goto_split:left"
+        "${mod}+j=goto_split:down"
+        "${mod}+k=goto_split:up"
+        "${mod}+l=goto_split:right"
+        "global:${mod}+enter=new_window"
+        "global:${mod}+backslash=toggle_quick_terminal"
       ];
     };
   };
