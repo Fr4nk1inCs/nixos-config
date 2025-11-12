@@ -15,6 +15,7 @@ in {
 
   programs.waybar = {
     inherit enable;
+
     style = ./style.css;
     settings = {
       mainBar = {

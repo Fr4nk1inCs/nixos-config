@@ -15,6 +15,12 @@ in {
     settings = {
       screenshot-path = "${HOME}/Pictures/Screenshots/screenshot-%Y-%m-%d-%H%M%S.png";
       prefer-no-csd = true;
+      environment."NIXOS_OZONE_WL" = "1";
+
+      xwayland-satellite = {
+        enable = true;
+        path = lib.getExe pkgs.xwayland-satellite;
+      };
 
       spawn-at-startup = [
         {sh = "echo $NIRI_SOCKET > ${HOME}/.niri-socket";}
