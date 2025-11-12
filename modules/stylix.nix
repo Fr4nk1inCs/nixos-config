@@ -38,16 +38,18 @@
     };
 
     cursor = {
-      name = "WhiteSur Cursors";
+      name = "WhiteSur-cursors";
       package = pkgs.whitesur-cursors;
       size = 24;
     };
 
     icons = {
       enable = true;
-      package = pkgs.whitesur-icon-theme;
-      dark = "WhiteSur";
-      light = "WhiteSur";
+      package = pkgs.whitesur-icon-theme.override {
+        themeVariants = ["nord"];
+      };
+      dark = "WhiteSur-nord-dark";
+      light = "WhiteSur-nord-light";
     };
 
     opacity = {

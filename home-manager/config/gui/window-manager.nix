@@ -8,5 +8,6 @@ _: {
     # ./modules/hyprland.nix
     ./modules/niri.nix
     ./modules/waybar
+    ./modules/gtk.nix
   ];
 }
