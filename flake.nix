@@ -77,6 +77,10 @@
         useUserPackages = true;
         backupFileExtension = "hm-backup";
         users.${user} = import profile;
+
+        imports = [
+          inputs.zen-browser.homeModules.default
+        ];
       };
     };
 

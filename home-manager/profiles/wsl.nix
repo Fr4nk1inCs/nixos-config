@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = [
     ../default.nix
-    inputs.zen-browser.homeModules.default
     inputs.vicinae.homeManagerModules.default
   ];
 
