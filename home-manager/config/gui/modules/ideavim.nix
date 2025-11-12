@@ -5,7 +5,7 @@
 }: let
   inherit (config.homeManagerConfig.gui) enable;
 in {
-  config.xdg.configFile."ideavim/ideavimrc" = lib.mkIf enable {
+  config.xdg.configFile."ideavim/ideavimrc" = lib.optionalAttrs enable {
     text = ''
       let mapleader=' '
 

@@ -8,7 +8,7 @@
   inherit (config.homeManagerConfig) hasBattery;
 in {
   stylix.targets.waybar.enable = false;
-  home.packages = lib.mkIf enable (with pkgs; [
+  home.packages = lib.optionals enable (with pkgs; [
     pavucontrol
     networkmanagerapplet
   ]);

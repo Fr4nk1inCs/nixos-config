@@ -27,7 +27,7 @@ in {
     };
   };
 
-  xdg.configFile = lib.mkIf enable {
+  xdg.configFile = lib.optionalAttrs enable {
     "gtk-4.0/gtk.css" = lib.mkForce {
       source = "${whitesur-gtk-theme}/config/gtk-4.0/gtk.css";
     };
