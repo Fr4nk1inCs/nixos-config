@@ -77,7 +77,10 @@ in {
       };
     };
 
-    xserver.videoDrivers = ["nvidia"];
+    xserver = {
+      enable = true;
+      videoDrivers = ["nvidia"];
+    };
 
     # Proxy provider
     mihomo = {
