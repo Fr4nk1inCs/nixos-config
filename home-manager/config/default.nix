@@ -3,8 +3,6 @@ _: {
     ./cli
     ./gui
     ./fonts
-    ../../modules/stylix.nix
+    ./stylix
   ];
-
-  stylix.enable = true;
 }

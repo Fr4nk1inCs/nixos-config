@@ -1,5 +1,17 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [
+    inputs.stylix.homeModules.stylix
+    ./linux.nix
+    ./darwin.nix
+  ];
+
   stylix = {
+    enable = true;
+
     autoEnable = true;
 
     base16Scheme = {
@@ -36,49 +48,23 @@
       base17 = "c895bf";
     };
 
-    cursor = {
-      name = "WhiteSur-cursors";
-      package = pkgs.whitesur-cursors;
-      size = 24;
-    };
+    targets.fontconfig.enable = false;
 
-    icons = {
-      enable = true;
-      package = pkgs.whitesur-icon-theme.override {
-        themeVariants = ["nord"];
+    fonts = {
+      monospace = {
+        name = "Maple Mono NF CN";
+        package = pkgs.maple-mono.NF-CN;
       };
-      dark = "WhiteSur-nord-dark";
-      light = "WhiteSur-nord-light";
+
+      sizes = {
+        terminal = 12;
+      };
     };
 
     opacity = {
       applications = 0.95;
       desktop = 0.95;
       terminal = 0.8;
-    };
-
-    targets.fontconfig.enable = false;
-    fonts = {
-      emoji = {
-        name = "Noto Color Emoji";
-        package = pkgs.noto-fonts-color-emoji;
-      };
-      monospace = {
-        name = "Maple Mono NF CN";
-        package = pkgs.maple-mono.NF-CN;
-      };
-      sansSerif = {
-        name = "Inter Display";
-        package = pkgs.inter;
-      };
-      serif = {
-        name = "Source Han Serif SC";
-        package = pkgs.source-han-serif;
-      };
-
-      sizes = {
-        terminal = 12;
-      };
     };
   };
 }

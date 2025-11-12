@@ -6,10 +6,6 @@
 }: let
   username = "fr4nk1in";
 in {
-  imports = [
-    ../stylix.nix
-  ];
-
   age = {
     secrets.mihomo-westdata.file = ../../secrets/westdata.age;
   };

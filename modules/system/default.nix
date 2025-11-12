@@ -58,7 +58,4 @@
   environment.variables = {
     EDITOR = "nvim";
   };
-
-  # Stylix
-  stylix.enable = true;
 }
