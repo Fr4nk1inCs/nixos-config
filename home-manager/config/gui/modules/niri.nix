@@ -9,6 +9,7 @@
 in {
   config.home.packages = lib.optionals enable (with pkgs; [
     blueman
+    swaybg
   ]);
 
   config.programs = lib.optionalAttrs enable {
@@ -28,6 +29,7 @@ in {
           {argv = ["waybar"];}
           {argv = ["vicinae" "server"];}
           {argv = ["blueman-applet"];}
+          {argv = ["swaybg" "-i" "${config.stylix.image}" "-m" "fill"];}
         ];
 
         input = {
@@ -156,8 +158,8 @@ in {
           "Mod+8".action = focus-workspace 8;
           "Mod+9".action = focus-workspace 9;
 
-          "Mod+Comma".action = focus-workspace-up;
-          "Mod+Period".action = focus-workspace-down;
+          "Mod+Period".action = focus-workspace-up;
+          "Mod+Comma".action = focus-workspace-down;
 
           # move to workspace
           "Mod+Shift+1".action = move-column-to-workspace 1;

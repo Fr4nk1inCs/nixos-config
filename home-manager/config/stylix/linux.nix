@@ -4,6 +4,8 @@
   ...
 }: {
   stylix = lib.mkIf pkgs.stdenv.isLinux {
+    image = ./assets/rick-4k.png;
+
     fonts = {
       sansSerif = {
         name = "Inter Display";
