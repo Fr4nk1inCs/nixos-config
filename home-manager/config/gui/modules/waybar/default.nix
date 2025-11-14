@@ -43,7 +43,7 @@ in {
 
         "niri/window" = {
           icon = true;
-          icon-size = 16;
+          icon-size = 14;
         };
 
         "group/systray" = {
@@ -51,7 +51,7 @@ in {
           modules = ["tray" "network" "bluetooth"]; # TODO: add notification
         };
         tray = {
-          icon-size = 16;
+          icon-size = 14;
           spacing = 8;
         };
         network = {
