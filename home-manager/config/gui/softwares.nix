@@ -15,7 +15,7 @@ in {
     with pkgs;
       [
         # instant messaging
-        telegram-desktop
+        ayugram-desktop
         # remote code editing
         vscode
         # file syncing
