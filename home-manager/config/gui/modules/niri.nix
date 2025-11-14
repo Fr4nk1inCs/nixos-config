@@ -10,6 +10,7 @@ in {
   config.home.packages = lib.optionals enable (with pkgs; [
     blueman
     swaybg
+    wl-clipboard
   ]);
 
   config.programs = lib.optionalAttrs enable {
@@ -158,8 +159,8 @@ in {
           "Mod+8".action = focus-workspace 8;
           "Mod+9".action = focus-workspace 9;
 
-          "Mod+Period".action = focus-workspace-up;
-          "Mod+Comma".action = focus-workspace-down;
+          "Mod+Comma".action = focus-workspace-up;
+          "Mod+Period".action = focus-workspace-down;
 
           # move to workspace
           "Mod+Shift+1".action = move-column-to-workspace 1;
