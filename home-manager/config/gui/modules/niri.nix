@@ -74,6 +74,9 @@ in {
             };
           };
           gaps = 10;
+          center-focused-column = "on-overflow";
+          always-center-single-column = true;
+          default-column-width = {proportion = 1.0 / 2.0;};
         };
 
         window-rules = [
@@ -116,6 +119,7 @@ in {
 
           "Mod+F".action = fullscreen-window;
           "Mod+M".action = maximize-column;
+          "Mod+E".action = expand-column-to-available-width;
 
           "Mod+C".action = center-column;
           "Mod+Shift+C".action = center-visible-columns;
