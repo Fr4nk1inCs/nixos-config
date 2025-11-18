@@ -1,7 +1,7 @@
 _: {
   programs = {
     gh.enable = true;
-    glab.enable = true;
+    # glab.enable = true;
 
     git = {
       enable = true;
