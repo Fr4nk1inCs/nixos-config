@@ -1,8 +1,13 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
 }: {
+  imports = [
+    inputs.nixos-wsl.nixosModules.wsl
+  ];
+
   # This is a temporary workaround for WSL
   # See issues:
   # - https://github.com/nix-community/NixOS-WSL/issues/171
@@ -27,8 +32,6 @@
   services.openssh = {
     ports = lib.mkForce [2223];
   };
-
-  programs.niri.enable = true;
 
   hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 }

@@ -50,7 +50,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixos-wsl,
     nix-darwin,
     home-manager,
     ...
@@ -67,6 +66,7 @@
           (import ./modules/packages)
         ];
       };
+
     mkHomeManagerConfig = profile: {
       home-manager = {
         extraSpecialArgs = {
@@ -94,36 +94,32 @@
           profile
         ];
       };
+
     mkDarwinConfig = config:
       nix-darwin.lib.darwinSystem rec {
         inherit (config) system;
         pkgs = mkPkgs system;
-        modules =
-          [
-            ./hosts/darwin
+        modules = [
+          ./hosts/darwin
 
-            home-manager.darwinModules.home-manager
-            (mkHomeManagerConfig config.home-manager)
-
-            inputs.agenix.darwinModules.default
-          ]
-          ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
+          home-manager.darwinModules.home-manager
+          (mkHomeManagerConfig config.home-manager)
+        ];
       };
+
     mkNixosConfig = config:
       nixpkgs.lib.nixosSystem
-      rec {
+      {
         pkgs = mkPkgs config.system;
-        modules =
-          [
-            config.host
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          config.host
 
-            home-manager.nixosModules.home-manager
-            (mkHomeManagerConfig config.home-manager)
-
-            inputs.nix-ld.nixosModules.nix-ld
-            inputs.agenix.nixosModules.default
-          ]
-          ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
+          home-manager.nixosModules.home-manager
+          (mkHomeManagerConfig config.home-manager)
+        ];
       };
   in {
     homeConfigurations = {
@@ -142,10 +138,6 @@
         system = "x86_64-linux";
         host = ./hosts/wsl;
         home-manager = ./home-manager/profiles/wsl.nix;
-        extra-modules = [
-          nixos-wsl.nixosModules.wsl
-          inputs.niri.nixosModules.niri
-        ];
       };
 
       nixos-vm = mkNixosConfig {

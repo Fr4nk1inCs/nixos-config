@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -6,6 +7,12 @@
 }: let
   username = "fr4nk1in";
 in {
+  imports = [
+    inputs.niri.nixosModules.niri
+    inputs.nix-ld.nixosModules.nix-ld
+    inputs.agenix.nixosModules.default
+  ];
+
   age = {
     secrets.mihomo-westdata.file = ../../secrets/westdata.age;
   };
@@ -24,8 +31,8 @@ in {
   # Nix garbage collection
   nix.gc.dates = lib.mkDefault "weekly";
 
-  # Increase the amount of inotify watchers
-  # Note that inotify watches consume 1kB on 64-bit machines.
+  # Increase the amount of `inotify` watchers
+  # Note that `inotify` watches consume 1kB on 64-bit machines.
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 1048576; # default: 8192
     "fs.inotify.max_user_instances" = 1024; # default: 128
@@ -166,5 +173,9 @@ in {
     };
 
     nix-ld.dev.enable = true;
+
+    niri = {
+      enable = true;
+    };
   };
 }
