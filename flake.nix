@@ -106,7 +106,6 @@
             (mkHomeManagerConfig config.home-manager)
 
             inputs.agenix.darwinModules.default
-            inputs.stylix.darwinModules.stylix
           ]
           ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
       };
@@ -123,7 +122,6 @@
 
             inputs.nix-ld.nixosModules.nix-ld
             inputs.agenix.nixosModules.default
-            inputs.stylix.nixosModules.stylix
           ]
           ++ pkgs.lib.attrByPath ["extra-modules"] [] config;
       };
