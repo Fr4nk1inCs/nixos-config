@@ -10,7 +10,7 @@
     pkgs.libertinus # math
     pkgs.fonts.fandol
     pkgs.fira
-    pkgs.fira-math
+    pkgs.fonts.fira-math
   ];
 
   fonts.fontconfig = {
