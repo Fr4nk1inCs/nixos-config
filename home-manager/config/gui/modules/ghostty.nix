@@ -27,6 +27,7 @@ in {
       cursor-click-to-move = true;
 
       mouse-hide-while-typing = true;
+      mouse-scroll-multiplier = 3;
 
       background-blur = 20;
 
