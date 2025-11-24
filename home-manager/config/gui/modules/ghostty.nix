@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   mod =
@@ -23,6 +24,9 @@ in {
         "+cv03"
         "+ss03"
       ];
+
+      # Cheating here to force font size
+      font-size = lib.mkForce config.stylix.fonts.sizes.terminal;
 
       cursor-click-to-move = true;
 
