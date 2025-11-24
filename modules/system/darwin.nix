@@ -70,7 +70,7 @@
       };
       dock = {
         orientation = "left";
-        autohide = true;
+        autohide = false;
         mru-spaces = false;
         persistent-apps = [
           "/System/Applications/Apps.app"
