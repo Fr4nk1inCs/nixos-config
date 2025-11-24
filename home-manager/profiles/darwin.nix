@@ -14,5 +14,5 @@
   '';
 
   profile.guiSoftwares.enable = true;
-  # profile.windowManager.enable = true;
+  profile.windowManager.enable = true;
 }

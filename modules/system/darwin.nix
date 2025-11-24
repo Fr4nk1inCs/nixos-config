@@ -117,6 +117,9 @@
           fontSize = 14;
           usesHalfwidthPunctuation = 1;
         };
+        "org.hammerspoon.Hammerspoon" = {
+          MJConfigFile = "~/.config/hammerspoon/init.lua";
+        };
       };
     };
 
@@ -155,6 +158,7 @@
       "font-sf-pro"
       "feishu"
       "google-drive"
+      "hammerspoon"
       "logi-options+"
       # "microsoft-office" # use institutional license instead
       "motrix"

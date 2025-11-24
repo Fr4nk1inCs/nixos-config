@@ -1,8 +1,9 @@
 _: {
   imports = [
     # MacOS
-    ./modules/aerospace.nix
-    ./modules/sketchybar.nix
+    # ./modules/aerospace.nix
+    # ./modules/sketchybar.nix
+    ./modules/hammerspoon
 
     # Linux
     # ./modules/hyprland.nix
