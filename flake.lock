@@ -443,11 +443,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764331198,
-        "narHash": "sha256-gNBuVWdPJ+WjiAk5tQIebtIx00RnJhC3qHEIJoLRaUs=",
+        "lastModified": 1764869711,
+        "narHash": "sha256-CmYH/OpLM1JPxIW1ZYb6FbukfE4xfVXpkOC08sFEENo=",
         "owner": "Fr4nk1inCs",
         "repo": "nixcats-nvim",
-        "rev": "1cfb639133c9b24992ac036e296f67eda1585288",
+        "rev": "dfe47bf64cdb7eeffa619bf1a33029cc0941d6fb",
         "type": "github"
       },
       "original": {
