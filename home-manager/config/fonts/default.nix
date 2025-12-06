@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = [
-    pkgs.inter # sans-serif
-    pkgs.source-han-sans # sans-serif for CJK
+    pkgs.fonts.misans.variable # sans-serif
     pkgs.source-han-serif # serif
     pkgs.maple-mono.NF-CN # monospace
     pkgs.noto-fonts-color-emoji # emoji
@@ -16,7 +15,7 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = ["SF Pro Display" "Inter Display" "PingFang SC" "Source Han Sans SC"];
+      sansSerif = ["SF Pro" "PingFang SC" "MiSans VF"];
       serif = ["New York" "Songti SC" "Source Han Serif SC"];
       monospace = ["Maple Mono NF CN"];
       emoji = ["Apple Color Emoji" "Noto Color Emoji"];

@@ -45,15 +45,14 @@ in {
   # Fonts
   fonts = {
     packages = with pkgs; [
-      inter # sans-serif
-      source-han-sans # sans-serif for CJK
+      fonts.misans.variable # sans-serif
       source-han-serif # serif
       noto-fonts-color-emoji # emoji
       maple-mono.NF-CN # monospace
     ];
     fontconfig = {
       defaultFonts = {
-        sansSerif = ["SF Pro Display" "Inter Display" "PingFang SC" "Source Han Sans SC"];
+        sansSerif = ["SF Pro" "PingFang SC" "MiSans VF"];
         serif = ["New York" "Songti SC" "Source Han Serif SC"];
         monospace = ["Maple Mono NF CN"];
         emoji = ["Apple Color Emoji" "Noto Color Emoji"];

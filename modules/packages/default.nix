@@ -3,6 +3,7 @@ _final: prev: {
   fonts = {
     fandol = prev.callPackage ./fonts/fandol.nix {};
     fira-math = prev.callPackage ./fonts/fira-math.nix {};
+    misans = prev.callPackage ./fonts/misans.nix {};
   };
 
   whitesur-gtk-theme-libadwaita-patch = prev.whitesur-gtk-theme.overrideAttrs (_: prev: {
