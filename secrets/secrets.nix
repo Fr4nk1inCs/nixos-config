@@ -18,5 +18,5 @@ in {
   "atuin-key.age".publicKeys = allUsers;
   "sshconfig-lab.age".publicKeys = allUsers;
   "sshconfig-personal.age".publicKeys = allUsers;
-  "westdata.age".publicKeys = allUsers ++ allSystems;
+  "mihomo.age".publicKeys = allUsers ++ allSystems;
 }

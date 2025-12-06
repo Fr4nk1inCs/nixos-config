@@ -14,7 +14,7 @@ in {
   ];
 
   age = {
-    secrets.mihomo-westdata.file = ../../secrets/westdata.age;
+    secrets.mihomo.file = ../../secrets/mihomo.age;
   };
 
   users.users.${username} = {
@@ -94,7 +94,7 @@ in {
       enable = true;
       tunMode = true;
       webui = pkgs.metacubexd;
-      configFile = config.age.secrets.mihomo-westdata.path;
+      configFile = config.age.secrets.mihomo.path;
     };
 
     # Tailscale
