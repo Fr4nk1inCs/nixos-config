@@ -68,7 +68,7 @@ in {
         # app launcher
         raycast
         # menubar utility
-        ice-bar
+        # ice-bar
         stats
         # battery management
         aldente
