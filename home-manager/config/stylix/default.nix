@@ -13,6 +13,7 @@
     enable = true;
 
     autoEnable = true;
+    overlays.enable = false;
 
     base16Scheme = {
       # nordfox
