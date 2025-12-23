@@ -167,6 +167,7 @@
       "nvidia-nsight-systems"
       "obsidian"
       "orbstack"
+      "pile"
       "pixpin"
       "qq"
       "tailscale-app"
