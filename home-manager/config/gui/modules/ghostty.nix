@@ -52,7 +52,7 @@ in {
 
       shell-integration-features = ["cursor" "sudo" "title" "ssh-terminfo"];
 
-      macos-titlebar-style = "transparent";
+      macos-titlebar-style = "tabs";
       macos-titlebar-proxy-icon = "hidden";
       macos-option-as-alt = true;
 
