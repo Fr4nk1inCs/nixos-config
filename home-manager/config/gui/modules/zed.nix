@@ -7,7 +7,7 @@
   inherit (config.profile.guiSoftwares) enable;
 in {
   config = {
-    home.packages = lib.optionals enable (with pkgs; [zed-editor nixd nixfmt-classic]);
+    home.packages = lib.optionals enable (with pkgs; [zed-editor nixd nixfmt]);
 
     xdg.configFile."zed/keymap.json".text = builtins.toJSON [
       {
