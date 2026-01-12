@@ -16,7 +16,7 @@
       extension = "ttf";
     };
     variable = {
-      inDir = "可变字体";
+      inDir = ".";
       outDir = "truetype";
       extension = "ttf";
     };
@@ -40,10 +40,10 @@
   }:
     stdenvNoCC.mkDerivation {
       pname = "misans-${typename}";
-      version = "4.009"; # from font metadata
+      version = "4.003"; # from font metadata
       src = fetchzip {
         url = "https://hyperos.mi.com/font-download/MiSans.zip";
-        hash = "sha256-MH4t7oXDUiH1TAm0xKa0AENmB1zoedd8X5BcQFNw8GM=";
+        hash = "sha256-497H20SYzzUFaUHkqUkYlROLrqXRBLkBkylsRqZ6KfM=";
         stripRoot = false;
       };
 
