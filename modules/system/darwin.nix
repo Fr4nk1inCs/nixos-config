@@ -149,6 +149,7 @@
       "arc"
       "appflowy"
       "bitwarden"
+      "chatgpt-atlas"
       "clash-verge-rev"
       "dingtalk"
       "folo"
