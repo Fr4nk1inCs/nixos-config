@@ -132,6 +132,7 @@
     kitty
     ghostty-bin
     zed-editor
+    ice-bar
   ];
 
   # Homebrew for softwares not available in Nixpkgs
@@ -160,7 +161,6 @@
       "google-drive"
       "hammerspoon"
       "logi-options+"
-      "jordanbaird-ice@beta"
       # "microsoft-office" # use institutional license instead
       "motrix"
       "notion"
