@@ -1,5 +1,4 @@
 _final: prev: {
-  tencent-meeting = prev.callPackage ./tencent-meeting.nix {};
   fonts = {
     fandol = prev.callPackage ./fonts/fandol.nix {};
     fira-math = prev.callPackage ./fonts/fira-math.nix {};
@@ -16,4 +15,13 @@ _final: prev: {
         substituteInPlace install.sh --replace-fail '"$UID"' '"1"'
       '';
   });
+
+  ice-bar = prev.ice-bar.overrideAttrs {
+    version = "0.11.13-2f-unofficial";
+
+    src = prev.fetchurl {
+      url = "https://github.com/user-attachments/files/24838544/Ice.zip";
+      hash = "sha256-pkcnhfYl6Bs/wX6Z5yK1cGCENeQ+/SgwgcDEFIhXoxM=";
+    };
+  };
 }
