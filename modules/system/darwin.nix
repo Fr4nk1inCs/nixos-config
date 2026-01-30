@@ -148,11 +148,8 @@
     ];
     casks = [
       "arc"
-      "appflowy"
       "bitwarden"
       "clash-verge-rev"
-      "dingtalk"
-      "folo"
       "font-new-york"
       "font-sf-compact"
       "font-sf-mono"
@@ -171,7 +168,6 @@
       "pixpin"
       "qq"
       "tailscale-app"
-      "teamspeak-client@beta"
       "tencent-meeting"
       "tomatobar"
       "wechat"
