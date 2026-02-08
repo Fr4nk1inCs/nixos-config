@@ -36,11 +36,15 @@
 
     agenix.url = "github:ryantm/agenix";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     niri.url = "github:sodiboo/niri-flake";
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,6 +68,7 @@
         };
         overlays = [
           (import ./modules/packages)
+          inputs.llm-agents.overlays.default
         ];
       };
 

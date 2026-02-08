@@ -132,7 +132,6 @@
     kitty
     ghostty-bin
     zed-editor
-    ice-bar
   ];
 
   # Homebrew for softwares not available in Nixpkgs
@@ -169,6 +168,7 @@
       "qq"
       "tailscale-app"
       "tencent-meeting"
+      "thaw"
       "tomatobar"
       "wechat"
       "zoom"
