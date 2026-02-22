@@ -4,6 +4,5 @@
     ./tools.nix
     ./git.nix
     ./neovim.nix
-    ./agents.nix
   ];
 }

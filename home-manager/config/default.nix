@@ -4,5 +4,6 @@ _: {
     ./gui
     ./fonts
     ./stylix
+    ./agents
   ];
 }

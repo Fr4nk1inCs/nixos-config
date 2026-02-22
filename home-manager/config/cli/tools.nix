@@ -35,6 +35,7 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
+      shellWrapperName = "y";
     };
 
     ripgrep.enable = true;

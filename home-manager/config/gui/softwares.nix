@@ -5,6 +5,14 @@
   ...
 }: let
   inherit (config.profile.guiSoftwares) enable;
+  vscode-maybe-fhs =
+    if pkgs.stdenv.isLinux
+    then pkgs.vscode-fhs
+    else pkgs.vscode;
+  antigravity-maybe-fhs =
+    if pkgs.stdenv.isLinux
+    then pkgs.antigravity-fhs
+    else pkgs.antigravity;
 in {
   imports = [
     ./modules/ideavim.nix
@@ -17,7 +25,8 @@ in {
         # instant messaging
         ayugram-desktop
         # remote code editing
-        vscode
+        vscode-maybe-fhs
+        antigravity-maybe-fhs
         # file syncing
         gdrive3
         # image editing
