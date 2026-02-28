@@ -1,4 +1,4 @@
-_final: prev: {
+inputs: _final: prev: {
   fonts = {
     fandol = prev.callPackage ./fonts/fandol.nix {};
     fira-math = prev.callPackage ./fonts/fira-math.nix {};
@@ -15,4 +15,6 @@ _final: prev: {
         substituteInPlace install.sh --replace-fail '"$UID"' '"1"'
       '';
   });
+
+  plannotator = prev.callPackage ./plannotator.nix {plannotatorSrc = inputs.plannotator;};
 }

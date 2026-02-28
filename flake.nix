@@ -49,6 +49,21 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bun2nix = {
+      url = "github:nix-community/bun2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    plannotator = {
+      url = "github:backnotprop/plannotator";
+      flake = false;
+    };
+
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -67,7 +82,8 @@
           cudaSupport = system == "x86_64-linux";
         };
         overlays = [
-          (import ./modules/packages)
+          ((import ./modules/packages) inputs)
+          inputs.bun2nix.overlays.default
           inputs.llm-agents.overlays.default
         ];
       };

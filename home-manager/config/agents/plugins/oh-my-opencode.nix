@@ -14,10 +14,10 @@
 
       buildInputs = with pkgs; [bun args.opencode];
 
-      buildCommand = ''
-        mkdir -p $out/fakehome/.config/opencode
+      buildPhase = ''
+        mkdir -p $out
 
-        HOME=$out/fakehome bunx oh-my-opencode@${args.version} install \
+        HOME=$TMPDIR bunx oh-my-opencode@${args.version} install \
           --no-tui \
           --claude=${args.claude} \
           --openai=${args.openai} \
@@ -28,8 +28,8 @@
           --kimi-for-coding=${args.kimi-for-coding} \
           --skip-auth
 
-        mv $out/fakehome/.config/opencode/opencode.json $out/opencode.json
-        mv $out/fakehome/.config/opencode/oh-my-opencode.json $out/oh-my-opencode.json
+        mv $TMPDIR/.config/opencode/opencode.json $out/opencode.json
+        mv $TMPDIR/.config/opencode/oh-my-opencode.json $out/oh-my-opencode.json
       '';
     };
     inherit (builtins) readFile;
@@ -56,7 +56,7 @@
     lib.mapAttrs (_: bool2str);
 in {
   options = {
-    programs.oh-my-opencode = {
+    programs.agents.plugins.oh-my-opencode = {
       enable = lib.mkEnableOption "Inject oh-my-opencode configuration into opencode";
 
       version = lib.mkOption {
@@ -95,14 +95,17 @@ in {
     };
   };
 
-  config = lib.mkIf config.programs.oh-my-opencode.enable (
-    let
-      cfg = omo-configs (convertToCliArgs config.programs.oh-my-opencode // {opencode = config.programs.opencode.package;});
-    in {
-      programs.opencode = {
-        settings = cfg.opencode;
-      };
-      xdg.configFile."opencode/oh-my-opencode.json".text = cfg.omo-raw;
-    }
-  );
+  config = let
+    cfg = config.programs.agents.plugins.oh-my-opencode;
+  in
+    lib.mkIf cfg.enable (
+      let
+        omo-cfg = omo-configs (convertToCliArgs cfg // {opencode = config.programs.opencode.package;});
+      in {
+        programs.opencode = {
+          settings = omo-cfg.opencode;
+        };
+        xdg.configFile."opencode/oh-my-opencode.json".text = omo-cfg.omo-raw;
+      }
+    );
 }
