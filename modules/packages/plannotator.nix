@@ -3,6 +3,7 @@
   lib,
   plannotatorSrc,
   stdenvNoCC,
+  fetchurl,
   ...
 }: let
   transformedSrc = stdenvNoCC.mkDerivation {
@@ -28,45 +29,66 @@
     '';
   };
 in
-  bun2nix.mkDerivation rec {
-    pname = "plannotator";
+  # FIXME: we need this because bun2nix cannot handle workspaces correctly.
+  if stdenvNoCC.hostPlatform.system == "x86_64-linux"
+  then
+    stdenvNoCC.mkDerivation rec {
+      pname = "plannotator";
+      version = "0.10.0";
 
-    src = transformedSrc;
+      src = fetchurl {
+        url = "https://github.com/backnotprop/plannotator/releases/download/v0.10.0/plannotator-linux-x64";
+        hash = "sha256-Jouu9nP0k+BQ/aDgwepv3YOtax8kNNbJVvn/GtmZqgU=";
+        executable = true;
+      };
 
-    packageJson = "${src}/package.json";
+      phases = ["installPhase"];
 
-    bunDeps = bun2nix.fetchBunDeps {
-      bunNix = "${src}/bun.nix";
-    };
+      installPhase = ''
+        mkdir -p $out/bin
+        cp ${src} $out/bin/plannotator
+      '';
+    }
+  else
+    bun2nix.mkDerivation rec {
+      pname = "plannotator";
 
-    buildPhase = ''
-      runHook preBuild
+      src = transformedSrc;
 
-      export HOME=$TMPDIR
-      bun run build:review
-      bun run build:hook
-      bun build apps/hook/server/index.ts --compile --outfile plannotator
+      packageJson = "${src}/package.json";
 
-      runHook postBuild
-    '';
+      bunDeps = bun2nix.fetchBunDeps {
+        bunNix = "${src}/bun.nix";
+      };
 
-    installPhase = ''
-      runHook preInstall
+      buildPhase = ''
+        runHook preBuild
 
-      mkdir -p $out/bin
-      cp plannotator $out/bin/plannotator
+        export HOME=$TMPDIR
+        bun run build:review
+        bun run build:hook
+        bun build apps/hook/server/index.ts --compile --outfile plannotator
 
-      runHook postInstall
-    '';
+        runHook postBuild
+      '';
 
-    meta = {
-      description = "Interactive Plan Review for AI Coding Agents";
-      homepage = "https://plannotator.ai";
-      license = with lib.licenses; [
-        mit
-        asl20
-      ];
-      platforms = lib.platforms.all;
-      mainProgram = "plannotator";
-    };
-  }
+      installPhase = ''
+        runHook preInstall
+
+        mkdir -p $out/bin
+        cp plannotator $out/bin/plannotator
+
+        runHook postInstall
+      '';
+
+      meta = {
+        description = "Interactive Plan Review for AI Coding Agents";
+        homepage = "https://plannotator.ai";
+        license = with lib.licenses; [
+          mit
+          asl20
+        ];
+        platforms = lib.platforms.all;
+        mainProgram = "plannotator";
+      };
+    }
