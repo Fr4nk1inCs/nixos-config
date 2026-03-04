@@ -5,6 +5,7 @@ _: {
 
     git = {
       enable = true;
+      lfs.enable = true;
       settings = {
         user = {
           name = "Fr4nk1in";

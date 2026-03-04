@@ -45,6 +45,7 @@
   # Basic packages to maintain a minimal usable shell
   environment.systemPackages = with pkgs; [
     git
+    git-lfs
     vim
     neovim
     wget
