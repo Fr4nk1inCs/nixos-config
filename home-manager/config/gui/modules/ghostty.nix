@@ -28,6 +28,8 @@ in {
       # Cheating here to force font size
       font-size = lib.mkForce config.stylix.fonts.sizes.terminal;
 
+      adjust-cell-width = "5%";
+
       cursor-click-to-move = true;
 
       mouse-hide-while-typing = true;
