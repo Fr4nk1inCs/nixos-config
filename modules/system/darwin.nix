@@ -80,7 +80,6 @@
           "/Applications/QQ.app"
           "/Applications/WeChat.app"
           "/System/Applications/Mail.app"
-          "/Applications/Notion.app"
           "${pkgs.zotero}/Applications/Zotero.app"
           "/System/Applications/Music.app"
           "/System/Applications/System Settings.app"
@@ -159,7 +158,6 @@
       "logi-options+"
       # "microsoft-office" # use institutional license instead
       "motrix"
-      "notion"
       "nvidia-nsight-systems"
       "obsidian"
       "orbstack"
@@ -174,8 +172,6 @@
       "zoom"
     ];
     masApps = {
-      Notability = 360593530;
-      Goodnotes = 1444383602;
       Numbers = 409203825;
       # "Any Text" = 1643199620;
       XCode = 497799835;
