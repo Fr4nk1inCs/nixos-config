@@ -34,11 +34,11 @@ in
   then
     stdenvNoCC.mkDerivation rec {
       pname = "plannotator";
-      version = "0.10.0";
+      version = "0.12.0";
 
       src = fetchurl {
-        url = "https://github.com/backnotprop/plannotator/releases/download/v0.10.0/plannotator-linux-x64";
-        hash = "sha256-Jouu9nP0k+BQ/aDgwepv3YOtax8kNNbJVvn/GtmZqgU=";
+        url = "https://github.com/backnotprop/plannotator/releases/download/v0.12.0/plannotator-linux-x64";
+        hash = "06ca22sxfmgv0g0nyzq3w28rgamchh8rz87mph440pf0br4cgw0a";
         executable = true;
       };
 

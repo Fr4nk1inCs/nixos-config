@@ -32,13 +32,7 @@ in {
 
       claude-code.settings = {
         plugins = {
-          "superpowers@superpowers-marketplace" = true;
-        };
-        extraKnownMarketplaces = {
-          superpowers-marketplace.source = {
-            source = "github";
-            repo = "obra/superpowers-marketplace";
-          };
+          "superpowers@claude-plugins-official" = true;
         };
       };
     };
