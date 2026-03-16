@@ -148,6 +148,7 @@
       "arc"
       "bitwarden"
       "clash-verge-rev"
+      "claude"
       "font-new-york"
       "font-sf-compact"
       "font-sf-mono"
