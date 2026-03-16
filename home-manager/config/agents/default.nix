@@ -18,7 +18,10 @@
     claude-code = {
       enable = true;
       package = pkgs.llm-agents.claude-code;
-      ccstatusline.enable = true;
+      ccstatusline = {
+        enable = true;
+        settings = import ./claude/ccstatusline.nix;
+      };
     };
 
     agents.plugins = {
