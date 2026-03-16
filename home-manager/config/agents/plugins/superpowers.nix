@@ -35,7 +35,7 @@ in {
           "superpowers@superpowers-marketplace" = true;
         };
         extraKnownMarketplaces = {
-          superpowers-marketplace = {
+          superpowers-marketplace.source = {
             source = "github";
             repo = "obra/superpowers-marketplace";
           };

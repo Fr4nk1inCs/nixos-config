@@ -33,7 +33,7 @@
           "plannotator@plannotator" = true;
         };
         extraKnownMarketplaces = {
-          plannotator = {
+          plannotator.source = {
             source = "github";
             repo = "backnotprop/plannotator";
           };
