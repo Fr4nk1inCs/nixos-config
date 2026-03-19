@@ -52,7 +52,6 @@
         AppleEnableMouseSwipeNavigateWithScrolls = true;
         AppleEnableSwipeNavigateWithScrolls = true;
         AppleICUForce24HourTime = true;
-        AppleInterfaceStyle = "Dark";
         AppleMeasurementUnits = "Centimeters";
         AppleMetricUnits = 1;
         ApplePressAndHoldEnabled = false;
