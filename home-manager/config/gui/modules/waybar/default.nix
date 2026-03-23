@@ -6,6 +6,24 @@
 }: let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
   barCfg = config.profile.windowManager.bar;
+  scheme = config.stylix.base16Scheme;
+  style-prelog = ''
+    @define-color bg      ${scheme.base00};
+    @define-color fg      ${scheme.base05};
+    @define-color sel     ${scheme.base01};
+    @define-color red     ${scheme.base08};
+    @define-color orange  ${scheme.base09};
+    @define-color yellow  ${scheme.base0A};
+    @define-color green   ${scheme.base0B};
+    @define-color cyan    ${scheme.base0C};
+    @define-color blue    ${scheme.base0D};
+    @define-color magenta ${scheme.base0E};
+  '';
+  style = ''
+    ${style-prelog}
+
+    ${builtins.readFile ./style.css}
+  '';
 in {
   stylix.targets.waybar.enable = false;
   home.packages = lib.optionals enable (with pkgs; [
@@ -14,9 +32,7 @@ in {
   ]);
 
   programs.waybar = {
-    inherit enable;
-
-    style = ./style.css;
+    inherit enable style;
     settings = {
       mainBar = {
         layer = "top";
@@ -198,10 +214,10 @@ in {
             on-scroll = 1;
             on-click-right = "mode";
             format = {
-              "months" = "<span color='#${config.stylix.base16Scheme.base05}'><b>{}</b></span>";
-              "days" = "<span color='#${config.stylix.base16Scheme.base07}'><b>{}</b></span>";
-              "weekdays" = "<span color='#${config.stylix.base16Scheme.base0A}'><b>{}</b></span>";
-              "today" = "<span color='#${config.stylix.base16Scheme.base16}'><b><u>{}</u></b></span>";
+              "months" = "<span color='${scheme.base05}'><b>{}</b></span>";
+              "days" = "<span color='${scheme.base07}'><b>{}</b></span>";
+              "weekdays" = "<span color='${scheme.base0A}'><b>{}</b></span>";
+              "today" = "<span color='${scheme.base0D}'><b><u>{}</u></b></span>";
             };
           };
         };

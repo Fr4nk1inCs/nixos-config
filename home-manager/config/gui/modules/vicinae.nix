@@ -1,59 +1,37 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
 in {
   config.programs.vicinae = {
     inherit enable;
-    systemd.enable = false;
+
+    systemd.enable = enable;
 
     settings = {
-      closeOnFocusLoss = true;
-      faviconService = "twenty";
-      font = {
-        normal = config.stylix.fonts.monospace.name;
-        size = config.stylix.fonts.sizes.applications;
-      };
-      theme = {
-        iconTheme = config.stylix.icons.dark;
-        name = "nordfox";
-      };
-      keybinding = "default";
-      popToRootOnClose = true;
-      rootSearch.searchFiles = true;
-      window = {
-        csd = true;
-        opacity = config.stylix.opacity.applications;
-        rounding = 10;
-      };
-    };
+      close_on_focus_loss = true;
+      favicon_service = "twenty";
+      pop_to_root_on_close = true;
+      search_files_in_root = true;
 
-    themes = {
-      nordfox = {
-        meta = {
-          version = 1;
-          name = "nordfox";
-          description = "Nordfox theme based on EdenEast/nightfox.nvim";
-          variant = "dark";
-          inherits = "nord";
-        };
-
-        colors = with config.lib.stylix.colors.withHashtag; {
-          core = {
-            background = base00;
-            foreground = base05;
-            secondary_background = base10;
-            border = base02;
-            accent = blue;
-          };
-          accents = {
-            inherit blue cyan green magenta orange red yellow;
-            purple = brown; # mapped to base0F
-          };
-        };
+      font.normal = {
+        family = "monospace";
+        size = config.stylix.fonts.sizes.terminal;
       };
+
+      launcher_window = {
+        client_side_decoration = {
+          enabled = true;
+          rounding = 10;
+        };
+        blur.enabled = true;
+        opacity = lib.mkForce config.stylix.opacity.applications;
+      };
+
+      layer_shell.enabled = true;
     };
   };
 }

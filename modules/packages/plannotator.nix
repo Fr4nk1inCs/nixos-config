@@ -38,7 +38,7 @@ in
 
       src = fetchurl {
         url = "https://github.com/backnotprop/plannotator/releases/download/v0.12.0/plannotator-linux-x64";
-        hash = "06ca22sxfmgv0g0nyzq3w28rgamchh8rz87mph440pf0br4cgw0a";
+        hash = "sha256-FdA32oMScHZnQ0b34sxT6S/hFoe2okdimeaXZkJWxhY=";
         executable = true;
       };
 
