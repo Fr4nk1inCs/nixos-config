@@ -8,8 +8,8 @@
     programs.claude-code.ccstatusline = {
       enable = lib.mkEnableOption "Use ccstatusline in claude-code";
       settings = lib.mkOption {
-        type = lib.types.attrs;
-        default = {};
+        type = lib.types.nullOr lib.types.attrs;
+        default = null;
         description = "Settings for ccstatusline in claude-code";
       };
     };
@@ -26,7 +26,7 @@
         command = toString ccstatusline;
         padding = 0;
       };
-      xdg.configFile = lib.mkIf (cfg.settings != {}) {
+      xdg.configFile = lib.mkIf (cfg.settings != null) {
         "ccstatusline/settings.json".text = builtins.toJSON cfg.settings;
       };
     };

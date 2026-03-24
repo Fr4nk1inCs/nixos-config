@@ -37,7 +37,7 @@
     };
     programs.claude-code = {
       settings = {
-        plugins = {
+        enabledPlugins = {
           "plannotator@plannotator" = true;
         };
         extraKnownMarketplaces = {

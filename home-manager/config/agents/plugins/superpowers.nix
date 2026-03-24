@@ -31,7 +31,7 @@ in {
       codex.skills.superpowers = superpowers.skills;
 
       claude-code.settings = {
-        plugins = {
+        enabledPlugins = {
           "superpowers@claude-plugins-official" = true;
         };
       };
