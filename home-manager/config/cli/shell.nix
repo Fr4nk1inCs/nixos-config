@@ -76,6 +76,7 @@
         ''
           setopt interactivecomments
           bindkey -v
+          bindkey -M vicmd v edit-command-line
 
           # fix fzf-tab configuration
           zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}

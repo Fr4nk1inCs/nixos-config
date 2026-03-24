@@ -40,8 +40,7 @@
         };
 
         git.pagers = [{pager = "delta --paging=never";}];
-
-        parseEmoji = true;
+        git.parseEmoji = true;
       };
     };
   };
