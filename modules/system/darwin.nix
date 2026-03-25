@@ -169,6 +169,7 @@
       "thaw"
       "tomatobar"
       "wechat"
+      "zerotier-one"
       "zoom"
     ];
     masApps = {
