@@ -169,6 +169,7 @@
       "thaw"
       "tomatobar"
       "wechat"
+      "wechatwork"
       "zerotier-one"
       "zoom"
     ];
