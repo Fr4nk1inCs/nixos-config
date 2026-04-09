@@ -55,11 +55,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plannotator = {
-      url = "github:backnotprop/plannotator";
-      flake = false;
-    };
-
     superpowers = {
       url = "github:obra/superpowers";
       flake = false;

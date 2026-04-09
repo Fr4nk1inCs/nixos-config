@@ -25,7 +25,6 @@
     };
 
     agents.plugins = {
-      plannotator.enable = true;
       superpowers.enable = true;
     };
   };

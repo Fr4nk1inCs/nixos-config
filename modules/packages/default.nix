@@ -15,6 +15,4 @@ inputs: _final: prev: {
         substituteInPlace install.sh --replace-fail '"$UID"' '"1"'
       '';
   });
-
-  plannotator = prev.callPackage ./plannotator.nix {plannotatorSrc = inputs.plannotator;};
 }
