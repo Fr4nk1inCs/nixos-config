@@ -29,9 +29,8 @@
     wezterm
   ];
 
-  services.openssh = {
-    ports = lib.mkForce [2223];
-  };
+  services.openssh.ports = lib.mkForce [2223];
+  services.tailscale.port = 41642;
 
   # NVIDIA Container on NixOS WSL
   systemd.services.nvidia-container-toolkit-cdi-generator.serviceConfig = let
