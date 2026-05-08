@@ -19,7 +19,7 @@ in {
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "podman" "networkmanager"];
+    extraGroups = ["wheel" "docker" "networkmanager"];
   };
 
   # networkmanager
@@ -109,52 +109,25 @@ in {
     tailscale
     nvidia-container-toolkit
     libnvidia-container
-
-    podman-compose
-    podman-tui
   ];
 
   environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
 
   # Container runtimes
-  # after rebuild remember to generate the cdi spec,
-  # with pkgs.nvidia-container-toolkit installed:
-  # $ sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
-  # $ nvidia-ctk cdi generate --output=/home/${username}/.cdi/nvidia.yaml
   virtualisation = {
-    # docker = {
-    #   enable = true;
-    #   rootless = {
-    #     enable = true;
-    #     setSocketVariable = true;
-    #     daemon.settings = {
-    #       features.cdi = true;
-    #       cdi-spec-dirs = ["/home/${username}/.cdi"];
-    #     };
-    #   };
-    #   daemon.settings = {
-    #     features.cdi = true;
-    #   };
-    # };
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
-      autoPrune = {
+      rootless = {
         enable = true;
-        dates = "monthly";
-      };
-      defaultNetwork.settings = {
-        dns_enabled = true;
+        setSocketVariable = true;
       };
     };
   };
 
   hardware = {
     nvidia = {
-      modesetting.enable = true;
       nvidiaSettings = false;
-      open = false;
+      open = true;
     };
     nvidia-container-toolkit.enable = true;
   };

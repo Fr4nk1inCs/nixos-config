@@ -33,5 +33,17 @@
     ports = lib.mkForce [2223];
   };
 
+  # NVIDIA Container on NixOS WSL
+  systemd.services.nvidia-container-toolkit-cdi-generator.serviceConfig = let
+    nvidia-ctk = lib.getExe' pkgs.nvidia-container-toolkit "nvidia-ctk";
+    nvidia-cdi-hook = lib.getExe' (lib.getOutput "tools" pkgs.nvidia-container-toolkit) "nvidia-cdi-hook";
+  in {
+    ExecStart = lib.mkForce ''
+      ${nvidia-ctk} cdi generate \
+      --output=/var/run/cdi/nvidia-container-toolkit.json \
+      --nvidia-cdi-hook-path=${nvidia-cdi-hook}
+    '';
+  };
+
   hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 }
