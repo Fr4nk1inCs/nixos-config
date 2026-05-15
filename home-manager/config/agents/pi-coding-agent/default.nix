@@ -124,6 +124,29 @@ in {
         '';
       };
 
+      extensions = lib.mkOption {
+        type = lib.types.attrsOf (
+          lib.types.oneOf [
+            lib.types.lines
+            lib.types.path
+            lib.types.str
+          ]
+        );
+        default = {};
+        description = ''
+          Custom extensions for pi-coding-agent.
+
+          The attribute name becomes the extension filename, and the value is either:
+          - Inline content as a string (creates `extensions/<name>.ts`)
+          - A path to a file (creates `extensions/<name>.ts`)
+
+          The configured extensions are written to
+          {file}`$HOME/.pi/agent/extensions/` with one file per extension.
+
+          See <https://pi.dev/docs/latest/extensions> for more details.
+        '';
+      };
+
       promptTemplates = lib.mkOption {
         type =
           lib.types.either (lib.types.attrsOf (
@@ -208,24 +231,28 @@ in {
       linkOrCreate = content:
         if isPathLikeContent content
         then {source = content;}
-        else (lib.mkIf (content != "") {text = content;});
+        else if content != ""
+        then {text = content;}
+        else {enable = false;};
 
-      linkOrBuildNamedDirectory = dirname: content: {
-        "${prefix}/${dirname}" =
-          lib.mkIf (isPathLikeContent content) {
+      buildNamedDirectory = dirname: content: extension:
+        lib.mapAttrs' (
+          name: subitem:
+            lib.nameValuePair "${prefix}/${dirname}/${name}${extension}" (
+              linkOrCreate subitem
+            )
+        )
+        content;
+
+      linkOrBuildNamedDirectory = dirname: content: extension:
+        if isPathLikeContent content then {
+          "${prefix}/${dirname}" = {
             source = content;
             recursive = true;
-          }
-          // lib.optionalAttrs (builtins.isAttrs content) (
-            lib.mapAttrs' (
-              name: subitem:
-                lib.nameValuePair "${prefix}/${dirname}/${name}.md" (
-                  linkOrCreate subitem
-                )
-            )
-            content
-          );
-      };
+          };
+        } else if builtins.isAttrs content then
+          buildNamedDirectory dirname content extension
+        else {};
     in
       {
         "${prefix}/settings.json" = lib.mkIf (cfg.settings != {}) {
@@ -248,8 +275,9 @@ in {
           then linkOrCreate cfg.customSystemPrompt.content
           else {enable = false;};
       }
-      // linkOrBuildNamedDirectory "skills" cfg.skills
-      // linkOrBuildNamedDirectory "prompts" cfg.promptTemplates
-      // linkOrBuildNamedDirectory "themes" cfg.themes;
+      // linkOrBuildNamedDirectory "extensions" cfg.extensions ".ts"
+      // linkOrBuildNamedDirectory "skills" cfg.skills ".md"
+      // linkOrBuildNamedDirectory "prompts" cfg.promptTemplates ".md"
+      // linkOrBuildNamedDirectory "themes" cfg.themes ".json";
   };
 }

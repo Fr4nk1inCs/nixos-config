@@ -20,6 +20,9 @@
     pi-coding-agent = {
       enable = true;
       context = ./AGENTS.md;
+      extensions = {
+        footer = ./pi-coding-agent/extensions/footer.ts;
+      };
     };
 
     claude-code = {

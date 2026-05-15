@@ -19,4 +19,5 @@ in {
   "sshconfig-lab.age".publicKeys = allUsers;
   "sshconfig-personal.age".publicKeys = allUsers;
   "mihomo.age".publicKeys = allUsers ++ allSystems;
+  "pi-auth.age".publicKeys = allUsers;
 }

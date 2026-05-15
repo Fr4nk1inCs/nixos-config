@@ -47,6 +47,12 @@ in {
         file = ../secrets/sshconfig-personal.age;
         path = "${HOME}/.ssh/config.d/personal";
       };
+      pi-auth = {
+        file = ../secrets/pi-auth.age;
+        mode = "0600";
+        path = "${HOME}/.pi/agent/auth.json";
+        symlink = false;
+      };
     };
   };
 
