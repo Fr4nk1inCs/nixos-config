@@ -1,52 +1,48 @@
 /**
  * Custom footer — session metadata in the bottom bar.
  *
- * Shows model (thinking-level), context usage, token counts, cost (RMB for
- * DeepSeek, USD otherwise), CWD, and git branch. Context window is color-
- * coded by fill level.
+ * Shows model (thinking-level), context usage, token counts, CWD,
+ * and git branch. Context window is color-coded by fill level.
  */
 
-import type { AssistantMessage } from "@mariozechner/pi-ai";
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { AssistantMessage } from "@mariozechner/pi-ai";
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
-
-// ---------------------------------------------------------------------------
-// DeepSeek RMB pricing (¥ / million tokens).  Update when the 75%-off sale ends.
-// ---------------------------------------------------------------------------
-
-const RMB_RATES: Record<
-	string,
-	{ cacheRead: number; input: number; output: number }
-> = {
-	"deepseek-v4-pro": { cacheRead: 0.1, input: 12, output: 24 },
-	"deepseek-v4-flash": { cacheRead: 0.02, input: 1, output: 2 },
-};
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
 const fmt = (n: number) =>
-	n < 1000
-		? `${n}`
-		: n < 1_000_000
-			? `${(n / 1000).toFixed(1)}k`
-			: `${(n / 1_000_000).toFixed(1)}M`;
+  n < 1000
+    ? `${n}`
+    : n < 1_000_000
+      ? `${(n / 1000).toFixed(1)}k`
+      : `${(n / 1_000_000).toFixed(1)}M`;
 
 const abbrevCwd = (cwd: string) => {
-	const home = process.env.HOME;
-	return home && cwd.startsWith(home) ? "~" + cwd.slice(home.length) : cwd;
+  const home = process.env.HOME;
+  if (home && (cwd === home || cwd.startsWith(home + "/"))) {
+    return "~" + cwd.slice(home.length);
+  }
+  return cwd;
 };
 
-const costStr = (
-	modelId: string,
-	t: { input: number; output: number; cacheRead: number },
-	usd: number,
-) => {
-	const r = RMB_RATES[modelId];
-	return r
-		? `¥${((r.cacheRead * t.cacheRead + r.input * t.input + r.output * t.output) / 1_000_000).toFixed(3)}`
-		: `$${usd.toFixed(3)}`;
+type ThemeLike = {
+  fg: (color: string, text: string) => string;
+  bold: (text: string) => string;
+};
+
+const contextColor = (
+  pct: number | null,
+  thm: ThemeLike,
+  s: string,
+): string => {
+  if (pct === null) return thm.fg("dim", s);
+  if (pct >= 90) return thm.fg("error", s);
+  if (pct >= 75) return thm.fg("warning", s);
+  if (pct >= 50) return thm.fg("muted", s);
+  return thm.fg("dim", s);
 };
 
 // ---------------------------------------------------------------------------
@@ -54,81 +50,77 @@ const costStr = (
 // ---------------------------------------------------------------------------
 
 export default function (pi: ExtensionAPI) {
-	let branch: string | undefined;
+  let branch: string | undefined;
 
-	pi.on("session_start", async (_event, ctx) => {
-		const git = await pi
-			.exec("git", ["branch", "--show-current"], { cwd: ctx.cwd })
-			.catch(() => undefined);
-		branch = git?.stdout.trim() || undefined;
+  pi.on("session_start", (_event, ctx) => {
+    ctx.ui.setFooter((tui, thm, footerData) => {
+      branch = footerData.getGitBranch() ?? undefined;
 
-		ctx.ui.setFooter((tui, thm, footerData) => ({
-			dispose: footerData.onBranchChange(() => {
-				branch = footerData.getGitBranch() ?? undefined;
-				tui.requestRender();
-			}),
+      return {
+        dispose: footerData.onBranchChange(() => {
+          branch = footerData.getGitBranch() ?? undefined;
+          tui.requestRender();
+        }),
 
-			render(width: number): string[] {
-				const usage = ctx.getContextUsage();
-				const pct = usage?.percent ?? null;
+        render(width: number): string[] {
+          // --- token totals ------------------------------------------------
+          const tokens = { input: 0, output: 0, cacheRead: 0 };
+          for (const entry of ctx.sessionManager.getEntries()) {
+            if (entry.type !== "message") continue;
+            const msg = entry.message;
+            if (msg.role === "assistant" && "usage" in msg) {
+              const u = (msg as AssistantMessage).usage;
+              tokens.input += u.input;
+              tokens.output += u.output;
+              tokens.cacheRead += u.cacheRead;
+            }
+          }
 
-				const tokens = { input: 0, output: 0, cacheRead: 0 };
-				let usd = 0;
-				for (const e of ctx.sessionManager.getBranch()) {
-					if (e.type === "message" && e.message.role === "assistant") {
-						const u = (e.message as AssistantMessage).usage;
-						tokens.input += u.input;
-						tokens.output += u.output;
-						tokens.cacheRead += u.cacheRead;
-						usd += u.cost.total;
-					}
-				}
+          // --- context usage -----------------------------------------------
+          const usage = ctx.getContextUsage();
+          const pct = usage?.percent ?? null;
 
-				const ctxC = (s: string) =>
-					pct === null
-						? thm.fg("dim", s)
-						: pct >= 90
-							? thm.fg("error", s)
-							: pct >= 75
-								? thm.fg("warning", s)
-								: pct >= 50
-									? thm.fg("muted", s)
-									: thm.fg("dim", s);
+          // --- segments ----------------------------------------------------
+          const model = ctx.model;
+          const modelId = model ? `${model.provider}/${model.id}` : "no model";
 
-				const model = ctx.model;
-				const modelId = model ? `${model.provider}/${model.id}` : "no model";
+          const left = [
+            thm.fg("accent", thm.bold(modelId)) +
+            " " +
+            thm.fg("muted", `(${pi.getThinkingLevel()})`),
 
-				const segs = [
-					thm.fg("accent", thm.bold(modelId)) +
-						" " +
-						thm.fg("muted", `(${pi.getThinkingLevel()})`),
-					ctxC(
-						`ctx ${pct !== null ? Math.round(pct) + "%" : "?"}${usage?.contextWindow ? "/" + fmt(usage.contextWindow) : ""}`,
-					),
-					thm.fg(
-						"dim",
-						`${tokens.cacheRead > 0 ? `↩${fmt(tokens.cacheRead)} ` : ""}↑${fmt(tokens.input)} ↓${fmt(tokens.output)} (${costStr(model?.id ?? "", tokens, usd)})`,
-					),
-				];
+            contextColor(
+              pct,
+              thm,
+              // pct is transiently null after compaction while contextWindow
+              // is known; rendering "?/200k" is intentional during that window.
+              `ctx ${pct !== null ? Math.round(pct) + "%" : "?"}${usage?.contextWindow ? "/" + fmt(usage.contextWindow) : ""}`,
+            ),
 
-				const left = segs.join(" · ");
+            thm.fg(
+              "dim",
+              (() => {
+                const parts: string[] = [];
+                if (tokens.cacheRead > 0)
+                  parts.push(`↩${fmt(tokens.cacheRead)}`);
+                parts.push(`↑${fmt(tokens.input)}`, `↓${fmt(tokens.output)}`);
+                return parts.join(" ");
+              })(),
+            ),
+          ].join(" · ");
 
-				let right = thm.fg("muted", abbrevCwd(ctx.cwd));
-				if (branch) right += thm.fg("dim", ` (${branch})`);
+          let right = thm.fg("muted", abbrevCwd(ctx.cwd));
+          if (branch) right += thm.fg("dim", ` (${branch})`);
 
-				return [
-					truncateToWidth(
-						left +
-							" ".repeat(
-								Math.max(1, width - visibleWidth(left) - visibleWidth(right)),
-							) +
-							right,
-						width,
-					),
-				];
-			},
+          const pad = Math.max(
+            1,
+            width - visibleWidth(left) - visibleWidth(right),
+          );
+          return [truncateToWidth(left + " ".repeat(pad) + right, width)];
+        },
 
-			invalidate() {},
-		}));
-	});
+        invalidate() { },
+      };
+    });
+  });
 }
