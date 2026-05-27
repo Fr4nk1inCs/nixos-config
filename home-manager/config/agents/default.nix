@@ -8,6 +8,12 @@
   programs = {
     pi-coding-agent = {
       enable = true;
+      settings = {
+        defaultProvider = "xiaomi";
+        defaultModel = "mimo-v2.5-pro";
+        theme = "light";
+        defaultThinkingLevel = "high";
+      };
       extensions = {
         footer = ./pi-coding-agent/extensions/footer.ts;
       };
