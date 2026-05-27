@@ -1,25 +1,13 @@
 {pkgs, ...}: {
   imports = [
+    ./options.nix
     ./plugins
     ./pi-coding-agent
   ];
 
   programs = {
-    # opencode = {
-    #   enable = true;
-    #   package = pkgs.llm-agents.opencode;
-    #   context = ./AGENTS.md;
-    #   settings = {
-    #     plugin = [
-    #       "@franlol/opencode-md-table-formatter@latest"
-    #       "@tarquinen/opencode-dcp@latest"
-    #     ];
-    #   };
-    # };
-
     pi-coding-agent = {
       enable = true;
-      context = ./AGENTS.md;
       extensions = {
         footer = ./pi-coding-agent/extensions/footer.ts;
       };
@@ -28,15 +16,26 @@
     claude-code = {
       enable = true;
       package = pkgs.llm-agents.claude-code;
-      context = ./AGENTS.md;
+      settings = {
+        editorMode = "vim";
+        defaultMode = "auto";
+        effortLevel = "high";
+        model = "claude-opus-4-7";
+        tui = "fullscreen";
+
+        autoMode.allow = [
+          "$defaults"
+          "Any tool installation and invocation that happens in a isolated environment (e.g. nix shell)"
+        ];
+      };
       ccstatusline = {
         enable = true;
         settings = import ./claude/ccstatusline.nix;
       };
     };
 
-    agents.plugins = {
-      superpowers.enable = true;
+    agents = {
+      context = ./AGENTS.md;
     };
   };
 }

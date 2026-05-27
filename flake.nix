@@ -49,16 +49,6 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    bun2nix = {
-      url = "github:nix-community/bun2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    superpowers = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
   };
 
   outputs = {
@@ -78,7 +68,6 @@
         };
         overlays = [
           ((import ./modules/packages) inputs)
-          inputs.bun2nix.overlays.default
           inputs.llm-agents.overlays.default
         ];
       };
