@@ -1,4 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  pi-coding-agent = pkgs.symlinkJoin {
+    name = "pi-coding-agent";
+    buildInputs = [pkgs.makeWrapper];
+    paths = [pkgs.pi-coding-agent];
+    postBuild = ''
+      wrapProgram $out/bin/pi \
+        --set NPM_CONFIG_PREFIX ${config.home.homeDirectory}/.pi/npm/ \
+        --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.nodejs]}
+    '';
+  };
+in {
   imports = [
     ./options.nix
     ./plugins
@@ -8,11 +23,15 @@
   programs = {
     pi-coding-agent = {
       enable = true;
+      package = pi-coding-agent;
       settings = {
         defaultProvider = "xiaomi";
         defaultModel = "mimo-v2.5-pro";
         theme = "light";
         defaultThinkingLevel = "high";
+        packages = [
+          "npm:@ff-labs/pi-fff"
+        ];
       };
       extensions = {
         footer = ./pi-coding-agent/extensions/footer.ts;
