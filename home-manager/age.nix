@@ -26,7 +26,6 @@ in {
         mode = "0600";
         symlink = false;
       };
-      deepseek-apikey.file = ../secrets/deepseek-apikey.age;
       wakatime-cfg = {
         file = ../secrets/wakatime-cfg.age;
         path = "${HOME}/.wakatime.cfg";

@@ -84,10 +84,6 @@
         + lib.optionalString (pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin) ''
           eval "$(/opt/homebrew/bin/brew shellenv)"
         '';
-
-      envExtra = ''
-        export DEEPSEEK_API_KEY=$(cat ${config.age.secrets.deepseek-apikey.path})
-      '';
     };
 
     starship = {

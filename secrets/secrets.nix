@@ -11,7 +11,6 @@ let
   };
   allSystems = builtins.attrValues systems;
 in {
-  "deepseek-apikey.age".publicKeys = allUsers ++ allSystems;
   "fr4nk1in-ed25519.age".publicKeys = allUsers;
   "whisk.age".publicKeys = allUsers;
   "wakatime-cfg.age".publicKeys = allUsers;
