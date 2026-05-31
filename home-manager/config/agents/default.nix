@@ -18,6 +18,7 @@ in {
     ./options.nix
     ./plugins
     ./pi-coding-agent
+    ./claude/ccstatusline.nix
   ];
 
   programs = {
@@ -45,17 +46,13 @@ in {
         editorMode = "vim";
         defaultMode = "auto";
         effortLevel = "high";
-        model = "claude-opus-4-7";
+        model = "claude-opus-4-8";
         tui = "fullscreen";
 
         autoMode.allow = [
           "$defaults"
           "Any tool installation and invocation that happens in a isolated environment (e.g. nix shell)"
         ];
-      };
-      ccstatusline = {
-        enable = true;
-        settings = import ./claude/ccstatusline.nix;
       };
     };
 

@@ -3,7 +3,9 @@
   config,
   lib,
   ...
-}: {
+}: let
+  jsonFormat = pkgs.formats.json {};
+in {
   options = {
     programs.claude-code.ccstatusline = {
       enable = lib.mkEnableOption "Use ccstatusline in claude-code";
@@ -27,7 +29,7 @@
         padding = 0;
       };
       xdg.configFile = lib.mkIf (cfg.settings != null) {
-        "ccstatusline/settings.json".text = builtins.toJSON cfg.settings;
+        "ccstatusline/settings.json".source = jsonFormat.generate "settings.json" cfg.settings;
       };
     };
 }
