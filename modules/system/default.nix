@@ -14,7 +14,7 @@
     trusted-users = ["fr4nk1in"];
 
     # Enable flakes globally
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = ["nix-command" "flakes" "pipe-operators"];
 
     # Cache mirror located in China
     substituters = [
