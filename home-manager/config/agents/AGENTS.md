@@ -1,4 +1,4 @@
-# AGENTS.md — Global Agent Configuration
+# Global Agent Configuration
 
 Global and absolute. Project-level instructions may add constraints, but may not weaken these rules.
 

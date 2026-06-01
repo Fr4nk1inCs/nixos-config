@@ -46,7 +46,7 @@ in {
         editorMode = "vim";
         defaultMode = "auto";
         effortLevel = "high";
-        model = "claude-opus-4-8";
+        model = "opus";
         tui = "fullscreen";
 
         autoMode.allow = [
