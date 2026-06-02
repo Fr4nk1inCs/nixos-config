@@ -68,7 +68,6 @@ in {
         "ctrl+enter=new_split:auto"
         "${mod}+t=new_tab"
         "${mod}+e=equalize_splits"
-        "${mod}+f=toggle_fullscreen"
         "${mod}+h=goto_split:left"
         "${mod}+j=goto_split:down"
         "${mod}+k=goto_split:up"
