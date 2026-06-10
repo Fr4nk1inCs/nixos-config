@@ -2,18 +2,7 @@
   pkgs,
   config,
   ...
-}: let
-  pi-coding-agent = pkgs.symlinkJoin {
-    name = "pi-coding-agent";
-    buildInputs = [pkgs.makeWrapper];
-    paths = [pkgs.pi-coding-agent];
-    postBuild = ''
-      wrapProgram $out/bin/pi \
-        --set NPM_CONFIG_PREFIX ${config.home.homeDirectory}/.pi/npm/ \
-        --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.nodejs]}
-    '';
-  };
-in {
+}: {
   imports = [
     ./options.nix
     ./plugins
@@ -24,7 +13,8 @@ in {
   programs = {
     pi-coding-agent = {
       enable = true;
-      package = pi-coding-agent;
+      configDir = "${config.xdg.configHome}/pi/agent";
+      extraPackages = [pkgs.nodejs];
       settings = {
         defaultProvider = "xiaomi";
         defaultModel = "mimo-v2.5-pro";

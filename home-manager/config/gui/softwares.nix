@@ -63,7 +63,7 @@ in {
         # RSS reader
         folo
         # password management
-        bitwarden-desktop
+        bitwarden-cli
         # subnet penetration
         tailscale
         # online meeting
