@@ -384,6 +384,22 @@
         "type": "github"
       }
     },
+    "mattpocock-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781103704,
+        "narHash": "sha256-NGRKdnHSBKoR48zGotmJ3zGXnQ58ogudv8T4Va/2DSY=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "694fa30311e02c2639942308513555e61ee84a6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -734,6 +750,7 @@
         "agenix": "agenix",
         "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
+        "mattpocock-skills": "mattpocock-skills",
         "niri": "niri",
         "nix-darwin": "nix-darwin",
         "nix-ld": "nix-ld",
