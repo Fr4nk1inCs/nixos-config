@@ -3,7 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-{...}: {
+{ ... }: {
   imports = [
     ../../modules/system
     ../../modules/system/nixos.nix

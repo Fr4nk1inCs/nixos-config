@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     programs.agents = {
       context = lib.mkOption {
@@ -21,16 +22,14 @@
       };
 
       skills = lib.mkOption {
-        type =
-          lib.types.either (lib.types.attrsOf (
-            lib.types.oneOf [
-              lib.types.lines
-              lib.types.path
-              lib.types.str
-            ]
-          ))
-          lib.types.path;
-        default = {};
+        type = lib.types.either (lib.types.attrsOf (
+          lib.types.oneOf [
+            lib.types.lines
+            lib.types.path
+            lib.types.str
+          ]
+        )) lib.types.path;
+        default = { };
         description = ''
           Custom skills for coding agents.
 
@@ -55,31 +54,27 @@
     };
   };
 
-  config = let
-    cfg = config.programs.agents;
-    agents = [
-      "opencode"
-      "codex"
-      "claude-code"
-      "pi-coding-agent"
-    ];
-    checks = {
-      context = i: i != "";
-      skills = i: i != {};
+  config =
+    let
+      cfg = config.programs.agents;
+      agents = [
+        "opencode"
+        "codex"
+        "claude-code"
+        "pi-coding-agent"
+      ];
+      checks = {
+        context = i: i != "";
+        skills = i: i != { };
+      };
+      perAgentConfig = builtins.mapAttrs (name: check: lib.mkIf (check cfg.${name}) cfg.${name}) checks;
+    in
+    {
+      programs = builtins.listToAttrs (
+        map (agent: {
+          name = agent;
+          value = perAgentConfig;
+        }) agents
+      );
     };
-    perAgentConfig =
-      builtins.mapAttrs (
-        name: check: lib.mkIf (check cfg.${name}) cfg.${name}
-      )
-      checks;
-  in {
-    programs = builtins.listToAttrs (
-      map
-      (agent: {
-        name = agent;
-        value = perAgentConfig;
-      })
-      agents
-    );
-  };
 }

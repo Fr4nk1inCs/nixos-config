@@ -2,9 +2,11 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   package = config.profile.neovimPackage;
-in {
+in
+{
   imports = [
     inputs.nixCats.homeModule
   ];
@@ -20,6 +22,6 @@ in {
 
   nvim = {
     enable = true;
-    packageNames = [package];
+    packageNames = [ package ];
   };
 }

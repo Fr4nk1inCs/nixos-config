@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
-in {
+in
+{
   config.programs.vicinae = {
     inherit enable;
 

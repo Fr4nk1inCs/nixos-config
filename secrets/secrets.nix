@@ -10,7 +10,8 @@ let
     wsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDFChdda78yatiqDYUFcPwavnE47IwtrK55taQ2VPJCm";
   };
   allSystems = builtins.attrValues systems;
-in {
+in
+{
   "fr4nk1in-ed25519.age".publicKeys = allUsers;
   "whisk.age".publicKeys = allUsers;
   "wakatime-cfg.age".publicKeys = allUsers;

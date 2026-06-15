@@ -3,27 +3,28 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.programs.pi-coding-agent;
 
-  jsonFormat = pkgs.formats.json {};
+  jsonFormat = pkgs.formats.json { };
 
-  isStorePathString = content: builtins.isString content && lib.hasPrefix "${builtins.storeDir}/" content;
+  isStorePathString =
+    content: builtins.isString content && lib.hasPrefix "${builtins.storeDir}/" content;
   isPathLikeContent = content: lib.isPath content || isStorePathString content;
-in {
+in
+{
   options = {
     programs.pi-coding-agent = {
       skills = lib.mkOption {
-        type =
-          lib.types.either (lib.types.attrsOf (
-            lib.types.oneOf [
-              lib.types.lines
-              lib.types.path
-              lib.types.str
-            ]
-          ))
-          lib.types.path;
-        default = {};
+        type = lib.types.either (lib.types.attrsOf (
+          lib.types.oneOf [
+            lib.types.lines
+            lib.types.path
+            lib.types.str
+          ]
+        )) lib.types.path;
+        default = { };
         description = ''
           Custom skills for Opencode.
 
@@ -56,7 +57,7 @@ in {
             lib.types.str
           ]
         );
-        default = {};
+        default = { };
         description = ''
           Custom extensions for pi-coding-agent.
 
@@ -74,36 +75,38 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.file = let
-      prefix = cfg.configDir;
-      linkOrCreate = content:
-        if isPathLikeContent content
-        then {source = content;}
-        else if content != ""
-        then {text = content;}
-        else {enable = false;};
+    home.file =
+      let
+        prefix = cfg.configDir;
+        linkOrCreate =
+          content:
+          if isPathLikeContent content then
+            { source = content; }
+          else if content != "" then
+            { text = content; }
+          else
+            { enable = false; };
 
-      buildNamedDirectory = dirname: content: extension:
-        lib.mapAttrs' (
-          name: subitem:
-            lib.nameValuePair "${prefix}/${dirname}/${name}${extension}" (
-              linkOrCreate subitem
-            )
-        )
-        content;
+        buildNamedDirectory =
+          dirname: content: extension:
+          lib.mapAttrs' (
+            name: subitem: lib.nameValuePair "${prefix}/${dirname}/${name}${extension}" (linkOrCreate subitem)
+          ) content;
 
-      linkOrBuildNamedDirectory = dirname: content: extension:
-        if isPathLikeContent content
-        then {
-          "${prefix}/${dirname}" = {
-            source = content;
-            recursive = true;
-          };
-        }
-        else if builtins.isAttrs content
-        then buildNamedDirectory dirname content extension
-        else {};
-    in
+        linkOrBuildNamedDirectory =
+          dirname: content: extension:
+          if isPathLikeContent content then
+            {
+              "${prefix}/${dirname}" = {
+                source = content;
+                recursive = true;
+              };
+            }
+          else if builtins.isAttrs content then
+            buildNamedDirectory dirname content extension
+          else
+            { };
+      in
       linkOrBuildNamedDirectory "extensions" cfg.extensions ".ts"
       // linkOrBuildNamedDirectory "skills" cfg.skills ".md";
   };

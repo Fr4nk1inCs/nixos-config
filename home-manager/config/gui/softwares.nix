@@ -3,17 +3,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.profile.guiSoftwares) enable;
-  vscode-maybe-fhs =
-    if pkgs.stdenv.isLinux
-    then pkgs.vscode-fhs
-    else pkgs.vscode;
-  antigravity-maybe-fhs =
-    if pkgs.stdenv.isLinux
-    then pkgs.antigravity-fhs
-    else pkgs.antigravity;
-in {
+  vscode-maybe-fhs = if pkgs.stdenv.isLinux then pkgs.vscode-fhs else pkgs.vscode;
+  antigravity-maybe-fhs = if pkgs.stdenv.isLinux then pkgs.antigravity-fhs else pkgs.antigravity;
+in
+{
   imports = [
     ./modules/ideavim.nix
     ./modules/zen-browser.nix
@@ -21,70 +17,70 @@ in {
 
   config.home.packages = lib.optionals enable (
     with pkgs;
-      [
-        # instant messaging
-        ayugram-desktop
-        # remote code editing
-        vscode-maybe-fhs
-        antigravity-maybe-fhs
-        # file syncing
-        gdrive3
-        # image editing
-        inkscape
-        # academic research
-        zotero
-        # streaming
-        moonlight-qt
-      ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
-        # file syncing
-        onedrive
-        # screen capture
-        obs-studio
-        # video player
-        mpv
-        vlc
-        # note taking
-        obsidian
-        # knowledge base
-        appflowy
-        # document viewer
-        evince
-        zathura
-        # instant messaging
-        qq
-        wechat
-        # file explorer
-        nautilus
-        # system management
-        baobab # disk usage analyzer
-        # online meeting
-        wemeet
-        # RSS reader
-        folo
-        # password management
-        bitwarden-cli
-        # subnet penetration
-        tailscale
-        # online meeting
-        zoom-us
-        # teamspeak
-        teamspeak6-client
-      ]
-      ++ lib.optionals pkgs.stdenv.isDarwin [
-        # display management
-        betterdisplay
-        # app launcher
-        raycast
-        # menubar utility
-        # ice-bar
-        stats
-        # battery management
-        aldente
-        # pdf reader
-        skimpdf
-        # video player
-        iina
-      ]
+    [
+      # instant messaging
+      ayugram-desktop
+      # remote code editing
+      vscode-maybe-fhs
+      antigravity-maybe-fhs
+      # file syncing
+      gdrive3
+      # image editing
+      inkscape
+      # academic research
+      zotero
+      # streaming
+      moonlight-qt
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      # file syncing
+      onedrive
+      # screen capture
+      obs-studio
+      # video player
+      mpv
+      vlc
+      # note taking
+      obsidian
+      # knowledge base
+      appflowy
+      # document viewer
+      evince
+      zathura
+      # instant messaging
+      qq
+      wechat
+      # file explorer
+      nautilus
+      # system management
+      baobab # disk usage analyzer
+      # online meeting
+      wemeet
+      # RSS reader
+      folo
+      # password management
+      bitwarden-cli
+      # subnet penetration
+      tailscale
+      # online meeting
+      zoom-us
+      # teamspeak
+      teamspeak6-client
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
+      # display management
+      betterdisplay
+      # app launcher
+      raycast
+      # menubar utility
+      # ice-bar
+      stats
+      # battery management
+      aldente
+      # pdf reader
+      skimpdf
+      # video player
+      iina
+    ]
   );
 }

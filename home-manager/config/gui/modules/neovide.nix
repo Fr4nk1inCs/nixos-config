@@ -2,14 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.neovide = {
     inherit (config.profile.guiSoftwares) enable;
     settings = {
-      frame =
-        if pkgs.stdenv.isDarwin
-        then "transparent"
-        else "normal";
+      frame = if pkgs.stdenv.isDarwin then "transparent" else "normal";
       font = {
         features."Maple Mono NF CN" = [
           "+calt"

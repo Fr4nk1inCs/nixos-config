@@ -1,4 +1,5 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   ccstatuslineSettings = {
     version = 3;
     flexMode = "full";
@@ -11,43 +12,55 @@
     minimalistMode = true;
     powerline = {
       enabled = false;
-      separators = [""];
-      separatorInvertBackground = [false];
-      startCaps = [];
-      endCaps = [];
+      separators = [ "" ];
+      separatorInvertBackground = [ false ];
+      startCaps = [ ];
+      endCaps = [ ];
       autoAlign = false;
     };
-    lines = let
-      strFalse = "false";
-      strTrue = "true";
+    lines =
+      let
+        strFalse = "false";
+        strTrue = "true";
 
-      accentColor = "cyan";
-      dimmedColor = "brightBlack";
+        accentColor = "cyan";
+        dimmedColor = "brightBlack";
 
-      patchId = prefix: items:
-        lib.imap0 (i: item: item // {id = "${prefix}-${toString (i + 1)}";}) items;
+        patchId =
+          prefix: items: lib.imap0 (i: item: item // { id = "${prefix}-${toString (i + 1)}"; }) items;
 
-      andRaw = attrs: attrs // {rawValue = true;};
-      andDimmed = attrs: attrs // {color = dimmedColor;};
-      andAccent = attrs: attrs // {color = accentColor;};
-      andMetadata = attrs: metadata: attrs // {inherit metadata;};
+        andRaw = attrs: attrs // { rawValue = true; };
+        andDimmed = attrs: attrs // { color = dimmedColor; };
+        andAccent = attrs: attrs // { color = accentColor; };
+        andMetadata = attrs: metadata: attrs // { inherit metadata; };
 
-      mkTyped = type: {inherit type;};
-      mkCommon = type: type |> mkTyped |> andDimmed |> andRaw;
-      mkAccent = type: type |> mkTyped |> andAccent |> andRaw;
+        mkTyped = type: { inherit type; };
+        mkCommon =
+          type:
+          type
+          |> mkTyped
+          |> andDimmed
+          |> andRaw;
+        mkAccent =
+          type:
+          type
+          |> mkTyped
+          |> andAccent
+          |> andRaw;
 
-      mkCustomText = text:
-        andDimmed {
-          type = "custom-text";
-          customText = text;
+        mkCustomText =
+          text:
+          andDimmed {
+            type = "custom-text";
+            customText = text;
+          };
+
+        separator = {
+          type = "separator";
+          character = " · ";
         };
-
-      separator = {
-        type = "separator";
-        character = " · ";
-      };
-      flexSeparator = "flex-separator" |> mkTyped |> andDimmed;
-    in
+        flexSeparator = "flex-separator" |> mkTyped |> andDimmed;
+      in
       lib.imap0 (i: l: patchId "line${toString i}" l) [
         [
           {
@@ -84,15 +97,15 @@
             segments = "3";
           })
           separator
-          (andMetadata (mkCommon "git-branch") {hideNoGit = strFalse;})
-          (andMetadata (mkCommon "git-changes") {hideNoGit = strTrue;})
+          (andMetadata (mkCommon "git-branch") { hideNoGit = strFalse; })
+          (andMetadata (mkCommon "git-changes") { hideNoGit = strTrue; })
         ]
         [
-          (andMetadata (mkAccent "session-usage") {display = "slider";})
+          (andMetadata (mkAccent "session-usage") { display = "slider"; })
           (mkCustomText " ")
-          (andMetadata (mkCommon "reset-timer") {compact = strTrue;})
+          (andMetadata (mkCommon "reset-timer") { compact = strTrue; })
           separator
-          (andMetadata (mkAccent "weekly-usage") {display = "slider";})
+          (andMetadata (mkAccent "weekly-usage") { display = "slider"; })
           (mkCustomText " ")
           (andMetadata (mkCommon "weekly-reset-timer") {
             compact = strTrue;
@@ -101,7 +114,8 @@
         ]
       ];
   };
-in {
+in
+{
   programs.claude-code.ccstatusline = {
     enable = true;
     settings = ccstatuslineSettings;

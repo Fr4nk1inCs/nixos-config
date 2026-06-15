@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   imports = [
     ./status-bar.nix
     ./window-manager.nix

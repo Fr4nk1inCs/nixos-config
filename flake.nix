@@ -61,105 +61,111 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    ...
-  } @ inputs: let
-    user = "fr4nk1in";
-    mkPkgs = system:
-      import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          cudaSupport = system == "x86_64-linux";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      user = "fr4nk1in";
+      mkPkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+            cudaSupport = system == "x86_64-linux";
+          };
+          overlays = [
+            ((import ./modules/packages) inputs)
+            inputs.llm-agents.overlays.default
+          ];
         };
-        overlays = [
-          ((import ./modules/packages) inputs)
-          inputs.llm-agents.overlays.default
-        ];
+
+      mkHomeManagerConfig = profile: {
+        home-manager = {
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          backupFileExtension = "hm-backup";
+          users.${user} = _: {
+            imports = [
+              ./home-manager
+              profile
+            ];
+          };
+        };
       };
 
-    mkHomeManagerConfig = profile: {
-      home-manager = {
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        backupFileExtension = "hm-backup";
-        users.${user} = _: {
-          imports = [
-            ./home-manager
+      mkHomeConfig =
+        profile:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = mkPkgs "x86_64-linux";
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
             profile
           ];
         };
-      };
-    };
 
-    mkHomeConfig = profile:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = mkPkgs "x86_64-linux";
-        extraSpecialArgs = {
-          inherit inputs;
+      mkDarwinConfig =
+        config:
+        nix-darwin.lib.darwinSystem rec {
+          inherit (config) system;
+          pkgs = mkPkgs system;
+          modules = [
+            ./hosts/darwin
+
+            home-manager.darwinModules.home-manager
+            (mkHomeManagerConfig config.home-manager)
+          ];
         };
-        modules = [
-          profile
-        ];
-      };
 
-    mkDarwinConfig = config:
-      nix-darwin.lib.darwinSystem rec {
-        inherit (config) system;
-        pkgs = mkPkgs system;
-        modules = [
-          ./hosts/darwin
+      mkNixosConfig =
+        config:
+        nixpkgs.lib.nixosSystem {
+          pkgs = mkPkgs config.system;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            config.host
 
-          home-manager.darwinModules.home-manager
-          (mkHomeManagerConfig config.home-manager)
-        ];
-      };
-
-    mkNixosConfig = config:
-      nixpkgs.lib.nixosSystem
-      {
-        pkgs = mkPkgs config.system;
-        specialArgs = {
-          inherit inputs;
+            home-manager.nixosModules.home-manager
+            (mkHomeManagerConfig config.home-manager)
+          ];
         };
-        modules = [
-          config.host
-
-          home-manager.nixosModules.home-manager
-          (mkHomeManagerConfig config.home-manager)
-        ];
-      };
-  in {
-    homeConfigurations = {
-      # lab server
-      cmdline = mkHomeConfig ./home-manager/profiles/cmdline.nix;
-      test = mkHomeConfig ./home-manager/profiles/test.nix;
-    };
-
-    darwinConfigurations."fr4nk1in-macbook-air" = mkDarwinConfig {
-      system = "aarch64-darwin";
-      home-manager = ./home-manager/profiles/darwin.nix;
-    };
-
-    nixosConfigurations = {
-      wsl = mkNixosConfig {
-        system = "x86_64-linux";
-        host = ./hosts/wsl;
-        home-manager = ./home-manager/profiles/wsl.nix;
+    in
+    {
+      homeConfigurations = {
+        # lab server
+        cmdline = mkHomeConfig ./home-manager/profiles/cmdline.nix;
+        test = mkHomeConfig ./home-manager/profiles/test.nix;
       };
 
-      nixos-vm = mkNixosConfig {
-        system = "x86_64-linux";
-        host = ./hosts/nixos-vm;
-        home-manager = ./home-manager;
+      darwinConfigurations."fr4nk1in-macbook-air" = mkDarwinConfig {
+        system = "aarch64-darwin";
+        home-manager = ./home-manager/profiles/darwin.nix;
+      };
+
+      nixosConfigurations = {
+        wsl = mkNixosConfig {
+          system = "x86_64-linux";
+          host = ./hosts/wsl;
+          home-manager = ./home-manager/profiles/wsl.nix;
+        };
+
+        nixos-vm = mkNixosConfig {
+          system = "x86_64-linux";
+          host = ./hosts/nixos-vm;
+          home-manager = ./home-manager;
+        };
       };
     };
-  };
 }

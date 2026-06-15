@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isDarwin;
 
   aerospace = "${pkgs.aerospace}/bin/aerospace";
@@ -28,66 +29,68 @@
       red = "0xffbf616a";
     };
   };
-  scripts = let
-    colrm = "${pkgs.util-linux}/bin/colrm";
-  in rec {
-    currentWorkspaceTitle = pkgs.writeShellScript "current-workspace-title.sh" ''
-      CURRENT_WORKSPACE=$(${aerospace} list-workspaces --focused)
-      readarray -t FRONTAPPS < <(${aerospace} list-windows --workspace "$CURRENT_WORKSPACE" --format "(%{app-name}) %{window-title}")
+  scripts =
+    let
+      colrm = "${pkgs.util-linux}/bin/colrm";
+    in
+    rec {
+      currentWorkspaceTitle = pkgs.writeShellScript "current-workspace-title.sh" ''
+        CURRENT_WORKSPACE=$(${aerospace} list-workspaces --focused)
+        readarray -t FRONTAPPS < <(${aerospace} list-windows --workspace "$CURRENT_WORKSPACE" --format "(%{app-name}) %{window-title}")
 
-      # Trim the results if they are too long
-      for i in "''${!FRONTAPPS[@]}"; do
-        if [ ''${#FRONTAPPS[$i]} -gt 40 ]; then
-          FRONTAPPS[i]="$(echo "''${FRONTAPPS[i]}" | ${colrm} 41)…"
+        # Trim the results if they are too long
+        for i in "''${!FRONTAPPS[@]}"; do
+          if [ ''${#FRONTAPPS[$i]} -gt 40 ]; then
+            FRONTAPPS[i]="$(echo "''${FRONTAPPS[i]}" | ${colrm} 41)…"
+          fi
+        done
+
+        sketchybar --set spaceTitle label="''${FRONTAPPS[*]}"
+      '';
+
+      workspaceAppIcons = pkgs.writeShellScript "workspace-app-icons.sh" ''
+        APPNAMES=$(${aerospace} list-windows --workspace "$1" --format "%{app-name}")
+        source ${sketchybarAppFontNameToIcon}
+
+        APPICONS=""
+        for APP in $APPNAMES; do
+          __icon_map $APP
+          APPICONS="$APPICONS$icon_result"
+        done
+
+        echo "$APPICONS"
+      '';
+
+      onWorkspaceChange = pkgs.writeShellScript "sketchybar-on-workspace-change.sh" ''
+        if [ "$FOCUSED_WORKSPACE" = "" ] || [ "$PREV_WORKSPACE" = "" ]; then
+          exit 0
         fi
-      done
 
-      sketchybar --set spaceTitle label="''${FRONTAPPS[*]}"
-    '';
+        # set highlight
+        sketchybar --set "space.$FOCUSED_WORKSPACE" icon.drawing="on"
+        sketchybar --set "space.$FOCUSED_WORKSPACE" label.highlight="on"  icon.highlight="on"
+        sketchybar --set "space.$PREV_WORKSPACE"    label.highlight="off" icon.highlight="off"
 
-    workspaceAppIcons = pkgs.writeShellScript "workspace-app-icons.sh" ''
-      APPNAMES=$(${aerospace} list-windows --workspace "$1" --format "%{app-name}")
-      source ${sketchybarAppFontNameToIcon}
+        # set border
+        sketchybar --set "space.$FOCUSED_WORKSPACE" background.border_color="${colors.border}"
+        sketchybar --set "space.$PREV_WORKSPACE"    background.border_color="${colors.background.lighter}"
 
-      APPICONS=""
-      for APP in $APPNAMES; do
-        __icon_map $APP
-        APPICONS="$APPICONS$icon_result"
-      done
+        # set label
+        APPICONS=$(${scripts.workspaceAppIcons} $PREV_WORKSPACE)
+        if [ "$APPICONS" != "" ]; then
+          sketchybar --set "space.$PREV_WORKSPACE" label.drawing="on"
+          sketchybar --set "space.$PREV_WORKSPACE" label="$APPICONS"
+        else
+          sketchybar --set "space.$PREV_WORKSPACE" icon.drawing="off"
+        fi
+        sketchybar --set "space.$FOCUSED_WORKSPACE" label.drawing="off"
+      '';
 
-      echo "$APPICONS"
-    '';
-
-    onWorkspaceChange = pkgs.writeShellScript "sketchybar-on-workspace-change.sh" ''
-      if [ "$FOCUSED_WORKSPACE" = "" ] || [ "$PREV_WORKSPACE" = "" ]; then
-        exit 0
-      fi
-
-      # set highlight
-      sketchybar --set "space.$FOCUSED_WORKSPACE" icon.drawing="on"
-      sketchybar --set "space.$FOCUSED_WORKSPACE" label.highlight="on"  icon.highlight="on"
-      sketchybar --set "space.$PREV_WORKSPACE"    label.highlight="off" icon.highlight="off"
-
-      # set border
-      sketchybar --set "space.$FOCUSED_WORKSPACE" background.border_color="${colors.border}"
-      sketchybar --set "space.$PREV_WORKSPACE"    background.border_color="${colors.background.lighter}"
-
-      # set label
-      APPICONS=$(${scripts.workspaceAppIcons} $PREV_WORKSPACE)
-      if [ "$APPICONS" != "" ]; then
-        sketchybar --set "space.$PREV_WORKSPACE" label.drawing="on"
-        sketchybar --set "space.$PREV_WORKSPACE" label="$APPICONS"
-      else
-        sketchybar --set "space.$PREV_WORKSPACE" icon.drawing="off"
-      fi
-      sketchybar --set "space.$FOCUSED_WORKSPACE" label.drawing="off"
-    '';
-
-    sketchybarAppFontNameToIcon = "${pkgs.sketchybar-app-font}/bin/icon_map.sh";
-  };
+      sketchybarAppFontNameToIcon = "${pkgs.sketchybar-app-font}/bin/icon_map.sh";
+    };
 
   # Sketchybar configuration
-  events = ["aerospace_workspace_change"];
+  events = [ "aerospace_workspace_change" ];
 
   workspaces = map toString (lib.range 1 10);
 
@@ -162,83 +165,96 @@
     };
   };
 
-  configToSketchybarKvPairs = config:
-    lib.concatStringsSep " \\\n  "
-    (
-      lib.mapAttrsToList
-      (key: value: ''${key}="${toString value}"'')
-      config
+  configToSketchybarKvPairs =
+    config:
+    lib.concatStringsSep " \\\n  " (
+      lib.mapAttrsToList (key: value: ''${key}="${toString value}"'') config
     );
 
-  _mkItemRc = {
-    name,
-    config,
-    position,
-    subscriptions ? [],
-  }: let
-    setSubscriptions =
-      lib.optionalString (subscriptions != [])
-      "--subscribe ${name} ${lib.concatStringsSep " " subscriptions} \\\n  ";
-  in ''
-    sketchybar --add item ${name} ${position} \
-      ${setSubscriptions}--set ${name} \
-      ${configToSketchybarKvPairs config}
-  '';
-
-  _mkBracketRc = {
-    name,
-    matches ? [],
-    regex ? "",
-    config,
-  }: let
-    matchesStr =
-      if matches == []
-      then "'${regex}'"
-      else toString matches;
-  in ''
-    sketchybar --add bracket ${name} ${matchesStr} \
-      --set ${name} \
-      ${configToSketchybarKvPairs config}
-  '';
-
-  mkSketchybarRc = {
-    type ? "default",
-    config,
-    name ? "",
-    position ? "",
-    subscriptions ? [],
-    matches ? [],
-    regex ? "",
-  }:
-    if type == "item"
-    then
-      _mkItemRc {
-        inherit name config position subscriptions;
-      }
-    else if type == "bracket"
-    then
-      _mkBracketRc {
-        inherit name matches regex config;
-      }
-    else ''
-      sketchybar --${type} \
+  _mkItemRc =
+    {
+      name,
+      config,
+      position,
+      subscriptions ? [ ],
+    }:
+    let
+      setSubscriptions = lib.optionalString (
+        subscriptions != [ ]
+      ) "--subscribe ${name} ${lib.concatStringsSep " " subscriptions} \\\n  ";
+    in
+    ''
+      sketchybar --add item ${name} ${position} \
+        ${setSubscriptions}--set ${name} \
         ${configToSketchybarKvPairs config}
     '';
+
+  _mkBracketRc =
+    {
+      name,
+      matches ? [ ],
+      regex ? "",
+      config,
+    }:
+    let
+      matchesStr = if matches == [ ] then "'${regex}'" else toString matches;
+    in
+    ''
+      sketchybar --add bracket ${name} ${matchesStr} \
+        --set ${name} \
+        ${configToSketchybarKvPairs config}
+    '';
+
+  mkSketchybarRc =
+    {
+      type ? "default",
+      config,
+      name ? "",
+      position ? "",
+      subscriptions ? [ ],
+      matches ? [ ],
+      regex ? "",
+    }:
+    if type == "item" then
+      _mkItemRc {
+        inherit
+          name
+          config
+          position
+          subscriptions
+          ;
+      }
+    else if type == "bracket" then
+      _mkBracketRc {
+        inherit
+          name
+          matches
+          regex
+          config
+          ;
+      }
+    else
+      ''
+        sketchybar --${type} \
+          ${configToSketchybarKvPairs config}
+      '';
 
   eventsRc = lib.concatLines (map (event: "sketchybar --add event ${event}") events);
 
   workspacesRc = lib.concatStringsSep "\n\n" (
-    map (space:
+    map (
+      space:
       _mkItemRc {
         name = "space.${space}";
         config = mkWorkspaceConfig space;
         position = "left";
-      })
-    workspaces
+      }
+    ) workspaces
   );
-in {
+in
+{
   config = lib.mkIf enable {
-    home.packages = with pkgs; [sketchybar-app-font];
+    home.packages = with pkgs; [ sketchybar-app-font ];
     xdg.configFile."sketchybar/sketchybarrc" = {
       executable = true;
       text = ''
@@ -275,14 +291,14 @@ in {
           name = "spaceTitle";
           config = sketchybarConfig.spaceTitle;
           position = "left";
-          subscriptions = ["front_app_switched"];
+          subscriptions = [ "front_app_switched" ];
         }}
 
         ${mkSketchybarRc {
           type = "item";
           name = "__workspaceChangeHandler";
           config = sketchybarConfig.workspaceChangeHandler;
-          subscriptions = ["aerospace_workspace_change"];
+          subscriptions = [ "aerospace_workspace_change" ];
           position = "right";
         }}
 

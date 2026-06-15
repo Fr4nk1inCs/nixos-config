@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -11,7 +12,7 @@
 
   nix.gc = {
     automatic = true;
-    interval = lib.mkDefault {Weekday = 7;};
+    interval = lib.mkDefault { Weekday = 7; };
   };
 
   services.openssh = {

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.profile.guiSoftwares) enable;
-in {
+in
+{
   config.xdg.configFile."ideavim/ideavimrc" = lib.optionalAttrs enable {
     text = ''
       let mapleader=' '

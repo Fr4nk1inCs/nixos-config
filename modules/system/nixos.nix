@@ -4,9 +4,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   username = "fr4nk1in";
-in {
+in
+{
   imports = [
     inputs.niri.nixosModules.niri
     inputs.nix-ld.nixosModules.nix-ld
@@ -19,7 +21,11 @@ in {
 
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "networkmanager"];
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+    ];
   };
 
   # networkmanager
@@ -52,10 +58,21 @@ in {
     ];
     fontconfig = {
       defaultFonts = {
-        sansSerif = ["SF Pro" "PingFang SC" "MiSans VF"];
-        serif = ["New York" "Songti SC" "Source Han Serif SC"];
-        monospace = ["Maple Mono NF CN"];
-        emoji = ["Apple Color Emoji" "Noto Color Emoji"];
+        sansSerif = [
+          "SF Pro"
+          "PingFang SC"
+          "MiSans VF"
+        ];
+        serif = [
+          "New York"
+          "Songti SC"
+          "Source Han Serif SC"
+        ];
+        monospace = [ "Maple Mono NF CN" ];
+        emoji = [
+          "Apple Color Emoji"
+          "Noto Color Emoji"
+        ];
       };
       localConf = ''
         <match target="font">
@@ -77,7 +94,7 @@ in {
     # OpenSSH
     openssh = {
       enable = true;
-      ports = [2222];
+      ports = [ 2222 ];
       settings = {
         PermitRootLogin = "prohibit-password";
         PasswordAuthentication = false;
@@ -86,7 +103,7 @@ in {
 
     xserver = {
       enable = true;
-      videoDrivers = ["nvidia"];
+      videoDrivers = [ "nvidia" ];
     };
 
     # Proxy provider
@@ -111,7 +128,10 @@ in {
     libnvidia-container
   ];
 
-  environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
 
   # Container runtimes
   virtualisation = {

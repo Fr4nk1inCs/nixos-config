@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
   barCfg = config.profile.windowManager.bar;
   scheme = config.stylix.base16Scheme;
@@ -24,12 +25,16 @@
 
     ${builtins.readFile ./style.css}
   '';
-in {
+in
+{
   stylix.targets.waybar.enable = false;
-  home.packages = lib.optionals enable (with pkgs; [
-    pavucontrol
-    networkmanagerapplet
-  ]);
+  home.packages = lib.optionals enable (
+    with pkgs;
+    [
+      pavucontrol
+      networkmanagerapplet
+    ]
+  );
 
   programs.waybar = {
     inherit enable style;
@@ -41,21 +46,25 @@ in {
         spacing = 0;
         margin = "5 5 0 5";
 
-        modules-left = ["niri/workspaces" "niri/window"];
-        modules-center = ["clock"];
+        modules-left = [
+          "niri/workspaces"
+          "niri/window"
+        ];
+        modules-center = [ "clock" ];
         modules-right =
-          if barCfg.backlight.enable
-          then [
-            "group/systray"
-            "group/audio"
-            "group/brightness"
-            "group/hardware"
-          ]
-          else [
-            "group/systray"
-            "group/audio"
-            "group/hardware"
-          ];
+          if barCfg.backlight.enable then
+            [
+              "group/systray"
+              "group/audio"
+              "group/brightness"
+              "group/hardware"
+            ]
+          else
+            [
+              "group/systray"
+              "group/audio"
+              "group/hardware"
+            ];
 
         "niri/window" = {
           icon = true;
@@ -64,7 +73,11 @@ in {
 
         "group/systray" = {
           orientation = "inherit";
-          modules = ["tray" "network" "bluetooth"]; # TODO: add notification
+          modules = [
+            "tray"
+            "network"
+            "bluetooth"
+          ]; # TODO: add notification
         };
         tray = {
           icon-size = 14;
@@ -75,7 +88,13 @@ in {
           format-wifi = "{icon}";
           format-ethernet = "󰈀";
           format-disconnected = "󰤫";
-          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           tooltip = true;
           tooltip-format = "{ifname} {ipaddr}/{cidr} 󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}";
           tooltip-format-wifi = "{ifname} {ipaddr}/{cidr} {essid}({signalStrength}%) 󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}";
@@ -105,7 +124,10 @@ in {
 
         "group/audio" = {
           orientation = "inherit";
-          modules = ["pulseaudio" "pulseaudio/slider"];
+          modules = [
+            "pulseaudio"
+            "pulseaudio/slider"
+          ];
           drawer = {
             transition-duration = 200;
             children-class = "not-audio";
@@ -124,7 +146,11 @@ in {
             phone = "󰄜";
             portable = "󰏲";
             car = "󰄋";
-            default = ["󰕿" "󰖀" "󰕾"];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           tooltip = true;
           tooltip-format = "Device: {desc}\nVolume: {volume}%";
@@ -138,7 +164,10 @@ in {
 
         "group/brightness" = {
           orientation = "inherit";
-          modules = ["backlight" "backlight/slider"];
+          modules = [
+            "backlight"
+            "backlight/slider"
+          ];
           drawer = {
             transition-duration = 200;
             children-class = "not-brightness";
@@ -148,7 +177,18 @@ in {
         backlight = {
           device = "intel_backlight";
           format = "{icon} {percent}%";
-          format-icons = ["󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩒" "󱩔" "󱩔" "󱩖" "󰛨"];
+          format-icons = [
+            "󱩎"
+            "󱩏"
+            "󱩐"
+            "󱩑"
+            "󱩒"
+            "󱩒"
+            "󱩔"
+            "󱩔"
+            "󱩖"
+            "󰛨"
+          ];
         };
         "backlight/slider" = {
           device = "intel_backlight";
@@ -161,7 +201,10 @@ in {
           orientation = "inherit";
           modules =
             (lib.optional barCfg.battery.enable "battery")
-            ++ ["cpu" "memory"]
+            ++ [
+              "cpu"
+              "memory"
+            ]
             ++ (lib.optional barCfg.temperature.enable "temperature");
           drawer = {
             transition-duration = 200;
@@ -178,7 +221,18 @@ in {
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           format-plugged = "󰂄 {capacity}%";
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
         };
         cpu = {
           format = "{icon} {usage}%";
@@ -188,7 +242,16 @@ in {
         };
         memory = {
           format = "{icon} {used:0.1f}G";
-          format-icons = ["󰪞" "󰪟" "󰪠" "󰪡" "󰪢" "󰪣" "󰪤" "󰪥"];
+          format-icons = [
+            "󰪞"
+            "󰪟"
+            "󰪠"
+            "󰪡"
+            "󰪢"
+            "󰪣"
+            "󰪤"
+            "󰪥"
+          ];
           interval = 2;
           tooltip = true;
           tooltip-format = ''
@@ -199,7 +262,13 @@ in {
           critical-threshold = 70;
           interval = 2;
           format = "{icon} {temp}°C";
-          format-icons = ["󰜗" "󱃃" "󰔏" "󱃂" "󱗗"];
+          format-icons = [
+            "󰜗"
+            "󱃃"
+            "󰔏"
+            "󱃂"
+            "󱗗"
+          ];
         };
 
         clock = {

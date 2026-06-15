@@ -3,10 +3,12 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   enable = pkgs.stdenv.isDarwin && config.profile.windowManager.enable;
   spoons = "hammerspoon/Spoons";
-in {
+in
+{
   config.xdg.configFile = lib.mkIf enable {
     "hammerspoon/init.lua".text = lib.mkAfter (builtins.readFile ./paperwm.lua);
 

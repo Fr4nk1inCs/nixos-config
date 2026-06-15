@@ -3,10 +3,12 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (pkgs.stdenv.hostPlatform) system;
   HOME = config.home.homeDirectory;
-in {
+in
+{
   imports = [
     inputs.agenix.homeManagerModules.default
   ];

@@ -3,7 +3,8 @@
   lib,
   stdenvNoCC,
   fetchzip,
-}: let
+}:
+let
   types = {
     opentype = {
       inDir = "otf";
@@ -32,12 +33,13 @@
     };
   };
 
-  misans = {
-    typename,
-    inDir,
-    outDir,
-    extension,
-  }:
+  misans =
+    {
+      typename,
+      inDir,
+      outDir,
+      extension,
+    }:
     stdenvNoCC.mkDerivation {
       pname = "misans-${typename}";
       version = "4.009"; # from font metadata
@@ -69,15 +71,11 @@
       };
     };
 
-  combinedFonts =
-    lib.concatMapAttrs (
-      typename: typeInfo: {
-        "${typename}" = misans {
-          inherit typename;
-          inherit (typeInfo) inDir outDir extension;
-        };
-      }
-    )
-    types;
+  combinedFonts = lib.concatMapAttrs (typename: typeInfo: {
+    "${typename}" = misans {
+      inherit typename;
+      inherit (typeInfo) inDir outDir extension;
+    };
+  }) types;
 in
-  combinedFonts
+combinedFonts

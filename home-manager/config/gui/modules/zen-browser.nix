@@ -3,9 +3,11 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   enable = config.profile.guiSoftwares.enable && pkgs.stdenv.isLinux;
-in {
+in
+{
   imports = [
     inputs.zen-browser.homeModules.default
   ];

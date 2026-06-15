@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   stylix = lib.mkIf pkgs.stdenv.isLinux {
     image = ./assets/rick-4k.png;
 
@@ -30,7 +31,7 @@
     icons = {
       enable = true;
       package = pkgs.whitesur-icon-theme.override {
-        themeVariants = ["nord"];
+        themeVariants = [ "nord" ];
       };
       dark = "WhiteSur-nord-dark";
       light = "WhiteSur-nord-light";

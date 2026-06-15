@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # Default user
   users.users = {
     fr4nk1in = {
@@ -11,10 +12,14 @@
   };
 
   nix.settings = {
-    trusted-users = ["fr4nk1in"];
+    trusted-users = [ "fr4nk1in" ];
 
     # Enable flakes globally
-    experimental-features = ["nix-command" "flakes" "pipe-operators"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
 
     # Cache mirror located in China
     substituters = [

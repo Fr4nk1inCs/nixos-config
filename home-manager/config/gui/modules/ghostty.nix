@@ -3,18 +3,14 @@
   pkgs,
   lib,
   ...
-}: let
-  mod =
-    if pkgs.stdenv.isDarwin
-    then "cmd"
-    else "ctrl+shift";
-in {
+}:
+let
+  mod = if pkgs.stdenv.isDarwin then "cmd" else "ctrl+shift";
+in
+{
   config.programs.ghostty = {
     inherit (config.profile.guiSoftwares) enable;
-    package =
-      if pkgs.stdenv.isDarwin
-      then pkgs.ghostty-bin
-      else pkgs.ghostty;
+    package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
 
     settings = {
       # font-family = "Maple Mono NF CN";
@@ -52,7 +48,12 @@ in {
       quick-terminal-autohide = true;
       quick-terminal-space-behavior = "move";
 
-      shell-integration-features = ["cursor" "sudo" "title" "ssh-terminfo"];
+      shell-integration-features = [
+        "cursor"
+        "sudo"
+        "title"
+        "ssh-terminfo"
+      ];
 
       macos-titlebar-style = "tabs";
       macos-titlebar-proxy-icon = "hidden";
@@ -62,7 +63,11 @@ in {
       gtk-titlebar-style = "tabs";
       gtk-titlebar-hide-when-maximized = true;
 
-      bell-features = ["system" "no-audio" "no-attention"];
+      bell-features = [
+        "system"
+        "no-audio"
+        "no-attention"
+      ];
 
       keybind = [
         "ctrl+enter=new_split:auto"

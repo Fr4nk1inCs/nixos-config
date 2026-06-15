@@ -2,12 +2,11 @@
   config,
   pkgs,
   ...
-}: let
-  renderFrontend =
-    if pkgs.stdenv.isDarwin
-    then "WebGpu"
-    else "OpenGL";
-in {
+}:
+let
+  renderFrontend = if pkgs.stdenv.isDarwin then "WebGpu" else "OpenGL";
+in
+{
   config.programs.wezterm = {
     inherit (config.profile.guiSoftwares) enable;
     extraConfig = ''

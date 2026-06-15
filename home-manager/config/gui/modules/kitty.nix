@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.profile.guiSoftwares) enable;
-in {
+in
+{
   config.programs.kitty = {
     inherit enable;
     shellIntegration.enableZshIntegration = true;

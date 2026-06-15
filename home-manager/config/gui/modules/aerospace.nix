@@ -4,16 +4,18 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   enable = config.profile.windowManager.enable && pkgs.stdenv.isDarwin;
   triggerSketchybarEvent = pkgs.writeShellScript "aerospace-trigger-workspace-change.sh" ''
     ${pkgs.sketchybar}/bin/sketchybar --trigger aerospace_workspace_change \
         FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE \
         PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE
   '';
-in {
+in
+{
   config = lib.mkIf enable {
-    home.packages = [pkgs.aerospace];
+    home.packages = [ pkgs.aerospace ];
     xdg.configFile."aerospace/aerospace.toml" = {
       text = inputs.nix-std.lib.serde.toTOML {
         start-at-login = false;
@@ -30,8 +32,8 @@ in {
 
         key-mapping.preset = "qwerty";
 
-        on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
-        on-focus-changed = ["move-mouse window-lazy-center"];
+        on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+        on-focus-changed = [ "move-mouse window-lazy-center" ];
 
         exec-on-workspace-change = [
           (toString triggerSketchybarEvent)
@@ -102,13 +104,31 @@ in {
             alt-r = "mode resize";
           };
           command.binding = {
-            esc = ["reload-config" "mode main"];
-            r = ["flatten-workspace-tree" "mode main"];
+            esc = [
+              "reload-config"
+              "mode main"
+            ];
+            r = [
+              "flatten-workspace-tree"
+              "mode main"
+            ];
 
-            h = ["join-with left" "mode main"];
-            j = ["join-with down" "mode main"];
-            k = ["join-with up" "mode main"];
-            l = ["join-with right" "mode main"];
+            h = [
+              "join-with left"
+              "mode main"
+            ];
+            j = [
+              "join-with down"
+              "mode main"
+            ];
+            k = [
+              "join-with up"
+              "mode main"
+            ];
+            l = [
+              "join-with right"
+              "mode main"
+            ];
           };
           resize.binding = {
             esc = "mode main";
@@ -121,31 +141,31 @@ in {
         on-window-detected = [
           {
             "if".app-id = "com.apple.mail";
-            run = ["move-node-to-workspace 8"];
+            run = [ "move-node-to-workspace 8" ];
           }
           {
             "if".app-id = "com.tdesktop.Telegram";
-            run = ["move-node-to-workspace 8"];
+            run = [ "move-node-to-workspace 8" ];
           }
           {
             "if".app-id = "com.tencent.qq";
-            run = ["move-node-to-workspace 8"];
+            run = [ "move-node-to-workspace 8" ];
           }
           {
             "if".app-id = "com.tencent.xinWeChat";
-            run = ["move-node-to-workspace 8"];
+            run = [ "move-node-to-workspace 8" ];
           }
           {
             "if".app-id = "com.alibaba.DingTalkMac";
-            run = ["move-node-to-workspace 8"];
+            run = [ "move-node-to-workspace 8" ];
           }
           {
             "if".app-id = "com.spotify.client";
-            run = ["move-node-to-workspace 7"];
+            run = [ "move-node-to-workspace 7" ];
           }
           {
             "if".app-id = "com.apple.Music";
-            run = ["move-node-to-workspace 7"];
+            run = [ "move-node-to-workspace 7" ];
           }
         ];
         workspace-to-monitor-force-assignment = {

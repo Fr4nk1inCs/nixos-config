@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   stylix = lib.mkIf pkgs.stdenv.isDarwin {
     targets.font-packages.enable = false;
     fonts = {

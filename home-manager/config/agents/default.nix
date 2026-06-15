@@ -4,7 +4,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./options.nix
     ./plugins
@@ -16,7 +17,7 @@
     pi-coding-agent = {
       enable = true;
       configDir = "${config.xdg.configHome}/pi/agent";
-      extraPackages = [pkgs.nodejs];
+      extraPackages = [ pkgs.nodejs ];
       settings = {
         defaultProvider = "xiaomi";
         defaultModel = "mimo-v2.5-pro";
@@ -53,26 +54,27 @@
     agents = {
       context = ./AGENTS.md;
 
-      skills = let
-        subpath2attr = path: {
-          name = lib.last (lib.splitString "/" path);
-          value = path;
-        };
-        MattPocockSkillPath = subpath: "${inputs.mattpocock-skills}/skills/${subpath}";
-        MattPocockSkills = builtins.mapAttrs (_: MattPocockSkillPath) (
-          builtins.listToAttrs (
-            map subpath2attr [
-              "productivity/grill-me"
-              "productivity/teach"
-              "productivity/handoff"
-              "engineering/grill-with-docs"
-              "engineering/tdd"
-              "engineering/to-issues"
-              "engineering/to-prd"
-            ]
-          )
-        );
-      in
+      skills =
+        let
+          subpath2attr = path: {
+            name = lib.last (lib.splitString "/" path);
+            value = path;
+          };
+          MattPocockSkillPath = subpath: "${inputs.mattpocock-skills}/skills/${subpath}";
+          MattPocockSkills = builtins.mapAttrs (_: MattPocockSkillPath) (
+            builtins.listToAttrs (
+              map subpath2attr [
+                "productivity/grill-me"
+                "productivity/teach"
+                "productivity/handoff"
+                "engineering/grill-with-docs"
+                "engineering/tdd"
+                "engineering/to-issues"
+                "engineering/to-prd"
+              ]
+            )
+          );
+        in
         {
           hunk-review = "${inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk}/skills/hunk-review";
         }

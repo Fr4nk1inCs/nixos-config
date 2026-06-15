@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   config.wayland.windowManager.hyprland = {
     enable = config.profile.windowManager.enable && pkgs.stdenv.isLinux;
     xwayland.enable = true;
@@ -70,7 +71,10 @@
         shadow_range = 5;
         shadow_rander_power = 2;
         shadow_ignore_window = true;
-        shadow_offset = [0 0];
+        shadow_offset = [
+          0
+          0
+        ];
         shadow_scale = 1.0;
 
         # dim

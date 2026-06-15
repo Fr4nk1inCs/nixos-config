@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   home.shellAliases = {
     ":q" = "exit";
   };
@@ -72,18 +73,17 @@
         ZVM_VI_HIGHLIGHT_BACKGROUND = "#434c5e";
       };
 
-      initContent =
-        ''
-          setopt interactivecomments
-          bindkey -v
-          bindkey -M vicmd v edit-command-line
+      initContent = ''
+        setopt interactivecomments
+        bindkey -v
+        bindkey -M vicmd v edit-command-line
 
-          # fix fzf-tab configuration
-          zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
-        ''
-        + lib.optionalString (pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin) ''
-          eval "$(/opt/homebrew/bin/brew shellenv)"
-        '';
+        # fix fzf-tab configuration
+        zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
+      ''
+      + lib.optionalString (pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin) ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      '';
     };
 
     starship = {

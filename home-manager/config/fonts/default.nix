@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = [
     pkgs.fonts.misans.variable # sans-serif
     pkgs.source-han-serif # serif
@@ -15,10 +15,21 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = ["SF Pro" "PingFang SC" "MiSans VF"];
-      serif = ["New York" "Songti SC" "Source Han Serif SC"];
-      monospace = ["Maple Mono NF CN"];
-      emoji = ["Apple Color Emoji" "Noto Color Emoji"];
+      sansSerif = [
+        "SF Pro"
+        "PingFang SC"
+        "MiSans VF"
+      ];
+      serif = [
+        "New York"
+        "Songti SC"
+        "Source Han Serif SC"
+      ];
+      monospace = [ "Maple Mono NF CN" ];
+      emoji = [
+        "Apple Color Emoji"
+        "Noto Color Emoji"
+      ];
     };
   };
 

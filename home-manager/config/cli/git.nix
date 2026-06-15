@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   imports = [
     inputs.hunk.homeManagerModules.default
   ];
@@ -41,7 +41,7 @@
           nerdFontsVersion = "3";
         };
 
-        git.pagers = [{pager = "hunk pager";}];
+        git.pagers = [ { pager = "hunk pager"; } ];
         git.parseEmoji = true;
       };
     };

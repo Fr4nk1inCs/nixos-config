@@ -3,11 +3,15 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options = {
     profile = {
       neovimPackage = lib.mkOption {
-        type = lib.types.enum ["nvim" "minivim"];
+        type = lib.types.enum [
+          "nvim"
+          "minivim"
+        ];
         default = "nvim";
         description = "The Neovim package to use";
       };
@@ -18,13 +22,19 @@
         enable = lib.mkEnableOption "Enable window manager configuration";
 
         modKey = lib.mkOption {
-          type = lib.types.enum ["Super" "Alt"];
+          type = lib.types.enum [
+            "Super"
+            "Alt"
+          ];
           default = "Super";
           description = "The modifier key for the window manager";
         };
 
         nestedModKey = lib.mkOption {
-          type = lib.types.enum ["Super" "Alt"];
+          type = lib.types.enum [
+            "Super"
+            "Alt"
+          ];
           default = "Alt";
           description = "The modifier key for nested window manager applications";
         };
@@ -46,9 +56,7 @@
   config = {
     home = {
       homeDirectory = lib.mkForce (
-        if pkgs.stdenv.isDarwin
-        then "/Users/${config.home.username}"
-        else "/home/${config.home.username}"
+        if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}"
       );
 
       # This value determines the Home Manager release that your
@@ -65,6 +73,8 @@
     };
 
     # Let Home Manager install and manage itself.
-    programs = {home-manager.enable = true;};
+    programs = {
+      home-manager.enable = true;
+    };
   };
 }
