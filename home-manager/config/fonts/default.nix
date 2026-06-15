@@ -1,15 +1,15 @@
 { pkgs, ... }: {
   home.packages = [
-    pkgs.fonts.misans.variable # sans-serif
+    pkgs.misans.variable # sans-serif
     pkgs.source-han-serif # serif
     pkgs.maple-mono.NF-CN # monospace
     pkgs.noto-fonts-color-emoji # emoji
 
     # document writing
-    pkgs.libertinus # math
-    pkgs.fonts.fandol
+    pkgs.libertinus
+    pkgs.fandol-fonts
     pkgs.fira
-    pkgs.fonts.fira-math
+    pkgs.fira-math
   ];
 
   fonts.fontconfig = {
