@@ -1,7 +1,10 @@
-{config, ...}: {
-  config.programs = {
+{inputs, ...}: {
+  imports = [
+    inputs.hunk.homeManagerModules.default
+  ];
+
+  programs = {
     gh.enable = true;
-    # glab.enable = true;
 
     git = {
       enable = true;
@@ -15,17 +18,16 @@
       };
     };
 
-    delta = {
+    hunk = {
       enable = true;
       enableGitIntegration = true;
-      options = {
-        navigate = true;
-        light = config.stylix.polarity == "light";
-        side-by-side = false;
-        # line numbers
-        line-numbers = true;
-        line-numbers-minus-style = "red";
-        line-numbers-plus-style = "green";
+      settings = {
+        theme = "catppuccin-latte";
+        mode = "auto";
+        line_numbers = true;
+        watch = true;
+        wrap_lines = true;
+        agent_notes = true;
       };
     };
 
@@ -39,7 +41,7 @@
           nerdFontsVersion = "3";
         };
 
-        git.pagers = [{pager = "delta --paging=never";}];
+        git.pagers = [{pager = "hunk pager";}];
         git.parseEmoji = true;
       };
     };

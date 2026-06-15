@@ -58,9 +58,8 @@
           name = lib.last (lib.splitString "/" path);
           value = path;
         };
-        MattPocockSkills = subpath: "${inputs.mattpocock-skills}/skills/${subpath}";
-      in
-        builtins.mapAttrs (_: MattPocockSkills) (
+        MattPocockSkillPath = subpath: "${inputs.mattpocock-skills}/skills/${subpath}";
+        MattPocockSkills = builtins.mapAttrs (_: MattPocockSkillPath) (
           builtins.listToAttrs (
             map subpath2attr [
               "productivity/grill-me"
@@ -73,6 +72,11 @@
             ]
           )
         );
+      in
+        {
+          hunk-review = "${inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk}/skills/hunk-review";
+        }
+        // MattPocockSkills;
     };
   };
 }
