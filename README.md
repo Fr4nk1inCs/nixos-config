@@ -2,6 +2,9 @@
 
 My personal configurations for all Nix-based systems (NixOS, Linux distributions with multi-user `nix` installed and `nix-darwin`).
 
+> [!NOTE]
+> Active development happens on `main`, which uses a [flake-parts](https://flake.parts) dendritic layout. The pre-refactor history is preserved on the locked, read-only `master` branch.
+
 ## Nix-Darwin
 
 Quick start:
