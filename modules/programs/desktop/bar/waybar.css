@@ -1,0 +1,119 @@
+/* Fonts */
+window {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+tooltip,
+tooltip label,
+#clock,
+#workspaces,
+#window,
+#systray,
+#audio,
+#brightness,
+#hardware,
+#powermenu {
+	background-color: var(--bg-panel);
+	color: var(--fg);
+
+	margin: 0px 0px 0px 5px;
+	padding: 0px 5px 0px 5px;
+
+	border: none;
+	border-radius: 8px;
+}
+
+label.module {
+	padding: 0px 3px 0px 3px;
+}
+
+#tray {
+	padding: 0px 3px 0px 3px;
+}
+
+#network {
+	padding: 0px 5px 0px 5px;
+}
+
+#workspaces {
+	padding: 0;
+}
+
+#workspaces button {
+	padding: 0px 5px 0px 5px;
+	border-radius: 8px;
+}
+
+#workspaces button.active {
+	color: var(--blue);
+}
+
+#workspaces button:hover {
+	background-color: var(--sel);
+}
+
+#pulseaudio-slider,
+#backlight-slider {
+	min-height: 0px;
+}
+
+#pulseaudio-slider slider,
+#backlight-slider slider {
+	min-height: 0px;
+	min-width: 0px;
+}
+
+#pulseaudio-slider trough,
+#backlight-slider trough {
+	background-color: var(--trough);
+	min-width: 40px;
+	min-height: 2px;
+}
+
+#pulseaudio-slider highlight,
+#backlight-slider highlight {
+	background-color: var(--cyan);
+	min-width: 10px;
+	min-height: 2px;
+}
+
+#battery.warning {
+	color: var(--orange);
+}
+
+#battery.critical {
+	color: var(--red);
+}
+
+#battery.charging {
+	color: var(--green);
+}
+
+#battery.plugged {
+	color: var(--green);
+}
+
+#temperature.critical {
+	color: var(--red);
+}
+
+#powermenu {
+	background-color: var(--red-panel);
+	padding: 0;
+}
+
+#custom-poweroff,
+#custom-reboot,
+#custom-lock,
+#custom-logout {
+	padding: 1px 10px 0px 9px;
+	font-size: 14px;
+	border-radius: 8px;
+}
+
+#custom-poweroff:hover,
+#custom-reboot:hover,
+#custom-lock:hover,
+#custom-logout:hover {
+	background-color: var(--red-hover);
+}
