@@ -127,6 +127,17 @@
               }
             ];
 
+            layer-rules = [
+              {
+                matches = [
+                  { namespace = "waybar"; }
+                ];
+
+                opacity = 0.99;
+              }
+
+            ];
+
             binds =
               with config.lib.niri.actions;
               let
