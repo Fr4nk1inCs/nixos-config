@@ -31,6 +31,8 @@
           };
 
           layer_shell.enabled = true;
+
+          consider_preedit = true;
         };
       };
     };
