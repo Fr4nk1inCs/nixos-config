@@ -1,10 +1,8 @@
-/* Fonts */
 window {
-	background-color: rgba(0, 0, 0, 0);
+	background: transparent;
 }
 
 tooltip,
-tooltip label,
 #clock,
 #workspaces,
 #window,
@@ -21,6 +19,11 @@ tooltip label,
 
 	border: none;
 	border-radius: 8px;
+}
+
+tooltip label {
+	background: transparent;
+	color: var(--fg);
 }
 
 label.module {
@@ -95,25 +98,4 @@ label.module {
 
 #temperature.critical {
 	color: var(--red);
-}
-
-#powermenu {
-	background-color: var(--red-panel);
-	padding: 0;
-}
-
-#custom-poweroff,
-#custom-reboot,
-#custom-lock,
-#custom-logout {
-	padding: 1px 10px 0px 9px;
-	font-size: 14px;
-	border-radius: 8px;
-}
-
-#custom-poweroff:hover,
-#custom-reboot:hover,
-#custom-lock:hover,
-#custom-logout:hover {
-	background-color: var(--red-hover);
 }
