@@ -71,6 +71,15 @@ in
               path = "${config.programs.pi-coding-agent.configDir}/auth.json";
               symlink = false;
             };
+            pi-mlsys-provider = lib.optionalAttrs config.programs.pi-coding-agent.enable {
+              file = self.lib.getAgeSource "pi-mlsys-provider.age";
+              path = "${config.programs.pi-coding-agent.configDir}/extensions/mlsys-provider.ts";
+            };
+          };
+
+          programs.pi-coding-agent.settings = {
+            defaultProvider = lib.mkForce "ustc-mlsys-openai";
+            defaultModel = lib.mkForce "gpt-5.5";
           };
         };
     }
