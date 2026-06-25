@@ -1,8 +1,8 @@
 {
   flake.modules.darwin.desktop = { pkgs, ... }: {
     system.defaults.dock = {
-      orientation = "left";
-      autohide = false;
+      orientation = "bottom";
+      autohide = true;
       mru-spaces = false;
       persistent-apps = [
         "/System/Applications/Apps.app"
