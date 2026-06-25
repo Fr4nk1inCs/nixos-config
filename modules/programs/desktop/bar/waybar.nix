@@ -8,7 +8,7 @@
     }:
     let
       barCfg = self.windowManager.bar;
-      scheme = config.stylix.base16Scheme;
+      scheme = config.lib.stylix.colors;
 
       # Base palette, pulled straight from the active base16 scheme.
       colors = {
