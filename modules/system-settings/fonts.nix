@@ -42,9 +42,16 @@
       };
     };
 
-    darwin.fonts = {
+    darwin.fonts = { pkgs, ... }: {
       homebrew.casks = [
         "font-sf-pro"
+      ];
+
+      fonts.packages = with pkgs; [
+        harmonyos-sans
+        lxgw-neozhisong-plus
+        maple-mono.NF-CN
+        libertinus
       ];
     };
 
@@ -79,7 +86,6 @@
           ];
           serif = lib.mkBefore [
             "Libertinus Serif Display"
-            "Songti SC"
           ];
         };
       };
