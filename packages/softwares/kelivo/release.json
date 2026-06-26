@@ -1,0 +1,10 @@
+{
+	"version": "1.1.17",
+	"sha256Hashes": {
+		"aarch64-darwin-release": "sha256-200cO2Re5QnZWUQ47X5crLwQ7RSU/P7oUpiLswDOpLg=",
+		"source": "sha256-vCXZsZDwRu9v1uHWjpg8kcrTQgHu80Bnek5Mzl+ncH4="
+	},
+	"releaseFilenames": {
+		"aarch64-darwin": "Kelivo_macos_1.1.17+61.dmg"
+	}
+}

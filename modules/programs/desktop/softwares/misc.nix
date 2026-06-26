@@ -8,6 +8,7 @@
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
     home.packages = [
+      pkgs.kelivo
       pkgs.inkscape
       pkgs.moonlight-qt
     ]
