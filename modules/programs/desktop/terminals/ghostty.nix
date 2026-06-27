@@ -40,6 +40,8 @@
 
             window-vsync = true;
             window-padding-balance = true;
+            window-decoration = if pkgs.stdenv.isDarwin then "auto" else "none";
+            macos-titlebar-style = "hidden";
 
             clipboard-read = "allow";
             clipboard-write = "allow";
@@ -58,13 +60,9 @@
               "ssh-terminfo"
             ];
 
-            macos-titlebar-style = "tabs";
-            macos-titlebar-proxy-icon = "hidden";
             macos-option-as-alt = true;
 
             gtk-single-instance = true;
-            gtk-titlebar-style = "tabs";
-            gtk-titlebar-hide-when-maximized = true;
 
             bell-features = [
               "system"
