@@ -72,7 +72,6 @@
           tldr
           wakatime-cli
 
-          herdr
         ];
 
         shellAliases = {
