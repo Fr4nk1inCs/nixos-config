@@ -16,7 +16,11 @@
           theme = "light";
           defaultThinkingLevel = "high";
           packages = [
-            "npm:@ff-labs/pi-fff"
+            "npm:@juicesharp/rpiv-todo"
+            "npm:@juicesharp/rpiv-ask-user-question"
+            "npm:@juicesharp/rpiv-btw"
+            "npm:@gotgenes/pi-subagents"
+            "git:github.com/code-yeongyu/pi-openai-web-search"
           ];
         };
         extensions = {
