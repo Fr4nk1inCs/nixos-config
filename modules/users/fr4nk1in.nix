@@ -67,9 +67,7 @@ in
               };
             pi-auth = lib.optionalAttrs config.programs.pi-coding-agent.enable {
               file = self.lib.getAgeSource "pi-auth.age";
-              mode = "0600";
               path = "${config.programs.pi-coding-agent.configDir}/auth.json";
-              symlink = false;
             };
             pi-mlsys-provider = lib.optionalAttrs config.programs.pi-coding-agent.enable {
               file = self.lib.getAgeSource "pi-mlsys-provider.age";
