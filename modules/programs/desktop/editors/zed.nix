@@ -12,7 +12,6 @@
     }:
     {
       stylix.targets.zed.fonts.override = {
-        sansSerif = config.stylix.fonts.monospace;
         sizes = lib.optionalAttrs pkgs.stdenv.isDarwin {
           applications = config.stylix.fonts.sizes.applications * 3.0 / 4.0;
           terminal = config.stylix.fonts.sizes.terminal * 3.0 / 4.0;
@@ -191,7 +190,6 @@
 
             title_bar.show_branch_status_icon = true;
 
-            ui_font_features = fontFeatures;
             buffer_font_features = fontFeatures;
 
             wrap_guides = [
