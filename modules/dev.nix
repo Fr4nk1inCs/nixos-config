@@ -54,6 +54,7 @@
           ps: with ps; [
             pydantic
             requests
+            tyro
           ]
         ))
       ];

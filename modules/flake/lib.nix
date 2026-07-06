@@ -140,6 +140,7 @@
               toFontSettings ff ""
             )
           );
+        toCssString = ff: lib.concatStringsSep ", " (toFontSettings ff "\"");
       };
     };
   };
