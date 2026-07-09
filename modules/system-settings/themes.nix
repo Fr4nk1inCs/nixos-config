@@ -43,7 +43,7 @@ let
       base00 = "#e5e9f0";
       base01 = "#c2d0e7";
       base02 = "#b8c5db";
-      base03 = "#aebacf";
+      base03 = "#7b8aa3";
       base04 = "#60728c";
       base05 = "#2e3440";
       base06 = "#3b4252";
