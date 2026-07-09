@@ -43,6 +43,7 @@
 
         fzf = {
           enable = true;
+          historyWidget.command = "";
           defaultOptions = [
             "--height=~100%"
           ];

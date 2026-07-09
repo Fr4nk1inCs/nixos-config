@@ -86,6 +86,9 @@
 
             initContent = ''
               setopt interactivecomments
+
+              autoload -U edit-command-line
+              zle -N edit-command-line
               bindkey -v
               bindkey -M vicmd v edit-command-line
 
