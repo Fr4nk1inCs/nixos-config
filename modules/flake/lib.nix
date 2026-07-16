@@ -24,7 +24,7 @@
           };
           overlays = [
             (import ../../packages)
-            inputs.llm-agents.overlays.default
+            inputs.llm-agents.overlays.shared-nixpkgs
           ];
         };
 

@@ -13,7 +13,6 @@ vscode-utils.buildVscodeMarketplaceExtension (
       "aarch64-linux" = "linux-arm64";
       "x86_64-darwin" = "darwin-x64";
       "aarch64-darwin" = "darwin-arm64";
-
     };
     versionData = lib.importJSON ./pyrefly.json;
     platforms = lib.mapAttrsToList (platform: _: platform) versionData.hashes;
