@@ -15,7 +15,12 @@
     };
 
     homeManager.cli =
-      { config, lib, ... }:
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
       let
         inherit (config.lib.stylix) colors;
         hex = name: colors.withHashtag.${name};
@@ -113,6 +118,7 @@
 
           hunk = {
             enable = true;
+            package = pkgs.llm-agents.hunk;
             enableGitIntegration = true;
             settings = {
               theme = "custom";

@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   ...
 }:
 {
@@ -11,8 +10,8 @@
         configDir = "${config.xdg.configHome}/pi/agent";
         extraPackages = [ pkgs.nodejs ];
         settings = {
-          defaultProvider = "xiaomi";
-          defaultModel = "mimo-v2.5-pro";
+          defaultProvider = "ustc-mlsys-openai";
+          defaultModel = "gpt-5.6-sol";
           theme = "light";
           defaultThinkingLevel = "high";
           packages = [
@@ -25,6 +24,32 @@
         };
         extensions = {
           footer = ./assets/pi-coding-agent/footer.ts;
+        };
+      };
+
+      codex = {
+        enable = true;
+        settings = {
+          model = "gpt-5.6-sol";
+          model_reasoning_effort = "high";
+          disable_response_storage = true;
+          network_access = "enabled";
+          approvals_reviewer = "auto_review";
+
+          tui = {
+            status_line = [
+              "model-with-reasoning"
+              "current-dir"
+              "git-branch"
+              "branch-changes"
+              "context-used"
+              "used-tokens"
+              "total-input-tokens"
+              "total-output-tokens"
+            ];
+            status_line_use_colors = false;
+            theme = "base16-256";
+          };
         };
       };
 
@@ -52,31 +77,27 @@
 
         skills =
           let
-            subpath2attr = path: {
-              name = lib.last (lib.splitString "/" path);
-              value = path;
+            skills = pkgs.stdenvNoCC.mkDerivation {
+              name = "skills";
+              src = inputs.mattpocock-skills;
+              buildInputs = with pkgs; [ findutils ];
+
+              installPhase = ''
+                runHook preInstall
+
+                mkdir -p $out/skills
+                find $src/skills/productivity $src/skills/engineering \
+                  -mindepth 1 \
+                  -maxdepth 1 \
+                  -type d \
+                  -exec cp -r {} $out/skills \;
+                cp -r ${pkgs.llm-agents.hunk}/skills/hunk-review $out/skills
+
+                runHook postInstall
+              '';
             };
-            MattPocockSkillPath = subpath: "${inputs.mattpocock-skills}/skills/${subpath}";
-            MattPocockSkills = builtins.mapAttrs (_: MattPocockSkillPath) (
-              builtins.listToAttrs (
-                map subpath2attr [
-                  "productivity/grill-me"
-                  "productivity/teach"
-                  "productivity/handoff"
-                  "engineering/grill-with-docs"
-                  "engineering/tdd"
-                  "engineering/to-issues"
-                  "engineering/to-prd"
-                ]
-              )
-            );
           in
-          {
-            hunk-review = "${
-              inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
-            }/skills/hunk-review";
-          }
-          // MattPocockSkills;
+          "${skills}/skills";
       };
     };
   };
