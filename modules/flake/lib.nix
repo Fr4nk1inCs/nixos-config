@@ -15,8 +15,8 @@
   config = {
     flake.lib = rec {
       mkPkgs =
-        system:
-        import inputs.nixpkgs {
+        system: pkgs:
+        import pkgs {
           inherit system;
           config = {
             allowUnfree = true;
@@ -29,8 +29,8 @@
         };
 
       mkNixOs = system: name: {
-        ${name} = inputs.nixpkgs.lib.nixosSystem {
-          pkgs = mkPkgs system;
+        ${name} = inputs.nixos-pkgs.lib.nixosSystem {
+          pkgs = mkPkgs system inputs.nixos-pkgs;
           modules = [
             inputs.self.modules.nixos.${name}
           ];
@@ -39,7 +39,7 @@
 
       mkDarwin = system: name: {
         ${name} = inputs.nix-darwin.lib.darwinSystem {
-          pkgs = mkPkgs system;
+          pkgs = mkPkgs system inputs.darwin-pkgs;
           modules = [
             inputs.self.modules.darwin.${name}
           ];
@@ -48,7 +48,7 @@
 
       mkHomeManager = system: name: {
         ${name} = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = mkPkgs system;
+          pkgs = mkPkgs system inputs.pkgs-unstable;
           modules = [
             inputs.self.modules.homeManager.${name}
           ];
