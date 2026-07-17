@@ -43,7 +43,7 @@
 
               If a path is used, it is expected to contain one folder per skill
               name, each containing a {file}`SKILL.md`. The directory is symlinked
-              to {file}`$HOME/.pi/agent/skills/`.
+              into the `skills/` subdirectory of `programs.pi-coding-agent.configDir`.
 
               See <https://pi.dev/docs/latest/skills> for more details.
             '';
@@ -65,8 +65,9 @@
               - Inline content as a string (creates `extensions/<name>.ts`)
               - A path to a file (creates `extensions/<name>.ts`)
 
-              The configured extensions are written to
-              {file}`$HOME/.pi/agent/extensions/` with one file per extension.
+              The configured extensions are written to the `extensions/`
+              subdirectory of `programs.pi-coding-agent.configDir` with one file
+              per extension.
 
               See <https://pi.dev/docs/latest/extensions> for more details.
             '';
