@@ -103,18 +103,18 @@
               (andMetadata (mkCommon "git-branch") { hideNoGit = strFalse; })
               (andMetadata (mkCommon "git-changes") { hideNoGit = strTrue; })
             ]
-            [
-              (andMetadata (mkAccent "session-usage") { display = "slider"; })
-              (mkCustomText " ")
-              (andMetadata (mkCommon "reset-timer") { compact = strTrue; })
-              separator
-              (andMetadata (mkAccent "weekly-usage") { display = "slider"; })
-              (mkCustomText " ")
-              (andMetadata (mkCommon "weekly-reset-timer") {
-                compact = strTrue;
-                hours = strTrue;
-              })
-            ]
+            # [
+            #   (andMetadata (mkAccent "session-usage") { display = "slider"; })
+            #   (mkCustomText " ")
+            #   (andMetadata (mkCommon "reset-timer") { compact = strTrue; })
+            #   separator
+            #   (andMetadata (mkAccent "weekly-usage") { display = "slider"; })
+            #   (mkCustomText " ")
+            #   (andMetadata (mkCommon "weekly-reset-timer") {
+            #     compact = strTrue;
+            #     hours = strTrue;
+            #   })
+            # ]
           ];
       };
     in
