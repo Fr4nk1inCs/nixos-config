@@ -20,6 +20,14 @@
           '';
           runtimeInputs = with pkgs; [ python3 ];
         };
+
+        kimiScript = pkgs.writeShellApplication {
+          name = "kimi-herdr-agent-state";
+          text = ''
+            bash '${herdrIntegrationAssets}/kimi/herdr-agent-state.sh' "''${1}"
+          '';
+          runtimeInputs = with pkgs; [ python3 ];
+        };
       in
       {
         herdr = {
@@ -65,6 +73,27 @@
             matcher = "*";
           }
         ];
+
+        kimi-code.settings.hooks =
+          let
+            script = lib.getExe kimiScript;
+            mkHerdrHook = event: mode: {
+              inherit event;
+              command = "${script} ${mode}";
+              timeout = 10;
+            };
+          in
+          [
+            (mkHerdrHook "SessionStart" "session")
+            (mkHerdrHook "UserPromptSubmit" "working")
+            (mkHerdrHook "PreToolUse" "working")
+            (mkHerdrHook "SubagentStart" "working")
+            (mkHerdrHook "PreCompact" "working")
+            (mkHerdrHook "PermissionRequest" "blocked")
+            (mkHerdrHook "PermissionResult" "working")
+            (mkHerdrHook "Stop" "idle")
+            (mkHerdrHook "Interrupt" "idle")
+          ];
       };
   };
 }

@@ -64,6 +64,7 @@
             "codex"
             "claude-code"
             "pi-coding-agent"
+            "kimi-code"
           ];
           checks = {
             context = i: i != "";
