@@ -188,7 +188,7 @@
                   -maxdepth 1 \
                   -type d \
                   -exec cp -r {} $out/skills \;
-                cp -r ${pkgs.llm-agents.hunk}/skills/hunk-review $out/skills
+                cp -r ${pkgs.hunk}/skills/hunk-review $out/skills
 
                 runHook postInstall
               '';

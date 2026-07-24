@@ -118,7 +118,7 @@
 
           hunk = {
             enable = true;
-            package = pkgs.llm-agents.hunk;
+            package = pkgs.hunk;
             enableGitIntegration = true;
             settings = {
               theme = "custom";
