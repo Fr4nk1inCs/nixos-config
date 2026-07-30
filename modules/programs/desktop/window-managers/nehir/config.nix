@@ -100,10 +100,10 @@
         workspaces =
           (map (_: {
             monitor = "main";
-          }) (lib.range 1 5))
+          }) (lib.range 1 4))
           ++ (map (_: {
             monitor = "secondary";
-          }) (lib.range 6 9));
+          }) (lib.range 5 9));
 
         hotkeys =
           let
