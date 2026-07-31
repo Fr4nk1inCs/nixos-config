@@ -116,22 +116,42 @@
             };
 
             general = {
-              developerModeEnabled = mkBooleanOption false;
+              dockShieldEnabled = mkBooleanOption false;
+              dockShieldOpacity = mkFloatOption 1.0;
+              dockShieldColorHex = mkStringOption "#1F1F1F";
+              dockShieldColorDarkHex = mkStringOption "";
+
               hotkeysEnabled = mkBooleanOption true;
               ipcEnabled = mkBooleanOption false;
               preventSleepEnabled = mkBooleanOption false;
+              ignoreMonitorIdentity = mkBooleanOption false;
+
+              developerModeEnabled = mkBooleanOption false;
+
+              backgroundTraceMaxBytes = mkIntegerOption (64 * 1024 * 1024);
+              backgroundTraceRetentionSeconds = mkFloatOption 0.0;
+
+              debugBarEnabled = mkBooleanOption true;
+              debugTraceExportCopiesFile = mkBooleanOption false;
+
+              viewportTraceVerbosity = mkEnumOption [
+                "standard"
+                "lean"
+                "verbose"
+              ] "standard";
             };
 
             gestures = {
               fingerCount = mkIntegerOption 3;
               invertDirection = mkBooleanOption false;
-              mouseResizeModifierKey = mkEnumOption modKeys "option";
+              overrideModifier = mkEnumOption modKeys "option";
               scrollEnabled = mkBooleanOption false;
               scrollModifierKey = mkEnumOption [ "controlShift" "optionShift" ] "optionShift";
               scrollSensitivity = mkFloatOption 5.0;
             };
 
             mouseWarp = {
+              enabled = mkBooleanOption false;
               axis = mkEnumOption [ "horizontal" "vertical" ] "horizontal";
               margin = mkIntegerOption 1;
               monitorOrder = mkListOption lib.types.str [ ];
@@ -141,12 +161,11 @@
               balancedColumnCount = mkIntegerOption 2;
               columnWidthPresets = mkListOption lib.types.float [ 0.5 ];
               infiniteLoop = mkBooleanOption false;
-              revealPartial = mkEnumOption [
-                "none"
-                "default"
-                "snapClosest"
-                "snapCenter"
-              ] "default";
+              revealStyle = mkEnumOption [
+                "auto"
+                "closest"
+                "center"
+              ] "auto";
             };
 
             statusBar = {
@@ -170,7 +189,9 @@
               reserveLayoutSpace = mkBooleanOption false;
               showFloatingWindows = mkBooleanOption true;
               showLabels = mkBooleanOption false;
+              showScrollLockButton = mkBooleanOption false;
               showTraceButton = mkBooleanOption false;
+              showWorkspacesFromOtherDisplays = mkBooleanOption false;
               windowLevel = mkEnumOption [
                 "normal"
                 "floating"

@@ -9,7 +9,7 @@
       ];
 
       casks = [
-        "guria/tap/nehir"
+        "guria/tap/nehir@rc"
       ];
     };
   };
@@ -46,19 +46,21 @@
             };
 
             general = {
+              dockShieldEnabled = true;
               hotkeysEnabled = true;
               ipcEnabled = true;
             };
 
             gestures = {
               fingerCount = 3;
-              mouseResizeModifierKey = "option";
+              overrideModifier = "option";
               invertDirection = true;
               scrollEnabled = true;
               scrollModifierKey = "optionShift";
             };
 
             mouseWarp = {
+              enabled = true;
               axis = "horizontal";
               margin = 1;
               # `monitorOrder` is handled by host
@@ -71,7 +73,7 @@
                 0.66
               ];
               infiniteLoop = true;
-              revealPartial = "default";
+              revealStyle = "auto";
             };
 
             workspaceBar = {
@@ -86,7 +88,9 @@
               reserveLayoutSpace = false;
               showFloatingWindows = true;
               showLabels = true;
+              showScrollLockButton = true;
               showTraceButton = false;
+              showWorkspacesFromOtherDisplays = true;
               windowLevel = "status";
               xOffset = 0.0;
               yOffset = -10.0;
