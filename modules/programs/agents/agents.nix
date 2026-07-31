@@ -83,7 +83,7 @@
             };
           in
           {
-            default_model = "kimi-code/k3";
+            default_model = "kimi-code/k3-256k";
             default_permission_mode = "yolo";
             thinking = {
               enabled = true;
@@ -102,6 +102,26 @@
 
             models = {
               "kimi-code/k3" = {
+                provider = "managed:kimi-code";
+                model = "k3-256k";
+                max_context_size = 262144;
+                capabilities = [
+                  "thinking"
+                  "always_thinking"
+                  "image_in"
+                  "video_in"
+                  "tool_use"
+                ];
+                display_name = "K3-256k";
+                support_efforts = [
+                  "low"
+                  "high"
+                  "max"
+                ];
+                default_effort = "high";
+              };
+
+              "kimi-code/k3-256k" = {
                 provider = "managed:kimi-code";
                 model = "k3";
                 max_context_size = 1048576;
