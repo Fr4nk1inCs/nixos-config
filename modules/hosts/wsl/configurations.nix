@@ -58,7 +58,8 @@
         ExecStart = lib.mkForce ''
           ${nvidia-ctk} cdi generate \
           --output=/var/run/cdi/nvidia-container-toolkit.json \
-          --nvidia-cdi-hook-path=${nvidia-cdi-hook}
+          --nvidia-cdi-hook-path=${nvidia-cdi-hook} \
+          --library-search-path=/usr/lib/wsl/lib
         '';
       };
 
