@@ -61,12 +61,6 @@
       inputs.nixpkgs.follows = "pkgs-unstable";
     };
 
-    # Other --------------------------------------------------------------------
-    mattpocock-skills = {
-      url = "github:mattpocock/skills";
-      flake = false;
-    };
-
     # Development Tools --------------------------------------------------------
     git-hooks = {
       url = "github:cachix/git-hooks.nix";

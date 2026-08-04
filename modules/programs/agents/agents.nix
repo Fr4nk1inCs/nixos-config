@@ -1,8 +1,4 @@
-{
-  inputs,
-  ...
-}:
-{
+_: {
   flake.modules.homeManager.agents = { config, pkgs, ... }: {
     programs = {
       pi-coding-agent = {
@@ -192,29 +188,9 @@
       agents = {
         context = ./assets/AGENTS.md;
 
-        skills =
-          let
-            skills = pkgs.stdenvNoCC.mkDerivation {
-              name = "skills";
-              src = inputs.mattpocock-skills;
-              buildInputs = with pkgs; [ findutils ];
-
-              installPhase = ''
-                runHook preInstall
-
-                mkdir -p $out/skills
-                find $src/skills/productivity $src/skills/engineering \
-                  -mindepth 1 \
-                  -maxdepth 1 \
-                  -type d \
-                  -exec cp -r {} $out/skills \;
-                cp -r ${pkgs.hunk}/skills/hunk-review $out/skills
-
-                runHook postInstall
-              '';
-            };
-          in
-          "${skills}/skills";
+        skills = {
+          hunk-review = "${pkgs.hunk}/share/hunk/skills/hunk-review";
+        };
       };
     };
   };
