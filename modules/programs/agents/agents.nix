@@ -80,7 +80,7 @@ _: {
           in
           {
             default_model = "kimi-code/k3-256k";
-            default_permission_mode = "yolo";
+            default_permission_mode = "auto";
             thinking = {
               enabled = true;
               effort = "max";
