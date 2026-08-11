@@ -37,7 +37,7 @@
             focus = {
               followsMouse = true;
               followsWindowToMonitor = true;
-              moveMouseToFocusedWindow = true;
+              moveMouseToFocusedWindow = false;
             };
 
             gaps = {
