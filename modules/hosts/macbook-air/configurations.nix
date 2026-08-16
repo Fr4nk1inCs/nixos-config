@@ -3,6 +3,7 @@
     imports = with inputs.self.modules.darwin; [
       system-desktop
       nvidia
+      gaming
     ];
 
     networking.computerName = "Fr4nk1in's MacBook Air";
