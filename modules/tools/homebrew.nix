@@ -7,12 +7,20 @@
       HOMEBREW_API_DOMAIN = "https://mirrors.ustc.edu.cn/homebrew-bottles/api";
     };
 
+    programs.mas = {
+      enable = true;
+      cleanup = true;
+    };
+
     homebrew = {
       enable = true;
       onActivation = {
         cleanup = "zap";
         autoUpdate = true;
         upgrade = true;
+      };
+      masApps = {
+        TestFlight = 899247664;
       };
     };
   };
