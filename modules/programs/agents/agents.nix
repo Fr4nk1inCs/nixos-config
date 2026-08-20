@@ -6,8 +6,8 @@ _: {
         configDir = "${config.xdg.configHome}/pi/agent";
         extraPackages = [ pkgs.nodejs ];
         settings = {
-          defaultProvider = "ustc-mlsys-openai";
-          defaultModel = "gpt-5.6-sol";
+          defaultProvider = "kimi-coding";
+          defaultModel = "k3-256k";
           theme = "light";
           defaultThinkingLevel = "high";
           packages = [

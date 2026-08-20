@@ -90,11 +90,6 @@ in
                 path = "${codexConfigDir}/mlsys.config.toml";
               };
             };
-
-          programs.pi-coding-agent.settings = {
-            defaultProvider = lib.mkForce "ustc-mlsys-openai";
-            defaultModel = lib.mkForce "gpt-5.5";
-          };
         };
     }
   ];
