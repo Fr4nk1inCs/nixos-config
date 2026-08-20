@@ -114,4 +114,4 @@ let
     };
   };
 in
-if stdenvNoCC.isDarwin then darwin else sourceBuild
+if stdenvNoCC.hostPlatform.isDarwin then darwin else sourceBuild

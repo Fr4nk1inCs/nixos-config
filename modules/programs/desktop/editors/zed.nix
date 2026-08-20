@@ -12,7 +12,7 @@
     }:
     {
       stylix.targets.zed.fonts.override = {
-        sizes = lib.optionalAttrs pkgs.stdenv.isDarwin {
+        sizes = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           applications = config.stylix.fonts.sizes.applications * 3.0 / 4.0;
           terminal = config.stylix.fonts.sizes.terminal * 3.0 / 4.0;
         };
@@ -20,7 +20,9 @@
 
       programs.zed-editor = {
         enable = true;
-        package = with pkgs; if stdenv.isLinux then zed-editor-fhs else zed-editor;
+        package =
+          with pkgs;
+          if stdenv.hostPlatform.isLinux then zed-editor-fhs else zed-editor;
 
         installRemoteServer = true;
 

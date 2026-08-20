@@ -12,7 +12,7 @@
       pkgs.inkscape
       pkgs.moonlight-qt
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.teamspeak6-client
     ];
   };

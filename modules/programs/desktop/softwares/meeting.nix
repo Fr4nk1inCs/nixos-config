@@ -4,7 +4,7 @@
   };
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    home.packages = lib.optionals pkgs.stdenv.isLinux [
+    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.wemeet
     ];
   };

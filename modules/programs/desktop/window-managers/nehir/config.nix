@@ -22,7 +22,7 @@
       ...
     }:
     {
-      programs.nehir = lib.optionalAttrs pkgs.stdenv.isDarwin {
+      programs.nehir = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
         enable = true;
 
         settings =

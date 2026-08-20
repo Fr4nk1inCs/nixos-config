@@ -12,7 +12,7 @@
     home.packages = [
       pkgs.ayugram-desktop
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux (
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux (
       with pkgs;
       [
         feishu

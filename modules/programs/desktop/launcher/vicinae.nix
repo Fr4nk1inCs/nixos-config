@@ -11,7 +11,7 @@
         sansSerif = config.stylix.fonts.monospace;
 
       };
-      programs.vicinae = lib.optionalAttrs pkgs.stdenv.isLinux {
+      programs.vicinae = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         enable = true;
         systemd.enable = true;
 

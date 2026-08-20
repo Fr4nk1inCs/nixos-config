@@ -60,7 +60,7 @@
     {
       stylix.targets.waybar.enable = false;
 
-      home.packages = lib.optionals pkgs.stdenv.isLinux (
+      home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
         with pkgs;
         [
           pavucontrol
@@ -68,7 +68,7 @@
         ]
       );
 
-      programs.waybar = lib.optionalAttrs pkgs.stdenv.isLinux {
+      programs.waybar = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         enable = true;
         inherit style;
         settings = {

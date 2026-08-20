@@ -95,9 +95,12 @@
               # fix fzf-tab configuration
               zstyle ':fzf-tab:*' fzf-flags ''${(z)FZF_DEFAULT_OPTS}
             ''
-            + lib.optionalString (pkgs.stdenv.isAarch64 && pkgs.stdenv.isDarwin) ''
-              eval "$(/opt/homebrew/bin/brew shellenv)"
-            '';
+            +
+              lib.optionalString
+                (pkgs.stdenv.hostPlatform.isAarch64 && pkgs.stdenv.hostPlatform.isDarwin)
+                ''
+                  eval "$(/opt/homebrew/bin/brew shellenv)"
+                '';
 
           };
 

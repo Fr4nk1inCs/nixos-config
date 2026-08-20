@@ -13,7 +13,7 @@
 
       # TODO: Spaces
       programs.zen-browser = {
-        enable = pkgs.stdenv.isLinux;
+        enable = pkgs.stdenv.hostPlatform.isLinux;
         setAsDefaultBrowser = true;
 
         policies =

@@ -13,16 +13,16 @@
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
     home.packages =
-      lib.optionals pkgs.stdenv.isLinux [
+      lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         pkgs.baobab
       ]
-      ++ lib.optionals pkgs.stdenv.isDarwin [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
         pkgs.betterdisplay
         pkgs.aldente
       ];
 
     stylix = {
-      targets.gtk.enable = pkgs.stdenv.isLinux;
+      targets.gtk.enable = pkgs.stdenv.hostPlatform.isLinux;
 
       image = self.lib.getAsset "rick-4k.png";
 
@@ -32,7 +32,7 @@
         terminal = 0.8;
       };
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       cursor = {
         name = "WhiteSur-cursors";
         package = pkgs.whitesur-cursors;

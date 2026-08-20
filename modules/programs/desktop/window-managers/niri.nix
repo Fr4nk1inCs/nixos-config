@@ -24,7 +24,7 @@
       ...
     }:
     {
-      home.packages = lib.optionals pkgs.stdenv.isLinux (
+      home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
         with pkgs;
         [
           blueman
@@ -33,7 +33,7 @@
         ]
       );
 
-      programs = lib.optionalAttrs pkgs.stdenv.isLinux {
+      programs = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         niri = {
           settings = {
             screenshot-path = "${config.xdg.userDirs.pictures}/Screenshots/screenshot-%Y-%m-%d-%H%M%S.png";

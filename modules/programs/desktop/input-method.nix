@@ -10,7 +10,7 @@
   };
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    i18n.inputMethod = lib.optionalAttrs pkgs.stdenv.isLinux {
+    i18n.inputMethod = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       type = "fcitx5";
       enable = true;
       fcitx5 = {
@@ -33,7 +33,7 @@
       let
         yamlFormat = pkgs.formats.yaml { };
       in
-      lib.optionalAttrs pkgs.stdenv.isLinux {
+      lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         "fcitx5/rime/default.custom.yaml".source =
           yamlFormat.generate "default.custom.yaml"
             {

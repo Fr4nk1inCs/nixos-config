@@ -8,14 +8,16 @@
     }:
     {
       stylix.targets.vscode.fonts.override = {
-        sizes = lib.optionalAttrs pkgs.stdenv.isDarwin {
+        sizes = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           terminal = config.stylix.fonts.sizes.terminal * 3.0 / 4.0;
         };
       };
 
       programs.vscode = {
         enable = true;
-        package = with pkgs; (if stdenv.isLinux then vscode-fhs else vscode);
+        package =
+          with pkgs;
+          (if stdenv.hostPlatform.isLinux then vscode-fhs else vscode);
 
         profiles.default = {
           enableExtensionUpdateCheck = false;

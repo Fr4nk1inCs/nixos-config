@@ -3,7 +3,8 @@
     { pkgs, lib, ... }:
     let
       inherit (self.lib.fontFeatures) toKeyValues;
-      renderFrontend = if pkgs.stdenv.isDarwin then "WebGpu" else "OpenGL";
+      renderFrontend =
+        if pkgs.stdenv.hostPlatform.isDarwin then "WebGpu" else "OpenGL";
       fontFeatures = self.constants.fontFeatures.maple-mono;
       fontFeaturesLiterals = map (s: ''"${s}"'') (toKeyValues fontFeatures);
       fontFeaturesLuaInner = lib.concatStringsSep ", " fontFeaturesLiterals;

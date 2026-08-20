@@ -4,7 +4,7 @@
       pkgs.zotero
       pkgs.zathura
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [ pkgs.evince ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [ pkgs.skimpdf ];
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.evince ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.skimpdf ];
   };
 }

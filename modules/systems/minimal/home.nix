@@ -8,7 +8,7 @@ _: {
     {
       home = {
         homeDirectory =
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             "/Users/${config.home.username}"
           else
             "/home/${config.home.username}";

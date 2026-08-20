@@ -27,6 +27,6 @@
   };
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    home.packages = lib.optional pkgs.stdenv.isDarwin pkgs.stats;
+    home.packages = lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.stats;
   };
 }

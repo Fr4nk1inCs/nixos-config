@@ -11,7 +11,7 @@
         pkgs.kelivo
       ];
 
-      targets = lib.optionalAttrs pkgs.stdenv.isDarwin {
+      targets = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
         darwin.defaults."com.psyche.kelivo" = {
           "flutter.user_name" = config.home.username;
           "flutter.avatar_type" = "url";

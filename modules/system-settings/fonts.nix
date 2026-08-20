@@ -62,7 +62,7 @@
         pkgs.maple-mono.NF-CN
         pkgs.libertinus
       ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         pkgs.noto-fonts-color-emoji
         pkgs.fandol-fonts
       ];
@@ -74,11 +74,11 @@
           serif = [ "LXGW Neo ZhiSong Plus" ];
           monospace = [ "Maple Mono NF CN" ];
         }
-        // lib.optionalAttrs pkgs.stdenv.isLinux {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
           emoji = [ "Noto Color Emoji" ];
           serif = lib.mkBefore [ "Libertinus Serif Display" ];
         }
-        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           emoji = [ "Apple Color Emoji" ];
           sansSerif = lib.mkBefore [
             "SF Pro"
@@ -100,7 +100,7 @@
             package = pkgs.maple-mono.NF-CN;
           };
         }
-        // lib.optionalAttrs pkgs.stdenv.isLinux {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
           sansSerif = {
             name = "HarmonyOS Sans SC";
             package = pkgs.harmonyos-sans;
@@ -114,7 +114,7 @@
             package = pkgs.noto-fonts-color-emoji;
           };
         }
-        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           sansSerif = {
             name = "SF Pro";
             package = pkgs.maple-mono.NF-CN;

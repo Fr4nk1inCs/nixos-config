@@ -10,7 +10,7 @@
     home.packages = [
       pkgs.gdrive3
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.onedrive
     ];
   };

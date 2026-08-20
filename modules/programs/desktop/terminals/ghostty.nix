@@ -7,7 +7,7 @@
       ...
     }:
     let
-      inherit (pkgs.stdenv) isDarwin;
+      inherit (pkgs.stdenv.hostPlatform) isDarwin;
     in
     {
       stylix.targets.ghostty.fonts.override = lib.optionalAttrs isDarwin {
@@ -17,7 +17,7 @@
 
       programs.ghostty =
         let
-          inherit (pkgs.stdenv) isDarwin;
+          inherit (pkgs.stdenv.hostPlatform) isDarwin;
           inherit (self.lib.fontFeatures) toHarfBuzz;
           mod = if isDarwin then "cmd" else "ctrl+shift";
         in
@@ -40,7 +40,8 @@
 
             window-vsync = true;
             window-padding-balance = true;
-            window-decoration = if pkgs.stdenv.isDarwin then "auto" else "none";
+            window-decoration =
+              if pkgs.stdenv.hostPlatform.isDarwin then "auto" else "none";
             macos-titlebar-style = "hidden";
 
             clipboard-read = "allow";
