@@ -141,7 +141,7 @@
                 nerdFontsVersion = "3";
               };
 
-              git.pagers = [ { pager = "hunk pager"; } ];
+              git.diffRenderers = [ { command = "hunk pager"; } ];
               git.parseEmoji = true;
             };
           };

@@ -189,7 +189,7 @@ _: {
         context = ./assets/AGENTS.md;
 
         skills = {
-          hunk-review = "${pkgs.hunk}/share/hunk/skills/hunk-review";
+          hunk-review = "${pkgs.hunk}/share/skills/hunk/hunk-review";
         };
       };
     };
