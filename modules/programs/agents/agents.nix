@@ -8,18 +8,27 @@ _: {
         settings = {
           defaultProvider = "kimi-coding";
           defaultModel = "k3-256k";
-          theme = "light";
           defaultThinkingLevel = "high";
+          defaultProjectTrust = "always";
+
+          theme = "light";
+          tuiMode = "fullscreen";
+          editorPaddingX = 0;
+          outputPad = 0;
+          markdown.codeBlockIndent = "";
+
+          sessionDir = "${config.xdg.stateHome}/pi/agent/sessions";
+
           packages = [
-            "npm:@juicesharp/rpiv-todo"
-            "npm:@juicesharp/rpiv-ask-user-question"
-            "npm:@juicesharp/rpiv-btw"
-            "npm:@gotgenes/pi-subagents"
+            "npm:@hk_net/pi-usage-bars"
+            "npm:@eko24ive/pi-ask"
+            "npm:@narumitw/pi-btw"
+            "npm:@tintinweb/pi-subagents"
             "git:github.com/code-yeongyu/pi-openai-web-search"
             "git:github.com/Fr4nk1inCs/pi-kimi-web-tools"
           ];
-          tuiMode = "fullscreen";
         };
+
         extensions = {
           footer = ./assets/pi-coding-agent/footer.ts;
         };
