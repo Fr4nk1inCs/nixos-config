@@ -1,4 +1,4 @@
-_: {
+{ inputs, ... }: {
   flake.modules.homeManager.agents = { config, pkgs, ... }: {
     programs = {
       pi-coding-agent = {
@@ -84,6 +84,7 @@ _: {
 
         skills = {
           hunk-review = "${pkgs.hunk}/share/skills/hunk/hunk-review";
+          humanizer = "${inputs.humanizer-skill}";
         };
       };
     };

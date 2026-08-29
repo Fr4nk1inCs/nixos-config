@@ -71,6 +71,12 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "pkgs-unstable";
     };
+
+    # Non-flake inputs ---------------------------------------------------------
+    humanizer-skill = {
+      url = "github:blader/humanizer";
+      flake = false;
+    };
   };
 
   outputs =

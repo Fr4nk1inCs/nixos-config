@@ -453,6 +453,22 @@
         "type": "github"
       }
     },
+    "humanizer-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787119133,
+        "narHash": "sha256-n08pud3m9ka1Ymqv6qinSCUku975FM2LJRboi9ur5D4=",
+        "owner": "blader",
+        "repo": "humanizer",
+        "rev": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blader",
+        "repo": "humanizer",
+        "type": "github"
+      }
+    },
     "hunk": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -883,6 +899,7 @@
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager_2",
+        "humanizer-skill": "humanizer-skill",
         "hunk": "hunk",
         "import-tree": "import-tree_2",
         "llm-agents": "llm-agents",
