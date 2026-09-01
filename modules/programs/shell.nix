@@ -68,15 +68,6 @@
                 src = pkgs.zsh-fzf-tab;
                 file = "share/fzf-tab/fzf-tab.plugin.zsh";
               }
-              {
-                name = "zsh-wakatime";
-                src = pkgs.fetchFromGitHub {
-                  owner = "wbingli";
-                  repo = "zsh-wakatime";
-                  rev = "e0d1dfcaaab11112344e14b826f3136edac4eccc";
-                  hash = "sha256-QN/MUDm+hVJUMA4PDqs0zn9XC2wQZrgQr4zmCF0Vruk=";
-                };
-              }
             ];
 
             localVariables = {
