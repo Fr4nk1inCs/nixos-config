@@ -13,15 +13,12 @@ _: {
           else
             "/home/${config.home.username}";
         stateVersion = "24.05";
-        preferXdgDirectories = true;
-      };
-
-      xdg = {
-        enable = true;
-        userDirs.enable = true;
-        userDirs.setSessionVariables = true;
       };
 
       programs.home-manager.enable = true;
+
+      nix.extraOptions = ''
+        !include access-tokens.conf
+      '';
     };
 }

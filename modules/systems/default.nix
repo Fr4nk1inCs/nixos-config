@@ -18,6 +18,8 @@
         locale
         container
         inotify
+        # xdg directory
+        xdg
       ];
     };
 
@@ -31,6 +33,8 @@
         # system settings
         locale
         container
+        # xdg directory
+        xdg
       ];
     };
 
@@ -40,6 +44,8 @@
         agenix
         nh
         stylix
+        # xdg directory
+        xdg
       ];
     };
   };
