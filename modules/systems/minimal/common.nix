@@ -16,7 +16,6 @@ let
 
         # nix community's cache server
         "https://nix-community.cachix.org"
-
       ];
 
       trusted-public-keys = [
@@ -26,7 +25,7 @@ let
 
       extra-substituters = [
         # llm-agents.nix
-        "https://cache.numtide.com"
+        "https://cache.numtide.com?priority=100"
       ];
 
       extra-trusted-public-keys = [
