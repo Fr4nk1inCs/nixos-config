@@ -37,11 +37,12 @@
       codex = {
         enable = true;
         settings = {
-          model = "gpt-5.6-sol";
-          model_reasoning_effort = "high";
+          model = "gpt-6-astra";
+          model_reasoning_effort = "medium";
           disable_response_storage = true;
           network_access = "enabled";
           approvals_reviewer = "auto_review";
+          web_search = "live";
 
           tui = {
             status_line = [
