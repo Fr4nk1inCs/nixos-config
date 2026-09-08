@@ -88,22 +88,21 @@
         "fcitx5/rime/rime_ice.custom.yaml".source = rimeIceCustomYaml;
       };
 
-      home.activation.rimeDeploy =
-        lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin
-          (
-            let
-              rimeDir = "${config.home.homeDirectory}/Library/Rime";
-              squirrel = "/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel";
-            in
-            lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-              if [ -d "${rimeDir}" ]; then
-                run rm -rf "${rimeDir}/build"
-                if [ -x "${squirrel}" ]; then
-                  run "${squirrel}" --reload || true
-                fi
+      home.activation = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+        rimeDeploy =
+          let
+            rimeDir = "${config.home.homeDirectory}/Library/Rime";
+            squirrel = "/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel";
+          in
+          lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+            if [ -d "${rimeDir}" ]; then
+              run rm -rf "${rimeDir}/build"
+              if [ -x "${squirrel}" ]; then
+                run "${squirrel}" --reload || true
               fi
-            ''
-          );
+            fi
+          '';
+      };
 
       home.file = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin (
         {
