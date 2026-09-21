@@ -14,6 +14,9 @@
     darwin.proxy = {
       # We may switch to mihomo services in the future
       homebrew.casks = [ "clash-verge-rev" ];
+      homebrew.masApps = {
+        "Panabit iWan" = 6752558272;
+      };
     };
   };
 }
