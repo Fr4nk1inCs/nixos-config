@@ -9,7 +9,6 @@
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
     home.packages = [
       pkgs.inkscape
-      pkgs.moonlight-qt
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.teamspeak6-client
