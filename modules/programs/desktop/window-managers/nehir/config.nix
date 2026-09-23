@@ -35,9 +35,9 @@
             borders.enabled = false;
 
             focus = {
-              followsMouse = true;
+              followsMouse = false;
               followsWindowToMonitor = true;
-              moveMouseToFocusedWindow = false;
+              moveMouseToFocusedWindow = true;
             };
 
             gaps = {
