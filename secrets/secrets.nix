@@ -22,5 +22,4 @@ in
   "pi-auth.age".publicKeys = allUsers;
   "pi-mlsys-provider.age".publicKeys = allUsers;
   "codex-mlsys-profile.age".publicKeys = allUsers;
-  "codex-auth.age".publicKeys = allUsers;
 }

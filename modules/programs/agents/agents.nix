@@ -6,9 +6,9 @@
         configDir = "${config.xdg.configHome}/pi/agent";
         extraPackages = [ pkgs.nodejs ];
         settings = {
-          defaultProvider = "kimi-coding";
-          defaultModel = "k3-256k";
-          defaultThinkingLevel = "high";
+          defaultProvider = "openai-codex";
+          defaultModel = "gpt-6-astra";
+          defaultThinkingLevel = "medium";
           defaultProjectTrust = "always";
 
           theme = "light";
@@ -23,7 +23,7 @@
             "npm:@hk_net/pi-usage-bars"
             "npm:@eko24ive/pi-ask"
             "npm:@narumitw/pi-btw"
-            "npm:@tintinweb/pi-subagents"
+            "npm:pi-herdr-subagents"
             "git:github.com/code-yeongyu/pi-openai-web-search"
             "git:github.com/Fr4nk1inCs/pi-kimi-web-tools"
           ];
