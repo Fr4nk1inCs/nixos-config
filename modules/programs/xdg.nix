@@ -4,8 +4,13 @@ _: {
       nix.settings.use-xdg-base-directories = true;
     };
 
-    darwin.xdg = {
+    darwin.xdg = { config, ... }: {
       nix.settings.use-xdg-base-directories = true;
+
+      homebrew.onActivation.extraEnv = {
+        XDG_CONFIG_HOME =
+          config.home-manager.users.${config.system.primaryUser}.xdg.configHome;
+      };
     };
 
     homeManager.xdg = { config, ... }: {
