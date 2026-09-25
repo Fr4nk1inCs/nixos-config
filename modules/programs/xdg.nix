@@ -20,7 +20,6 @@ _: {
         sessionVariables = with config.xdg; {
           GNUPGHOME = "${configHome}/gnupg";
           DOCKER_CONFIG = "${configHome}/docker";
-          WAKATIME_HOME = "${configHome}/wakatime";
           NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
           npm_config_cache = "${cacheHome}/npm";
           TERMINFO_DIRS = "${dataHome}/terminfo:/usr/share/terminfo";

@@ -43,8 +43,6 @@
             ms-toolsai.jupyter
             ms-toolsai.jupyter-renderers
             charliermarsh.ruff
-            # misc
-            wakatime.vscode-wakatime
           ];
 
           keybindings = [

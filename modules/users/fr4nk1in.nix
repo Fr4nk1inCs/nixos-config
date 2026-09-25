@@ -109,16 +109,6 @@ in
               mode = "0600";
               symlink = false;
             };
-            wakatime-cfg =
-              let
-                hasWakatime = lib.elem pkgs.wakatime-cli config.home.packages;
-              in
-              lib.optionalAttrs hasWakatime {
-                file = self.lib.getAgeSource "wakatime-cfg.age";
-                path = "${config.home.homeDirectory}/.wakatime.cfg";
-                mode = "0600";
-                symlink = false;
-              };
             pi-auth = lib.optionalAttrs piEnabled {
               file = self.lib.getAgeSource "pi-auth.age";
               path = "${piConfigDir}/auth-base.json";

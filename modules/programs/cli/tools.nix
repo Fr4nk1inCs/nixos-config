@@ -71,7 +71,6 @@
           dust
           fd
           tldr
-          wakatime-cli
         ];
 
         shellAliases = {
