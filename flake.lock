@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "asd-ste100-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790075880,
+        "narHash": "sha256-aUxmh1AcIk2hFVexetufWtO/5vmtTy6xTULrliU+lQY=",
+        "owner": "woosal1337",
+        "repo": "blog",
+        "rev": "13c4143f778f7a7dc14299b7ddaec148e3a7f82e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "woosal1337",
+        "repo": "blog",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -454,22 +470,6 @@
         "type": "github"
       }
     },
-    "humanizer-skill": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1788725873,
-        "narHash": "sha256-tC7vHxHDzTRgpsF7i6YnKWhAbrkeclspRJVK1osRE24=",
-        "owner": "blader",
-        "repo": "humanizer",
-        "rev": "9862685f575c65a8247f90369951df1b3416e3d6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "blader",
-        "repo": "humanizer",
-        "type": "github"
-      }
-    },
     "hunk": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -893,11 +893,11 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "asd-ste100-skill": "asd-ste100-skill",
         "darwin-pkgs": "darwin-pkgs",
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager_2",
-        "humanizer-skill": "humanizer-skill",
         "hunk": "hunk",
         "import-tree": "import-tree_2",
         "llm-agents": "llm-agents",

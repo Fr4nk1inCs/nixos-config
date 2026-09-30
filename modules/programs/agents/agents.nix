@@ -1,93 +1,103 @@
 { inputs, ... }: {
-  flake.modules.homeManager.agents = { config, pkgs, ... }: {
-    programs = {
-      pi-coding-agent = {
-        enable = true;
-        configDir = "${config.xdg.configHome}/pi/agent";
-        extraPackages = [ pkgs.nodejs ];
-        settings = {
-          defaultProvider = "openai-codex";
-          defaultModel = "gpt-6-astra";
-          defaultThinkingLevel = "medium";
-          defaultProjectTrust = "always";
+  flake.modules.homeManager.agents =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      skillRuntime = [
+        pkgs.python3
+        pkgs.nodejs
+      ];
+      asdSte100Skill = pkgs.runCommand "asd-ste100-skill" { } ''
+        cd ${inputs.asd-ste100-skill}/videos/ep01-the-cure-for-ai-slop/asd-ste100
+        mkdir -p "$out/hooks"
+        cp -r SKILL.md LICENSE references scripts "$out/"
+        cp hooks/run-python.cjs "$out/hooks/"
+      '';
+    in
+    {
+      programs = {
+        pi-coding-agent = {
+          enable = true;
+          configDir = "${config.xdg.configHome}/pi/agent";
+          extraPackages = skillRuntime;
+          settings = {
+            defaultProvider = "openai-codex";
+            defaultModel = "gpt-6-astra";
+            defaultThinkingLevel = "medium";
+            defaultProjectTrust = "always";
 
-          theme = "light";
-          tuiMode = "fullscreen";
-          editorPaddingX = 0;
-          outputPad = 0;
-          markdown.codeBlockIndent = "";
+            theme = "light";
+            tuiMode = "fullscreen";
+            editorPaddingX = 0;
+            outputPad = 0;
+            markdown.codeBlockIndent = "";
 
-          sessionDir = "${config.xdg.stateHome}/pi/agent/sessions";
+            sessionDir = "${config.xdg.stateHome}/pi/agent/sessions";
 
-          packages = [
-            "npm:@hk_net/pi-usage-bars"
-            "npm:@eko24ive/pi-ask"
-            "npm:@narumitw/pi-btw"
-            "npm:pi-herdr-subagents"
-            "git:github.com/code-yeongyu/pi-openai-web-search"
-            "git:github.com/Fr4nk1inCs/pi-kimi-web-tools"
-          ];
-        };
-
-        extensions = {
-          footer = ./assets/pi-coding-agent/footer.ts;
-        };
-      };
-
-      codex = {
-        enable = true;
-        settings = {
-          model = "gpt-6-astra";
-          model_reasoning_effort = "medium";
-          disable_response_storage = true;
-          network_access = "enabled";
-          approvals_reviewer = "auto_review";
-          web_search = "live";
-
-          tui = {
-            status_line = [
-              "model-with-reasoning"
-              "current-dir"
-              "git-branch"
-              "branch-changes"
-              "context-used"
-              "used-tokens"
-              "total-input-tokens"
-              "total-output-tokens"
+            packages = [
+              "npm:@hk_net/pi-usage-bars"
+              "npm:@eko24ive/pi-ask"
+              "npm:@narumitw/pi-btw"
+              "npm:pi-herdr-subagents"
+              "git:github.com/code-yeongyu/pi-openai-web-search"
+              "git:github.com/Fr4nk1inCs/pi-kimi-web-tools"
             ];
-            status_line_use_colors = false;
-            theme = "base16-256";
+          };
+
+          extensions = {
+            footer = ./assets/pi-coding-agent/footer.ts;
+          };
+        };
+
+        codex = {
+          enable = true;
+          package = pkgs.symlinkJoin {
+            name = "codex-with-skill-runtime";
+            paths = [ pkgs.codex ];
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram "$out/bin/codex" \
+                --prefix PATH : ${lib.makeBinPath skillRuntime}
+            '';
+            inherit (pkgs.codex) meta version;
+          };
+          settings = {
+            model = "gpt-6-astra";
+            model_reasoning_effort = "medium";
+            disable_response_storage = true;
+            network_access = "enabled";
+            approvals_reviewer = "auto_review";
+            web_search = "live";
+
+            tui = {
+              status_line = [
+                "model-with-reasoning"
+                "current-dir"
+                "git-branch"
+                "branch-changes"
+                "context-used"
+                "used-tokens"
+                "total-input-tokens"
+                "total-output-tokens"
+              ];
+              status_line_use_colors = false;
+              theme = "base16-256";
+            };
+          };
+        };
+
+        agents = {
+          context = ./assets/AGENTS.md;
+
+          skills = {
+            hunk-review = "${pkgs.hunk}/share/skills/hunk/hunk-review";
+            asd-ste100 = "${asdSte100Skill}";
           };
         };
       };
-
-      claude-code = {
-        enable = true;
-        configDir = "${config.xdg.configHome}/claude";
-        settings = {
-          theme = "light";
-          editorMode = "vim";
-          defaultMode = "auto";
-          effortLevel = "high";
-          model = "opus";
-          tui = "fullscreen";
-
-          autoMemoryEnabled = false;
-          autoMode.allow = [
-            "$defaults"
-            "Any tool installation and invocation that happens in a isolated environment (e.g. nix shell)"
-          ];
-        };
-      };
-
-      agents = {
-        context = ./assets/AGENTS.md;
-
-        skills = {
-          hunk-review = "${pkgs.hunk}/share/skills/hunk/hunk-review";
-          humanizer = "${inputs.humanizer-skill}";
-        };
-      };
     };
-  };
 }

@@ -73,8 +73,8 @@
     };
 
     # Non-flake inputs ---------------------------------------------------------
-    humanizer-skill = {
-      url = "github:blader/humanizer";
+    asd-ste100-skill = {
+      url = "github:woosal1337/blog";
       flake = false;
     };
   };

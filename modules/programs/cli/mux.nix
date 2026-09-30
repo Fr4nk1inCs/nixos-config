@@ -5,14 +5,6 @@
         herdrSrc = pkgs.herdr.src;
         herdrIntegrationAssets = "${herdrSrc}/src/integration/assets";
 
-        claudeScript = pkgs.writeShellApplication {
-          name = "claude-herdr-agent-state";
-          text = ''
-            bash '${herdrIntegrationAssets}/claude/herdr-agent-state.sh' session
-          '';
-          runtimeInputs = with pkgs; [ python3 ];
-        };
-
         codexScript = pkgs.writeShellApplication {
           name = "codex-herdr-agent-state";
           text = ''
@@ -50,19 +42,6 @@
             command = lib.getExe codexScript;
             timeout = 10;
             type = "command";
-          }
-        ];
-
-        claude-code.settings.hooks.SessionStart = [
-          {
-            hooks = [
-              {
-                command = lib.getExe claudeScript;
-                timeout = 10;
-                type = "command";
-              }
-            ];
-            matcher = "*";
           }
         ];
       };

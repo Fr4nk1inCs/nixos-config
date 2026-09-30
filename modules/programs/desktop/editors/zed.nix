@@ -212,7 +212,6 @@
             };
 
             agent_servers = {
-              claude-acp.type = "registry";
               pi-acp.type = "registry";
             };
           };
