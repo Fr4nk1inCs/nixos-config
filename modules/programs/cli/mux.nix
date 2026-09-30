@@ -29,6 +29,7 @@
               auto_switch = false;
             };
             ui = {
+              pane_scrollbars = false;
               toast.delivery = "terminal";
               show_agent_labels_on_pane_borders = true;
             };
