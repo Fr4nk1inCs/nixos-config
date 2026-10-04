@@ -1,5 +1,9 @@
 { self, ... }: {
   flake.modules.darwin.desktop = {
+    homebrew.casks = [
+      "aldente"
+    ];
+
     system = {
       defaults = {
         NSGlobalDomain = {
@@ -12,14 +16,9 @@
   };
 
   flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    home.packages =
-      lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-        pkgs.baobab
-      ]
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
-        pkgs.betterdisplay
-        pkgs.aldente
-      ];
+    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      pkgs.baobab
+    ];
 
     stylix = {
       targets.gtk.enable = pkgs.stdenv.hostPlatform.isLinux;

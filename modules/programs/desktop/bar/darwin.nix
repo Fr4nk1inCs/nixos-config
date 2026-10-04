@@ -3,6 +3,7 @@
     homebrew.casks = [
       "thaw"
       "tomatobar"
+      "stats"
     ];
 
     system.defaults = {
@@ -24,9 +25,5 @@
         };
       };
     };
-  };
-
-  flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    home.packages = lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.stats;
   };
 }

@@ -1,5 +1,7 @@
 {
-  flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
-    home.packages = lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.raycast;
+  flake.modules.darwin.desktop = {
+    homebrew.casks = [
+      "raycast"
+    ];
   };
 }
