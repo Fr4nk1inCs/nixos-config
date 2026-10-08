@@ -25,7 +25,7 @@
           configDir = "${config.xdg.configHome}/pi/agent";
           extraPackages = skillRuntime;
           settings = {
-            defaultProvider = "openai-codex";
+            defaultProvider = "openai";
             defaultModel = "gpt-6-astra";
             defaultThinkingLevel = "medium";
             defaultProjectTrust = "always";
@@ -43,13 +43,13 @@
               "npm:@eko24ive/pi-ask"
               "npm:@narumitw/pi-btw"
               "npm:pi-herdr-subagents"
-              "git:github.com/code-yeongyu/pi-openai-web-search"
               "git:github.com/Fr4nk1inCs/pi-kimi-web-tools"
             ];
           };
 
           extensions = {
             footer = ./assets/pi-coding-agent/footer.ts;
+            pi-openai-web-search = ./assets/pi-coding-agent/pi-openai-web-search.ts;
           };
         };
 
