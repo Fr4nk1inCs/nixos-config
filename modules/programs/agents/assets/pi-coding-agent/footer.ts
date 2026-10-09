@@ -231,7 +231,7 @@ class GitStatus {
 		if (!branch) return "";
 		const diff = this.diff?.render();
 		return (
-			thm.fg("dim", ` (${branch})`) +
+			thm.fg("muted", ` (${branch})`) +
 			(diff ? delimiter(thm) + thm.fg("dim", diff) : "")
 		);
 	}
