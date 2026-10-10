@@ -30,7 +30,7 @@
             defaultThinkingLevel = "medium";
             defaultProjectTrust = "always";
 
-            theme = "light";
+            theme = "system";
             tuiMode = "fullscreen";
             editorPaddingX = 0;
             outputPad = 0;
@@ -68,8 +68,6 @@
           settings = {
             model = "gpt-6-astra";
             model_reasoning_effort = "medium";
-            disable_response_storage = true;
-            network_access = "enabled";
             approvals_reviewer = "auto_review";
             web_search = "live";
 
