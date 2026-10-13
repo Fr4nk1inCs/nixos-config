@@ -41,7 +41,7 @@
             };
 
             finders = {
-              "space s g" = "workspace::NewSearch";
+              "space s g" = "text_finder::Toggle";
               "space f e" = "project_panel::ToggleFocus";
               "space f f" = "file_finder::Toggle";
             };
@@ -114,8 +114,8 @@
               "context" = "Editor";
               "bindings" = {
                 "ctrl-;" = "editor::AcceptEditPrediction";
-                "ctrl-[" = "copilot::PreviousSuggestion";
-                "ctrl-]" = "copilot::NextSuggestion";
+                "ctrl-[" = "editor::PreviousEditPrediction";
+                "ctrl-]" = "editor::NextEditPrediction";
               };
             }
 
@@ -210,6 +210,8 @@
                 enterprise_uri = null;
               };
             };
+
+            preview_tabs.enable_preview_from_file_finder = true;
 
             agent_servers = {
               pi-acp.type = "registry";
