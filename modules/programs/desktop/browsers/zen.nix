@@ -15,6 +15,7 @@
       programs.zen-browser = {
         enable = pkgs.stdenv.hostPlatform.isLinux;
         setAsDefaultBrowser = true;
+        env.MOZ_APP_DATA = config.programs.zen-browser.configPath;
 
         policies =
           let
@@ -53,6 +54,7 @@
           };
 
         profiles.${username} = {
+          isDefault = true;
           settings = {
             "zen.ui.migration.compact-mode-button-added" = true;
             "zen.view.compact.enable-at-startup" = false;

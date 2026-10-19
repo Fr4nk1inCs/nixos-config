@@ -13,6 +13,7 @@
       };
       programs.vicinae = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         enable = true;
+        enableFirefoxIntegration = false;
         systemd.enable = true;
 
         settings = {
