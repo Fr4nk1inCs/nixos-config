@@ -21,6 +21,9 @@
           config = {
             allowUnfree = true;
             cudaSupport = system == "x86_64-linux";
+            permittedInsecurePackages = [
+              "firefox-esr-140-bin-unwrapped-140.17.0esr"
+            ];
           };
           overlays = [
             (import ../../packages)
