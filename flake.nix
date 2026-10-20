@@ -74,7 +74,7 @@
 
     # Non-flake inputs ---------------------------------------------------------
     asd-ste100-skill = {
-      url = "github:woosal1337/blog";
+      url = "github:danyuchn/asd-ste100-skill";
       flake = false;
     };
   };

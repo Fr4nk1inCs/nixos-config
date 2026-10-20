@@ -6,24 +6,38 @@
       lib,
       ...
     }:
-    let
-      skillRuntime = [
-        pkgs.python3
-        pkgs.nodejs
-      ];
-      asdSte100Skill = pkgs.runCommand "asd-ste100-skill" { } ''
-        cd ${inputs.asd-ste100-skill}/videos/ep01-the-cure-for-ai-slop/asd-ste100
-        mkdir -p "$out/hooks"
-        cp -r SKILL.md LICENSE references scripts "$out/"
-        cp hooks/run-python.cjs "$out/hooks/"
-      '';
-    in
+
     {
       programs = {
+        claude-code = {
+          enable = true;
+          configDir = "${config.xdg.configHome}/claude";
+
+          settings = {
+            model = "opus";
+
+            theme = "auto";
+            tui = "fullscreen";
+
+            permissions.defaultMode = "auto";
+            autoMemoryEnabled = false;
+
+            statusLine =
+              let
+                pythonPydantic = pkgs.python3.withPackages (ps: [ ps.pydantic ]);
+                python = lib.getExe pythonPydantic;
+              in
+              {
+                type = "command";
+                command = "${python} ${./assets/claude-code/statusline.py}";
+              };
+          };
+        };
+
         pi-coding-agent = {
           enable = true;
           configDir = "${config.xdg.configHome}/pi/agent";
-          extraPackages = skillRuntime;
+          extraPackages = with pkgs; [ nodejs ];
           settings = {
             defaultProvider = "openai";
             defaultModel = "gpt-6-astra";
@@ -55,16 +69,6 @@
 
         codex = {
           enable = true;
-          package = pkgs.symlinkJoin {
-            name = "codex-with-skill-runtime";
-            paths = [ pkgs.codex ];
-            nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              wrapProgram "$out/bin/codex" \
-                --prefix PATH : ${lib.makeBinPath skillRuntime}
-            '';
-            inherit (pkgs.codex) meta version;
-          };
           settings = {
             model = "gpt-6-astra";
             model_reasoning_effort = "medium";
@@ -89,11 +93,9 @@
         };
 
         agents = {
-          context = ./assets/AGENTS.md;
-
           skills = {
             hunk-review = "${pkgs.hunk}/share/skills/hunk/hunk-review";
-            asd-ste100 = "${asdSte100Skill}";
+            asd-ste100 = "${inputs.asd-ste100-skill}";
           };
         };
       };
