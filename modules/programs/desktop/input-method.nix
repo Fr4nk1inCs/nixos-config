@@ -56,6 +56,8 @@
           schema_list = [ { schema = "rime_ice"; } ];
 
           menu.page_size = 9;
+
+          "ascii_composer/switch_key/Shift_R" = "commit_code";
         };
       };
 
