@@ -18,7 +18,6 @@ in
   "sshconfig-lab.age".publicKeys = allUsers;
   "sshconfig-personal.age".publicKeys = allUsers;
   "mihomo.age".publicKeys = allUsers ++ allSystems;
-  "pi-auth.age".publicKeys = allUsers;
-  "pi-mlsys-provider.age".publicKeys = allUsers;
-  "codex-mlsys-profile.age".publicKeys = allUsers;
+  "magpie-env-file.age".publicKeys = allUsers ++ allSystems;
+  "magpie-providers.age".publicKeys = allUsers ++ allSystems;
 }

@@ -1,50 +1,27 @@
 {
-  flake.modules.homeManager.cli = { pkgs, lib, ... }: {
-    programs =
-      let
-        herdrSrc = pkgs.herdr.src;
-        herdrIntegrationAssets = "${herdrSrc}/src/integration/assets";
+  flake.modules.homeManager.cli = {
+    programs = {
+      herdr = {
+        enable = true;
 
-        codexScript = pkgs.writeShellApplication {
-          name = "codex-herdr-agent-state";
-          text = ''
-            bash '${herdrIntegrationAssets}/codex/herdr-agent-state.sh' session
-          '';
-          runtimeInputs = with pkgs; [ python3 ];
-        };
-      in
-      {
-        herdr = {
-          enable = true;
-
-          settings = {
-            onboarding = false;
-            experimental = {
-              pane_history = true;
-              kitty_graphics = true;
-              # switch_ascii_input_source_in_prefix = true;
-            };
-            theme = {
-              name = "terminal";
-              auto_switch = false;
-            };
-            ui = {
-              pane_scrollbars = false;
-              toast.delivery = "terminal";
-              show_agent_labels_on_pane_borders = true;
-            };
+        settings = {
+          onboarding = false;
+          experimental = {
+            pane_history = true;
+            kitty_graphics = true;
+            # switch_ascii_input_source_in_prefix = true;
+          };
+          theme = {
+            name = "terminal";
+            auto_switch = false;
+          };
+          ui = {
+            pane_scrollbars = false;
+            toast.delivery = "terminal";
+            show_agent_labels_on_pane_borders = true;
           };
         };
-
-        pi-coding-agent.extensions.herdr-agent-state = "${herdrIntegrationAssets}/pi/herdr-agent-state.ts";
-
-        codex.hooks.SessionStart = [
-          {
-            command = lib.getExe codexScript;
-            timeout = 10;
-            type = "command";
-          }
-        ];
       };
+    };
   };
 }

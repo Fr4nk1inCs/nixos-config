@@ -13,42 +13,9 @@ in
       homeManager.${username} =
         {
           config,
-          pkgs,
           lib,
           ...
         }:
-        let
-          inherit (pkgs.stdenv.hostPlatform) isLinux isDarwin;
-
-          piEnabled = config.programs.pi-coding-agent.enable;
-          piConfigDir = config.programs.pi-coding-agent.configDir;
-
-          codexEnabled = config.programs.codex.enable;
-          codexConfigDir =
-            if config.home.preferXdgDirectories then
-              "${config.xdg.configHome}/codex"
-            else
-              "${config.home.homeDirectory}/.codex";
-
-          mergePiAuth = pkgs.writeScript "merge-pi-auth" ''
-            #!${pkgs.python3}/bin/python3
-            import json
-            from pathlib import Path
-            from tempfile import TemporaryDirectory
-
-            auth = Path(${builtins.toJSON "${piConfigDir}/auth.json"})
-            base = Path(${builtins.toJSON config.age.secrets.pi-auth.path})
-            existing = json.loads(auth.read_text()) if auth.exists() else {}
-            merged = existing | json.loads(base.read_text())
-
-            auth.parent.mkdir(parents=True, exist_ok=True)
-            with TemporaryDirectory(prefix=".auth-merge.", dir=auth.parent) as directory:
-                temporary = Path(directory) / "auth.json"
-                temporary.write_text(json.dumps(merged, indent=2) + "\n")
-                temporary.chmod(0o600)
-                temporary.replace(auth)
-          '';
-        in
         {
           imports = with self.modules.homeManager; [
             system-desktop
@@ -57,28 +24,6 @@ in
           programs.git.settings.user = {
             name = "Fr4nk1in";
             email = "fushen@mail.ustc.edu.cn";
-          };
-
-          home.activation = {
-            codexOpenaiProfile = lib.mkIf codexEnabled (
-              lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-                run mkdir -p ${lib.escapeShellArg codexConfigDir}
-                run touch ${lib.escapeShellArg "${codexConfigDir}/openai.config.toml"}
-              ''
-            );
-          };
-
-          systemd.user.services.agenix = lib.mkIf (piEnabled && isLinux) {
-            Service.ExecStartPost = [ "${mergePiAuth}" ];
-          };
-
-          launchd.agents.activate-agenix = lib.mkIf (piEnabled && isDarwin) {
-            config.ProgramArguments = lib.mkBefore [
-              "${pkgs.bash}/bin/bash"
-              "-c"
-              ''"$1" && ${mergePiAuth}''
-              "agenix-with-pi-auth"
-            ];
           };
 
           age.secrets = {
@@ -108,18 +53,6 @@ in
               path = config.programs.atuin.settings.key_path;
               mode = "0600";
               symlink = false;
-            };
-            pi-auth = lib.optionalAttrs piEnabled {
-              file = self.lib.getAgeSource "pi-auth.age";
-              path = "${piConfigDir}/auth-base.json";
-            };
-            pi-mlsys-provider = lib.optionalAttrs piEnabled {
-              file = self.lib.getAgeSource "pi-mlsys-provider.age";
-              path = "${piConfigDir}/extensions/mlsys-provider.ts";
-            };
-            codex-mlsys-profile = lib.optionalAttrs codexEnabled {
-              file = self.lib.getAgeSource "codex-mlsys-profile.age";
-              path = "${codexConfigDir}/mlsys.config.toml";
             };
           };
         };
