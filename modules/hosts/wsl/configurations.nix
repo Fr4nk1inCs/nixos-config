@@ -8,8 +8,11 @@
       inputs.self.modules.nixos.nvidia
     ];
 
-    networking.hostName = "wsl";
-    networking.networkmanager.enable = lib.mkForce false;
+    networking = {
+      hostName = "wsl";
+      networkmanager.enable = lib.mkForce false;
+      interfaces.eth0.mtu = 1500;
+    };
 
     # This is a temporary workaround for WSL
     # See issues:
