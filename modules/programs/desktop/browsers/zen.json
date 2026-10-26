@@ -1,0 +1,768 @@
+{
+	"spaces": [
+		{
+			"containerTabId": 0,
+			"icon": "🪐",
+			"name": "Home",
+			"position": 0,
+			"theme": {
+				"gradientColors": [],
+				"opacity": 0.5,
+				"rotation": null,
+				"texture": 0,
+				"type": "gradient"
+			},
+			"uuid": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"hasCollapsedPinnedTabs": false
+		},
+		{
+			"containerTabId": 0,
+			"icon": "💻",
+			"name": "Develop",
+			"position": 1,
+			"theme": {
+				"gradientColors": [],
+				"opacity": 0.5,
+				"rotation": null,
+				"texture": 0,
+				"type": "gradient"
+			},
+			"uuid": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"hasCollapsedPinnedTabs": false
+		}
+	],
+	"folders": [
+		{
+			"pinned": true,
+			"splitViewGroup": false,
+			"id": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"name": "USTC",
+			"collapsed": true,
+			"saveOnWindowClose": true,
+			"parentId": null,
+			"prevSiblingInfo": null,
+			"emptyTabIds": [],
+			"userIcon": "",
+			"workspaceId": "{685587c0-e1d8-85ae-a0f5-192fcce77525}"
+		},
+		{
+			"pinned": true,
+			"splitViewGroup": false,
+			"id": "{46ef5449-bc2c-84f3-aba2-4ad53d046adc}",
+			"name": "Tools",
+			"collapsed": true,
+			"saveOnWindowClose": true,
+			"parentId": null,
+			"prevSiblingInfo": {
+				"type": "group",
+				"id": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}"
+			},
+			"emptyTabIds": [],
+			"userIcon": "",
+			"workspaceId": "{685587c0-e1d8-85ae-a0f5-192fcce77525}"
+		},
+		{
+			"pinned": true,
+			"splitViewGroup": false,
+			"id": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"name": "Nix",
+			"collapsed": true,
+			"saveOnWindowClose": true,
+			"parentId": null,
+			"prevSiblingInfo": null,
+			"emptyTabIds": [],
+			"userIcon": "",
+			"workspaceId": "{e32ca7e9-545f-823e-a602-8224b46386c3}"
+		},
+		{
+			"pinned": true,
+			"splitViewGroup": false,
+			"id": "{54440e24-0cbb-8ffd-a409-0458e5737532}",
+			"name": "Torch",
+			"collapsed": true,
+			"saveOnWindowClose": true,
+			"parentId": null,
+			"prevSiblingInfo": {
+				"type": "group",
+				"id": "{defe79cf-8d4d-82c1-a1bb-666135446da0}"
+			},
+			"emptyTabIds": [],
+			"userIcon": "",
+			"workspaceId": "{e32ca7e9-545f-823e-a602-8224b46386c3}"
+		},
+		{
+			"pinned": true,
+			"splitViewGroup": false,
+			"id": "{a2698a38-7962-8947-a9e5-f3d75777fe64}",
+			"name": "Typst",
+			"collapsed": true,
+			"saveOnWindowClose": true,
+			"parentId": null,
+			"prevSiblingInfo": {
+				"type": "group",
+				"id": "{54440e24-0cbb-8ffd-a409-0458e5737532}"
+			},
+			"emptyTabIds": [],
+			"userIcon": "",
+			"workspaceId": "{e32ca7e9-545f-823e-a602-8224b46386c3}"
+		}
+	],
+	"groups": [
+		{
+			"pinned": true,
+			"splitView": false,
+			"id": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"name": "USTC",
+			"color": "zen-workspace-color",
+			"collapsed": true,
+			"saveOnWindowClose": true
+		},
+		{
+			"pinned": true,
+			"splitView": false,
+			"id": "{46ef5449-bc2c-84f3-aba2-4ad53d046adc}",
+			"name": "Tools",
+			"color": "zen-workspace-color",
+			"collapsed": true,
+			"saveOnWindowClose": true
+		},
+		{
+			"pinned": true,
+			"splitView": false,
+			"id": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"name": "Nix",
+			"color": "zen-workspace-color",
+			"collapsed": true,
+			"saveOnWindowClose": true
+		},
+		{
+			"pinned": true,
+			"splitView": false,
+			"id": "{54440e24-0cbb-8ffd-a409-0458e5737532}",
+			"name": "Torch",
+			"color": "zen-workspace-color",
+			"collapsed": true,
+			"saveOnWindowClose": true
+		},
+		{
+			"pinned": true,
+			"splitView": false,
+			"id": "{a2698a38-7962-8947-a9e5-f3d75777fe64}",
+			"name": "Typst",
+			"color": "zen-workspace-color",
+			"collapsed": true,
+			"saveOnWindowClose": true
+		}
+	],
+	"splitViewData": [],
+	"tabs": [
+		{
+			"zenSyncId": "{b1d7e65b-6b70-8a3f-ab9a-24423ee128fe}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Bilibili",
+			"index": 0,
+			"entries": [
+				{
+					"url": "https://www.bilibili.com/",
+					"title": "Bilibili"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{1eaaea02-618b-8fbe-a263-d737f7cd225b}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "YouTube",
+			"index": 1,
+			"entries": [
+				{
+					"url": "https://www.youtube.com/",
+					"title": "YouTube"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{588ee939-f029-8410-aa6f-5e9cd637e747}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "GitHub",
+			"index": 2,
+			"entries": [
+				{
+					"url": "https://github.com/",
+					"title": "GitHub"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{095d9b04-0f80-8a92-a634-66857524907b}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "DeepL",
+			"index": 3,
+			"entries": [
+				{
+					"url": "https://www.deepl.com/en/translator",
+					"title": "DeepL"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{852dc32d-c510-88e9-af32-24244d6ef0cc}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "ChatGPT",
+			"index": 4,
+			"entries": [
+				{
+					"url": "https://chatgpt.com/",
+					"title": "ChatGPT"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{d44b2bc8-a401-820a-a989-4a3fc6a2a434}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Claude",
+			"index": 5,
+			"entries": [
+				{
+					"url": "https://claude.ai/new",
+					"title": "Claude"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{728a2dc7-dba6-8928-a83a-266700202c6b}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Kimi",
+			"index": 6,
+			"entries": [
+				{
+					"url": "https://www.kimi.com/",
+					"title": "Kimi"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{58cd3413-d71b-882f-a938-da2e53abc3f6}",
+			"pinned": true,
+			"zenEssential": true,
+			"zenWorkspace": null,
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Gemini",
+			"index": 7,
+			"entries": [
+				{
+					"url": "https://gemini.google.com/u/1/app",
+					"title": "Gemini"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{9bff1d42-aaeb-8b68-a9ed-2e95ab99412b}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "USTC 导航",
+			"index": 8,
+			"entries": [
+				{
+					"url": "https://ustc.life/",
+					"title": "USTC 导航"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{b2ad236f-622b-8800-ac37-f25d5da15ddc}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "希冀",
+			"index": 9,
+			"entries": [
+				{
+					"url": "http://cscourse.ustc.edu.cn/",
+					"title": "希冀"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{42d584c2-2051-8b89-a096-83d517a3643a}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "研究生综合服务平台",
+			"index": 10,
+			"entries": [
+				{
+					"url": "https://yjs1.ustc.edu.cn/gsapp/sys/yjsemaphome/portal/index.do",
+					"title": "研究生综合服务平台"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{3f6e1aad-95ee-87fa-a9fc-79233dd9c2ed}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "BlackBoard",
+			"index": 11,
+			"entries": [
+				{
+					"url": "https://www.bb.ustc.edu.cn/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1",
+					"title": "BlackBoard"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{8aeadbb3-e392-8b89-a3d8-02ba6b7feb53}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "教务系统",
+			"index": 12,
+			"entries": [
+				{
+					"url": "https://jw.ustc.edu.cn/home",
+					"title": "教务系统"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{9562b356-044b-86fc-a8be-79795a3189cc}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "邮件",
+			"index": 13,
+			"entries": [
+				{
+					"url": "https://mail.ustc.edu.cn/",
+					"title": "邮件"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{86638147-12e9-804c-a53b-710136079487}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "USTC评课社区",
+			"index": 14,
+			"entries": [
+				{
+					"url": "https://icourse.club/",
+					"title": "USTC评课社区"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{d962210a-541d-8281-ae1a-2f35a8769e63}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "瀚海教学网",
+			"index": 15,
+			"entries": [
+				{
+					"url": "https://v.ustc.edu.cn/capture-course/",
+					"title": "瀚海教学网"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{ab3a2303-4bb6-85fb-aa92-885c6df4f0a6}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "合肥人工智能研究院",
+			"index": 16,
+			"entries": [
+				{
+					"url": "https://iai.ustc.edu.cn/iai/index.html",
+					"title": "合肥人工智能研究院"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{fb159e58-6cff-8233-ac8d-86396908f093}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{41e95fb3-9b98-85a9-a6a2-437fe9d7e50e}",
+			"zenStaticLabel": "瀚海教学网—在线视频平台",
+			"index": 17,
+			"entries": [
+				{
+					"url": "https://home.v.ustc.edu.cn/user/index?#/",
+					"title": "瀚海教学网—在线视频平台"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{0dd8e168-2adb-822b-a18e-4d4e21ae04c9}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{46ef5449-bc2c-84f3-aba2-4ad53d046adc}",
+			"zenStaticLabel": "V2EX",
+			"index": 18,
+			"entries": [
+				{
+					"url": "https://www.v2ex.com/",
+					"title": "V2EX"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{7596f7bb-c3b6-880e-a5e0-6ad87dd8065c}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{685587c0-e1d8-85ae-a0f5-192fcce77525}",
+			"userContextId": 0,
+			"groupId": "{46ef5449-bc2c-84f3-aba2-4ad53d046adc}",
+			"zenStaticLabel": "WestData",
+			"index": 19,
+			"entries": [
+				{
+					"url": "https://wd-gold.net/clientarea.php",
+					"title": "WestData"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{344c4695-b5ed-8303-a9b5-e3aa14322da9}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Nixpkgs",
+			"index": 20,
+			"entries": [
+				{
+					"url": "https://github.com/NixOS/nixpkgs",
+					"title": "Nixpkgs"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{953c6346-abe8-83a6-a337-84342c7730fa}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "NixOS Search",
+			"index": 21,
+			"entries": [
+				{
+					"url": "https://search.nixos.org/packages?channel=unstable&",
+					"title": "NixOS Search"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{c7cd59ae-f9d7-8001-a00c-e36e88e8cf75}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Nixpkgs Reference Manual",
+			"index": 22,
+			"entries": [
+				{
+					"url": "https://nixos.org/manual/nixpkgs/stable/",
+					"title": "Nixpkgs Reference Manual"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{bc24f1e9-8cad-8bee-aa99-37bbe9cd447f}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Nix Built-in Functions",
+			"index": 23,
+			"entries": [
+				{
+					"url": "https://nix.dev/manual/nix/2.18/language/builtins",
+					"title": "Nix Built-in Functions"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{8c691ed4-1c62-889a-aa7c-293320533479}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Home Manager Options",
+			"index": 24,
+			"entries": [
+				{
+					"url": "https://nix-community.github.io/home-manager/options.xhtml",
+					"title": "Home Manager Options"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{efd519e1-8f66-88bc-a81f-a913a508adb3}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Darwin Options",
+			"index": 25,
+			"entries": [
+				{
+					"url": "https://daiderd.com/nix-darwin/manual/index.html",
+					"title": "Darwin Options"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{70dd20fe-895b-8599-a305-7e0566a3ea91}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Noogle",
+			"index": 26,
+			"entries": [
+				{
+					"url": "https://noogle.dev/",
+					"title": "Noogle"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{74bb0e25-3720-8331-acd1-059f4d631975}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{defe79cf-8d4d-82c1-a1bb-666135446da0}",
+			"zenStaticLabel": "Nixpkgs PR Tracker",
+			"index": 27,
+			"entries": [
+				{
+					"url": "https://nixpk.gs/pr-tracker.html",
+					"title": "Nixpkgs PR Tracker"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{a2c5b8eb-95fc-8019-aa58-1a70815551cd}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{54440e24-0cbb-8ffd-a409-0458e5737532}",
+			"zenStaticLabel": "PyTorch",
+			"index": 28,
+			"entries": [
+				{
+					"url": "https://pytorch.org/",
+					"title": "PyTorch"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{b9d15df5-1bca-8a41-a52b-96ecbe06e97e}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{54440e24-0cbb-8ffd-a409-0458e5737532}",
+			"zenStaticLabel": "Documentation",
+			"index": 29,
+			"entries": [
+				{
+					"url": "https://pytorch.org/docs/stable/index.html",
+					"title": "Documentation"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{b061320b-6da2-8979-a8f7-7eacb1e4831a}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{54440e24-0cbb-8ffd-a409-0458e5737532}",
+			"zenStaticLabel": "GitHub Repo",
+			"index": 30,
+			"entries": [
+				{
+					"url": "https://github.com/pytorch/pytorch",
+					"title": "GitHub Repo"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{a439b693-bcef-81f2-af88-72cea2d0dbc2}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{a2698a38-7962-8947-a9e5-f3d75777fe64}",
+			"zenStaticLabel": "Typst Documentation",
+			"index": 31,
+			"entries": [
+				{
+					"url": "https://typst.app/docs",
+					"title": "Typst Documentation"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{e8681e60-6fe5-82cc-ad90-78c5f80c8b50}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{a2698a38-7962-8947-a9e5-f3d75777fe64}",
+			"zenStaticLabel": "Typst Universe",
+			"index": 32,
+			"entries": [
+				{
+					"url": "https://typst.app/universe/",
+					"title": "Typst Universe"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{94ef6ace-b1b8-8718-aaf5-41b421d2d3ab}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": "{a2698a38-7962-8947-a9e5-f3d75777fe64}",
+			"zenStaticLabel": "General Symbols",
+			"index": 33,
+			"entries": [
+				{
+					"url": "https://typst.app/docs/reference/symbols/sym",
+					"title": "General Symbols"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{1bc9ffc3-7f3e-8e13-a9eb-c6295773125e}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Excalidraw",
+			"index": 34,
+			"entries": [
+				{
+					"url": "https://excalidraw.com/",
+					"title": "Excalidraw"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{78ae3501-a081-8b25-ae97-a0ac62a5ab3b}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Weights & Biases",
+			"index": 35,
+			"entries": [
+				{
+					"url": "https://wandb.ai/home",
+					"title": "Weights & Biases"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{53d097a9-83df-8921-a190-2198925dec0f}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Perfetto UI",
+			"index": 36,
+			"entries": [
+				{
+					"url": "https://ui.perfetto.dev/",
+					"title": "Perfetto UI"
+				}
+			]
+		},
+		{
+			"zenSyncId": "{24868f76-23a4-8fc3-a129-eb120e388726}",
+			"pinned": true,
+			"zenEssential": false,
+			"zenWorkspace": "{e32ca7e9-545f-823e-a602-8224b46386c3}",
+			"userContextId": 0,
+			"groupId": null,
+			"zenStaticLabel": "Overleaf",
+			"index": 37,
+			"entries": [
+				{
+					"url": "https://www.overleaf.com/project",
+					"title": "Overleaf"
+				}
+			]
+		}
+	]
+}
