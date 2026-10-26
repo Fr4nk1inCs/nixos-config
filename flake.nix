@@ -36,6 +36,11 @@
     };
 
     # Software -----------------------------------------------------------------
+    xyenon-nur = {
+      url = "github:XYenon/nur-packages";
+      inputs.nixpkgs.follows = "pkgs-unstable";
+    };
+
     nixCats = {
       url = "github:Fr4nk1inCs/nixcats-nvim";
       inputs.nixpkgs.follows = "pkgs-unstable";

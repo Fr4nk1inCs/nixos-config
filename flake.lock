@@ -389,11 +389,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1792467281,
-        "narHash": "sha256-l1aACVdR3Wm6V0MGoTKqUg2tPKVNKGAVoz22jJ4QDw4=",
+        "lastModified": 1792896866,
+        "narHash": "sha256-/0tELNnhdSnP+bHSdWiEe6KpfSwi6WrTnT9cm/jNkjA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5bf02bcfede52ca95f693069ac28ace376942c05",
+        "rev": "c216bf5a1f173b0481bd5c8c489ebe5595ecc68c",
         "type": "github"
       },
       "original": {
@@ -864,6 +864,7 @@
         "pkgs-unstable": "pkgs-unstable",
         "stylix": "stylix",
         "treefmt": "treefmt",
+        "xyenon-nur": "xyenon-nur",
         "zen-browser": "zen-browser"
       }
     },
@@ -1091,6 +1092,27 @@
         "type": "github"
       }
     },
+    "treefmt-nix_4": {
+      "inputs": {
+        "nixpkgs": [
+          "xyenon-nur",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791885023,
+        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
     "xwayland-satellite-stable": {
       "flake": false,
       "locked": {
@@ -1121,6 +1143,27 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "xyenon-nur": {
+      "inputs": {
+        "nixpkgs": [
+          "pkgs-unstable"
+        ],
+        "treefmt-nix": "treefmt-nix_4"
+      },
+      "locked": {
+        "lastModified": 1792984929,
+        "narHash": "sha256-31uqHRNjX5oEtUT2QwfFnISUtliqoUeshE16hArdQgY=",
+        "owner": "XYenon",
+        "repo": "nur-packages",
+        "rev": "bea8ef42d4b8907e95c9780bd59d928c97f68f1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "XYenon",
+        "repo": "nur-packages",
         "type": "github"
       }
     },

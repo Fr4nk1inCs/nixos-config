@@ -11,7 +11,6 @@
 
         cli
         shell
-        agents
       ];
     };
 
