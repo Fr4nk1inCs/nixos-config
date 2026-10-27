@@ -20,6 +20,10 @@
             theme = "auto";
             tui = "fullscreen";
 
+            attribution = false;
+
+            remoteControlAtStartup = false;
+
             permissions.defaultMode = "auto";
             autoMemoryEnabled = false;
 
@@ -78,6 +82,8 @@
             model_reasoning_effort = "medium";
             approvals_reviewer = "auto_review";
             web_search = "live";
+
+            daemon_auto_start = false;
 
             tui = {
               status_line = [
