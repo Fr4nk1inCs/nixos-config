@@ -36,6 +36,11 @@
     };
 
     # Software -----------------------------------------------------------------
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1793420730-g6d0d9a.tar.gz";
+      inputs.nixpkgs.follows = "pkgs-unstable";
+    };
+
     xyenon-nur = {
       url = "github:XYenon/nur-packages";
       inputs.nixpkgs.follows = "pkgs-unstable";

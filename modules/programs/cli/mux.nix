@@ -1,6 +1,20 @@
+{ inputs, ... }:
 {
+  flake.modules.nixos.cli = {
+    imports = [ inputs.rex.nixosModules.default ];
+
+    services.rex = {
+      socketMode = "0600";
+      tailscaleServe.enable = true;
+    };
+  };
+
   flake.modules.homeManager.cli = {
+    imports = [ inputs.rex.homeManagerModules.default ];
+
     programs = {
+      rex.enable = true;
+
       herdr = {
         enable = true;
 

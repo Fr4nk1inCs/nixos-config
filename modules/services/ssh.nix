@@ -11,6 +11,16 @@
       };
     };
 
+    homeManager.ssh =
+      { lib, ... }:
+      {
+        programs.ssh = {
+          enable = true;
+          enableDefaultConfig = false;
+          includes = lib.mkBefore [ "~/.ssh/config.d/mutable" ];
+        };
+      };
+
     darwin.ssh = {
       services.openssh = {
         enable = true;

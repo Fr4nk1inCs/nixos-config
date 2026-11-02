@@ -33,6 +33,7 @@
         system-default
 
         themes
+        ssh
 
         cli
         shell
