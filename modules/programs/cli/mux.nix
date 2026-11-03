@@ -13,7 +13,10 @@
     imports = [ inputs.rex.homeManagerModules.default ];
 
     programs = {
-      rex.enable = true;
+      rex = {
+        enable = true;
+        config = ./rex.lua;
+      };
 
       herdr = {
         enable = true;
