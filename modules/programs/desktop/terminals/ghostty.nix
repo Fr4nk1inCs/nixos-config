@@ -73,12 +73,6 @@
 
             keybind = [
               "ctrl+enter=new_split:auto"
-              "${mod}+t=new_tab"
-              "${mod}+e=equalize_splits"
-              "${mod}+h=goto_split:left"
-              "${mod}+j=goto_split:down"
-              "${mod}+k=goto_split:up"
-              "${mod}+l=goto_split:right"
               "global:${mod}+enter=new_window"
               "global:${mod}+backslash=toggle_quick_terminal"
             ];
