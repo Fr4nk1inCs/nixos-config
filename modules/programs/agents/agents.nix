@@ -36,6 +36,8 @@
                 type = "command";
                 command = "${python} ${./assets/claude-code/statusline.py}";
               };
+
+            env.CLAUDE_CODE_AUTO_MODEL_SERVER = "0";
           };
         };
 
